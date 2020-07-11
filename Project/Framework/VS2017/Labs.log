@@ -1,0 +1,16 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(467,5): warning MSB8028: The intermediate directory (C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\Project\Framework\VS2017\/../Build/Debug/) contains files shared from another project (Project.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  main.cpp
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\Project\Framework\VS2017\main.cpp(63,25): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\Project\Framework\VS2017\main.cpp(96,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\Project\Framework\VS2017\main.cpp(114,31): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\Project\Framework\VS2017\main.cpp(119,32): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\Project\Framework\VS2017\main.cpp(130,28): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\Project\Framework\VS2017\main.cpp(134,28): warning C4305: '-=': truncation from 'double' to 'float'
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\Project\Framework\VS2017\main.cpp(138,28): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\Project\Framework\VS2017\main.cpp(142,28): warning C4305: '-=': truncation from 'double' to 'float'
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\Project\Framework\VS2017\main.cpp(368,28): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\Project\Framework\VS2017\main.cpp(373,27): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\Project\Framework\VS2017\main.cpp(376,40): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\Project\Framework\VS2017\main.cpp(382,64): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\Project\Framework\VS2017\main.cpp(383,62): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+  Labs.vcxproj -> C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\Project\Framework\VS2017\/../Bin/Labs-Debug.exe
