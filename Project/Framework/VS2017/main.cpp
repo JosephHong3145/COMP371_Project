@@ -488,7 +488,7 @@ int main()
         //Jacob's letter and digit
         //C
         //vertical
-        mat4 pillarWorldMatrix = charRotationJacob * translate(mat4(1.0f), vec3(-50.0f + xOffSetJacob, 4.25f, -50.0f + zOffSetJacob) * currentScaleFactorJacob) * scale(mat4(1.0f), vec3(1.0f, 6.5f, 1.0f) * currentScaleFactorJacob);
+        mat4 pillarWorldMatrix = charRotationJacob * translate(mat4(1.0f), vec3(-49.5f + xOffSetJacob, 4.25f, -49.5f + zOffSetJacob) * currentScaleFactorJacob) * scale(mat4(1.0f), vec3(1.0f, 6.5f, 1.0f) * currentScaleFactorJacob);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
         glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
         switch (modelMode)
@@ -509,7 +509,7 @@ int main()
 
         //horizontal
         //low bar
-        pillarWorldMatrix = charRotationJacob * translate(mat4(1.0f), vec3(-48.0f + xOffSetJacob, 0.5f, -50.0f + zOffSetJacob) * currentScaleFactorJacob) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactorJacob);
+        pillarWorldMatrix = charRotationJacob * translate(mat4(1.0f), vec3(-47.5f + xOffSetJacob, 0.5f, -49.5f + zOffSetJacob) * currentScaleFactorJacob) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactorJacob);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
         glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
         switch (modelMode)
@@ -528,7 +528,7 @@ int main()
             break;
         }
         //top bar
-        pillarWorldMatrix = charRotationJacob * translate(mat4(1.0f), vec3(-48.0f + xOffSetJacob, 8.0f, -50.0f + zOffSetJacob) * currentScaleFactorJacob) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactorJacob);
+        pillarWorldMatrix = charRotationJacob * translate(mat4(1.0f), vec3(-47.5f + xOffSetJacob, 8.0f, -49.5f + zOffSetJacob) * currentScaleFactorJacob) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactorJacob);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
         glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
         switch (modelMode)
@@ -550,7 +550,7 @@ int main()
 
         //9
         //vertical
-        pillarWorldMatrix = charRotationJacob * translate(mat4(1.0f), vec3(-42.0f + xOffSetJacob + textOffset, 3.75f, -50.0f + zOffSetJacob) * currentScaleFactorJacob) * scale(mat4(1.0f), vec3(1.0f, 7.5f, 1.0f) * currentScaleFactorJacob);
+        pillarWorldMatrix = charRotationJacob * translate(mat4(1.0f), vec3(-45.5f + xOffSetJacob + textOffset, 3.75f, -49.5f + zOffSetJacob) * currentScaleFactorJacob) * scale(mat4(1.0f), vec3(1.0f, 7.5f, 1.0f) * currentScaleFactorJacob);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
         glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
         switch (modelMode)
@@ -569,7 +569,7 @@ int main()
             break;
         }
 
-        pillarWorldMatrix = charRotationJacob * translate(mat4(1.0f), vec3(-46.0f + xOffSetJacob + textOffset, 6.0f, -50.0f + zOffSetJacob) * currentScaleFactorJacob) * scale(mat4(1.0f), vec3(1.0f, 3.0f, 1.0f) * currentScaleFactorJacob);
+        pillarWorldMatrix = charRotationJacob * translate(mat4(1.0f), vec3(-49.5f + xOffSetJacob + textOffset, 6.0f, -49.5f + zOffSetJacob) * currentScaleFactorJacob) * scale(mat4(1.0f), vec3(1.0f, 3.0f, 1.0f) * currentScaleFactorJacob);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
         glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
         switch (modelMode)
@@ -589,7 +589,7 @@ int main()
         }
 
         //horizontal
-        pillarWorldMatrix = charRotationJacob * translate(mat4(1.0f), vec3(-44.0f + xOffSetJacob + textOffset, 8.0f, -50.0f + zOffSetJacob) * currentScaleFactorJacob) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactorJacob);
+        pillarWorldMatrix = charRotationJacob * translate(mat4(1.0f), vec3(-47.5f + xOffSetJacob + textOffset, 8.0f, -49.5f + zOffSetJacob) * currentScaleFactorJacob) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactorJacob);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
         glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
         switch (modelMode)
@@ -608,7 +608,7 @@ int main()
             break;
         }
 
-        pillarWorldMatrix = charRotationJacob * translate(mat4(1.0f), vec3(-44.5f + xOffSetJacob + textOffset, 4.0f, -50.0f + zOffSetJacob) * currentScaleFactorJacob) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(4.0f, 1.0f, 1.0f) * currentScaleFactorJacob);
+        pillarWorldMatrix = charRotationJacob * translate(mat4(1.0f), vec3(-48.0f + xOffSetJacob + textOffset, 4.0f, -49.5f + zOffSetJacob) * currentScaleFactorJacob) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(4.0f, 1.0f, 1.0f) * currentScaleFactorJacob);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
         glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
         switch (modelMode)
@@ -632,7 +632,7 @@ int main()
         //Joseph's letter and digit
         //U
 
-        pillarWorldMatrix = charRotation * translate(mat4(1.0f), vec3(0.0f + xOffSetJoseph, 5.0f + yOffSetJoseph, 0.0f + zOffSetJoseph) * currentScaleFactorJoseph) * scale(mat4(1.0f), vec3(1.0f, 10.0f, 1.0f) * currentScaleFactorJoseph);
+        pillarWorldMatrix = charRotation * translate(mat4(1.0f), vec3(-6.0f + xOffSetJoseph, 5.5f + yOffSetJoseph, 0.0f + zOffSetJoseph) * currentScaleFactorJoseph) * scale(mat4(1.0f), vec3(1.0f, 10.0f, 1.0f) * currentScaleFactorJoseph);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
         glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
         switch (modelMode) {
@@ -647,7 +647,7 @@ int main()
         }
 
 
-        pillarWorldMatrix = charRotation * translate(mat4(1.0f), vec3(5.0f + xOffSetJoseph, 5.0f + yOffSetJoseph, 0.0f + zOffSetJoseph) * currentScaleFactorJoseph) * scale(mat4(1.0f), vec3(1.0f, 10.0f, 1.0f) * currentScaleFactorJoseph);
+        pillarWorldMatrix = charRotation * translate(mat4(1.0f), vec3(-2.0f + xOffSetJoseph, 5.5f + yOffSetJoseph, 0.0f + zOffSetJoseph) * currentScaleFactorJoseph) * scale(mat4(1.0f), vec3(1.0f, 10.0f, 1.0f) * currentScaleFactorJoseph);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
         glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
         switch (modelMode) {
@@ -662,7 +662,7 @@ int main()
         }
         //6
 
-        pillarWorldMatrix = charRotation * translate(mat4(1.0f), vec3(0.0f + textOffset + xOffSetJoseph, 5.0f + yOffSetJoseph, 0.0f + zOffSetJoseph) * currentScaleFactorJoseph) * scale(mat4(1.0f), vec3(1.0f, 10.0f, 1.0f) * currentScaleFactorJoseph);
+        pillarWorldMatrix = charRotation * translate(mat4(1.0f), vec3(-6.0f + textOffset + xOffSetJoseph, 5.0f + yOffSetJoseph, 0.0f + zOffSetJoseph) * currentScaleFactorJoseph) * scale(mat4(1.0f), vec3(1.0f, 9.0f, 1.0f) * currentScaleFactorJoseph);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
         glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
         switch (modelMode) {
@@ -676,7 +676,7 @@ int main()
             break;
         }
 
-        pillarWorldMatrix = charRotation * translate(mat4(1.0f), vec3(5.0f + textOffset + xOffSetJoseph, 2.5f + yOffSetJoseph, 0.0f + zOffSetJoseph) * currentScaleFactorJoseph) * scale(mat4(1.0f), vec3(1.0f, 5.0f, 1.0f) * currentScaleFactorJoseph);
+        pillarWorldMatrix = charRotation * translate(mat4(1.0f), vec3(-2.0f + textOffset + xOffSetJoseph, 2.5f + yOffSetJoseph, 0.0f + zOffSetJoseph) * currentScaleFactorJoseph) * scale(mat4(1.0f), vec3(1.0f, 4.0f, 1.0f) * currentScaleFactorJoseph);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
         glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
         switch (modelMode) {
@@ -693,7 +693,7 @@ int main()
 
         //U
 
-        pillarWorldMatrix = charRotation * translate(mat4(1.0f), vec3(2.5f + xOffSetJoseph, 0.0f + yOffSetJoseph, 0.0f + zOffSetJoseph) * currentScaleFactorJoseph) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactorJoseph);
+        pillarWorldMatrix = charRotation * translate(mat4(1.0f), vec3(-4.0f + xOffSetJoseph, 0.0f + yOffSetJoseph, 0.0f + zOffSetJoseph) * currentScaleFactorJoseph) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactorJoseph);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
         glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
         switch (modelMode) {
@@ -708,7 +708,7 @@ int main()
         }
         //6
 
-        pillarWorldMatrix = charRotation * translate(mat4(1.0f), vec3(2.5f + textOffset + xOffSetJoseph, 0.0f + yOffSetJoseph, 0.0f + zOffSetJoseph) * currentScaleFactorJoseph) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactorJoseph);
+        pillarWorldMatrix = charRotation * translate(mat4(1.0f), vec3(-4.0f + textOffset + xOffSetJoseph, 0.0f + yOffSetJoseph, 0.0f + zOffSetJoseph) * currentScaleFactorJoseph) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactorJoseph);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
         glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
         switch (modelMode) {
@@ -722,7 +722,7 @@ int main()
             break;
         }
 
-        pillarWorldMatrix = charRotation * translate(mat4(1.0f), vec3(2.5f + textOffset + xOffSetJoseph, 5.0f + yOffSetJoseph, 0.0f + zOffSetJoseph) * currentScaleFactorJoseph) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactorJoseph);
+        pillarWorldMatrix = charRotation * translate(mat4(1.0f), vec3(-3.5f + textOffset + xOffSetJoseph, 5.0f + yOffSetJoseph, 0.0f + zOffSetJoseph) * currentScaleFactorJoseph) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(4.0f, 1.0f, 1.0f) * currentScaleFactorJoseph);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
         glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
         switch (modelMode) {
@@ -736,7 +736,7 @@ int main()
             break;
         }
 
-        pillarWorldMatrix = charRotation * translate(mat4(1.0f), vec3(2.5f + textOffset + xOffSetJoseph, 10.0f + yOffSetJoseph, 0.0f + zOffSetJoseph) * currentScaleFactorJoseph) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactorJoseph);
+        pillarWorldMatrix = charRotation * translate(mat4(1.0f), vec3(-4.0f + textOffset + xOffSetJoseph, 10.0f + yOffSetJoseph, 0.0f + zOffSetJoseph) * currentScaleFactorJoseph) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactorJoseph);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
         glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
         switch (modelMode) {
@@ -753,7 +753,8 @@ int main()
         // Badreddine letter and digit
         //D
         //vertical left
-        pillarWorldMatrix = charRotationBad * translate(mat4(1.0f), vec3(-35.0f + xOffSetBad, 4.25f + yOffSetJoseph, 30.0f + zOffSetBad) * currentScaleFactorBad) * scale(mat4(1.0f), vec3(1.0f, 6.5f, 1.0f) * currentScaleFactorBad);
+        pillarWorldMatrix = charRotationBad * translate(mat4(1.0f), vec3(-49.5f + xOffSetBad, 4.25f, 49.5f + zOffSetBad) * currentScaleFactorBad) * scale(mat4(1.0f), vec3(1.0f, 6.5f, 1.0f) * currentScaleFactorBad);
+        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
         glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
         switch (modelMode)
         {
@@ -772,7 +773,8 @@ int main()
         }
 
         //vertical right
-        pillarWorldMatrix = charRotationBad * translate(mat4(1.0f), vec3(-30.0f + xOffSetBad, 4.25f + yOffSetJoseph, 30.0f + zOffSetBad) * currentScaleFactorBad) * scale(mat4(1.0f), vec3(1.0f, 6.5f, 1.0f) * currentScaleFactorBad);
+        pillarWorldMatrix = charRotationBad * translate(mat4(1.0f), vec3(-44.5f + xOffSetBad, 4.25f, 49.5f + zOffSetBad) * currentScaleFactorBad) * scale(mat4(1.0f), vec3(1.0f, 6.5f, 1.0f) * currentScaleFactorBad);
+        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
         glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
         switch (modelMode)
         {
@@ -792,7 +794,8 @@ int main()
 
         //horizontal
         //low bar
-        pillarWorldMatrix = charRotationBad * translate(mat4(1.0f), vec3(-33.0f + xOffSetBad, 0.5f + yOffSetJoseph, 30.0f + zOffSetBad) * currentScaleFactorBad) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactorBad);
+        pillarWorldMatrix = charRotationBad * translate(mat4(1.0f), vec3(-47.5f + xOffSetBad, 0.5f, 49.5f + zOffSetBad) * currentScaleFactorBad) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactorBad);
+        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
         glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
         switch (modelMode)
         {
@@ -810,7 +813,8 @@ int main()
             break;
         }
         //top bar
-        pillarWorldMatrix = charRotationBad * translate(mat4(1.0f), vec3(-33.0f + xOffSetBad, 8.0f + yOffSetJoseph, 30.0f + zOffSetBad) * currentScaleFactorBad) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactorBad);
+        pillarWorldMatrix = charRotationBad * translate(mat4(1.0f), vec3(-47.5f + xOffSetBad, 8.0f, 49.5f + zOffSetBad) * currentScaleFactorBad) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactorBad);
+        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
         glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
         switch (modelMode)
         {
@@ -830,7 +834,8 @@ int main()
 
         //2
        //vertical left
-        pillarWorldMatrix = charRotationBad * translate(mat4(1.0f), vec3(-25.0f + xOffSetBad, 2.25f + yOffSetJoseph, 30.0f + zOffSetBad) * currentScaleFactorBad) * scale(mat4(1.0f), vec3(1.0f, 3.5f, 1.0f) * currentScaleFactorBad);
+        pillarWorldMatrix = charRotationBad * translate(mat4(1.0f), vec3(-49.5f + xOffSetBad + textOffset, 2.25f, 49.5f + zOffSetBad) * currentScaleFactorBad) * scale(mat4(1.0f), vec3(1.0f, 3.5f, 1.0f) * currentScaleFactorBad);
+        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
         glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
         switch (modelMode)
         {
@@ -849,7 +854,8 @@ int main()
         }
 
         //vertical right
-        pillarWorldMatrix = charRotationBad * translate(mat4(1.0f), vec3(-20.0f + xOffSetBad, 6.25f + yOffSetJoseph, 30.0f + zOffSetBad) * currentScaleFactorBad) * scale(mat4(1.0f), vec3(1.0f, 2.5f, 1.0f) * currentScaleFactorBad);
+        pillarWorldMatrix = charRotationBad * translate(mat4(1.0f), vec3(-44.5f + xOffSetBad + textOffset, 6.25f, 49.5f + zOffSetBad) * currentScaleFactorBad) * scale(mat4(1.0f), vec3(1.0f, 2.5f, 1.0f) * currentScaleFactorBad);
+        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
         glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
         switch (modelMode)
         {
@@ -869,7 +875,8 @@ int main()
 
         //horizontal
         //low bar
-        pillarWorldMatrix = charRotationBad * translate(mat4(1.0f), vec3(-22.5f + xOffSetBad, 0.5f + yOffSetJoseph, 30.0f + zOffSetBad) * currentScaleFactorBad) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(6.0f, 1.0f, 1.0f) * currentScaleFactorBad);
+        pillarWorldMatrix = charRotationBad * translate(mat4(1.0f), vec3(-47.0f + xOffSetBad + textOffset, 0.5f, 49.5f + zOffSetBad) * currentScaleFactorBad) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(6.0f, 1.0f, 1.0f) * currentScaleFactorBad);
+        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
         glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
         switch (modelMode)
         {
@@ -889,7 +896,8 @@ int main()
 
         //horizontal
         //middle bar
-        pillarWorldMatrix = charRotationBad * translate(mat4(1.0f), vec3(-22.5f + xOffSetBad, 4.5f + yOffSetJoseph, 30.0f + zOffSetBad) * currentScaleFactorBad) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(6.0f, 1.0f, 1.0f) * currentScaleFactorBad);
+        pillarWorldMatrix = charRotationBad * translate(mat4(1.0f), vec3(-47.0f + xOffSetBad + textOffset, 4.5f, 49.5f + zOffSetBad) * currentScaleFactorBad) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(6.0f, 1.0f, 1.0f) * currentScaleFactorBad);
+        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
         glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
         switch (modelMode)
         {
@@ -908,7 +916,8 @@ int main()
         }
 
         //top bar
-        pillarWorldMatrix = charRotationBad * translate(mat4(1.0f), vec3(-22.5f + xOffSetBad, 8.0f + yOffSetJoseph, 30.0f + zOffSetBad) * currentScaleFactorBad) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(6.0f, 1.0f, 1.0f) * currentScaleFactorBad);
+        pillarWorldMatrix = charRotationBad * translate(mat4(1.0f), vec3(-47.0f + xOffSetBad + textOffset, 8.0f, 49.5f + zOffSetBad) * currentScaleFactorBad) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(6.0f, 1.0f, 1.0f) * currentScaleFactorBad);
+        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
         glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
         switch (modelMode)
         {
@@ -945,7 +954,7 @@ int main()
         lastMousePosX = mousePosX;
         lastMousePosY = mousePosY;
 
-        if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS) {
+        if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS) {
             //turn mouse into zoom mode 
             FOV += dy / 100;
             if (FOV > 71) {
@@ -1129,7 +1138,7 @@ int compileAndLinkShaders()
 int createVertexArrayObject()
 {
     // Cube model
-    vec3 vertexArray[] = {  // position,                            color
+    vec3 vertexArray[] = {  // position, color
         vec3(-0.5f,-0.5f,-0.5f), vec3(0.6f, 0.6f, 0.6f),
         vec3(-0.5f,-0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f),
         vec3(-0.5f, 0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f),
@@ -1138,7 +1147,7 @@ int createVertexArrayObject()
         vec3(-0.5f, 0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f),
         vec3(-0.5f, 0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f),
 
-        vec3(0.5f, 0.5f,-0.5f), vec3(0.6f, 0.6f, 0.6f), // far - blue
+        vec3(0.5f, 0.5f,-0.5f), vec3(0.6f, 0.6f, 0.6f),
         vec3(-0.5f,-0.5f,-0.5f), vec3(1.0f, 1.0f, 1.0f),
         vec3(-0.5f, 0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f),
 
@@ -1146,7 +1155,7 @@ int createVertexArrayObject()
         vec3(0.5f,-0.5f,-0.5f), vec3(1.0f, 1.0f, 1.0f),
         vec3(-0.5f,-0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f),
 
-        vec3(0.5f,-0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), // bottom - turquoise
+        vec3(0.5f,-0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), 
         vec3(-0.5f,-0.5f,-0.5f), vec3(1.0f, 1.0f, 1.0f),
         vec3(0.5f,-0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f),
 
@@ -1154,7 +1163,7 @@ int createVertexArrayObject()
         vec3(-0.5f,-0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f),
         vec3(-0.5f,-0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f),
 
-        vec3(-0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), // near - green
+        vec3(-0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f),
         vec3(-0.5f,-0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f),
         vec3(0.5f,-0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f),
 
@@ -1162,7 +1171,7 @@ int createVertexArrayObject()
         vec3(-0.5f, 0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f),
         vec3(0.5f,-0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f),
 
-        vec3(0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), // right - purple
+        vec3(0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f),
         vec3(0.5f,-0.5f,-0.5f), vec3(1.0f, 1.0f, 1.0f),
         vec3(0.5f, 0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f),
 
@@ -1170,7 +1179,7 @@ int createVertexArrayObject()
         vec3(0.5f, 0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f),
         vec3(0.5f,-0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f),
 
-        vec3(0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), // top - yellow
+        vec3(0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f),
         vec3(0.5f, 0.5f,-0.5f), vec3(1.0f, 1.0f, 1.0f),
         vec3(-0.5f, 0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f),
 
@@ -1239,3 +1248,4 @@ bool initContext() {     // Initialize GLFW and OpenGL version
     }
     return true;
 }
+
