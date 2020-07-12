@@ -4,6 +4,7 @@ movement =========================
 WASD: Move 
 Space: fly up
 Lctrl: fly down 
+Shift: Increase movement speed 
 
 camera control =======================
 mouse: FPS camera (pan and tilt)
