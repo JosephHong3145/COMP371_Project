@@ -24,7 +24,8 @@ bool initContext();
 GLFWwindow* window = NULL;
 
 //different settings you can change 
-float cameraSpeed = 10.0f;
+float normalCameraSpeed = 10.0f;
+float fastCameraSpeed = 50.0f;
 float FOV = 70.0f;
 const float mouseSensitivity = 50.0f;
 
@@ -47,6 +48,7 @@ int main()
     float cameraHorizontalAngle = 90.0f;
     float cameraVerticalAngle = 0.0f;
     float cameraTiltAngle = 90.0f;
+    float cameraSpeed = 0.0f;
 
     // Set projection matrix for shader, this won't change
 
@@ -80,7 +82,7 @@ int main()
     mat4 rotateMatrixX = mat4(1.0f);
     mat4 rotateMatrixY = mat4(1.0f);
     int modelMode = 0; //0 = triangle, 1 = line, 2 = point
-
+    float charRotateFactor = 0.0f;
 
     // Entering Game Loop
     while (!glfwWindowShouldClose(window))
@@ -142,8 +144,25 @@ int main()
             zOffSet -= 0.01;
         }
 
-        //changing the orientation of the world. TODO: NOT WORKING AT ALL. 
-  
+        //changing the orientation of the letters
+        mat4 charRotation = mat4(1.0f);
+
+        if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS) {
+            charRotateFactor += 0.1f;
+        }
+
+        if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS) {
+            charRotateFactor -= 0.1f;
+        }
+
+        if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS) {
+            charRotateFactor = 0.0f;
+        }
+
+        charRotation = rotate(mat4(1.0f), radians(charRotateFactor), vec3(0.0f, 0.0f, 1.0f));
+
+        //changing the orientation of the world.
+
         bool worldRotate = false;
         if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) {
             rotateFactorX += 1.0;
@@ -175,7 +194,7 @@ int main()
 
         //GLuint rotationMatrixLocation = glGetUniformLocation(shaderProgram, "rotationMatrix");
         //glUniformMatrix4fv(projectionMatrixLocation, 1, GL_FALSE, &projectionMatrix[0][0]);
-        
+
         //switching view mode between Triangle, Line, Point (using T, L, P)
         if (glfwGetKey(window, GLFW_KEY_T) == GLFW_PRESS) {
             modelMode = 0;
@@ -200,7 +219,7 @@ int main()
             worldMatrixLocation = glGetUniformLocation(shaderProgram, "worldMatrix");
             glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &groundWorldMatrix[0][0]);
 
-            glDrawArrays(GL_LINES, 0, 36); // 36 vertices, starting at index 0
+            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
 
 
             //vertical
@@ -209,7 +228,7 @@ int main()
             worldMatrixLocation = glGetUniformLocation(shaderProgram, "worldMatrix");
             glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &groundWorldMatrix[0][0]);
 
-            glDrawArrays(GL_LINES, 0, 36); // 36 vertices, starting at index 0
+            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
 
         }
 
@@ -220,7 +239,7 @@ int main()
         glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &cordMarker[0][0]);
         glUniform1i(currentAxisLocation, 1);
 
-        glDrawArrays(GL_LINES, 0, 36); // 36 vertices, starting at index 0
+        glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
 
         cordMarker = translate(mat4(1.0f), vec3(0.0f, 3.5f, 0.0f)) * scale(mat4(1.0f), vec3(0.02f, 5.0f, 0.02f));
         cordMarker = rotateMatrixY * rotateMatrixX * cordMarker;
@@ -228,7 +247,7 @@ int main()
         glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &cordMarker[0][0]);
         glUniform1i(currentAxisLocation, 2);
 
-        glDrawArrays(GL_LINES, 0, 36); // 36 vertices, starting at index 0
+        glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
 
         cordMarker = translate(mat4(1.0f), vec3(0.0f, 1.0f, 2.5f)) * scale(mat4(1.0f), vec3(0.02f, 0.02f, 5.0f));
         cordMarker = rotateMatrixY * rotateMatrixX * cordMarker;
@@ -236,15 +255,15 @@ int main()
         glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &cordMarker[0][0]);
         glUniform1i(currentAxisLocation, 3);
 
-        glDrawArrays(GL_LINES, 0, 36); // 36 vertices, starting at index 0
+        glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
         glUniform1i(currentAxisLocation, 0);
-        
+
         //drawing the letters
 
         //vertical
 
         //U
-        mat4 pillarWorldMatrix = translate(mat4(1.0f), vec3(0.0f + xOffSet, 5.0f + yOffSet, 0.0f + zOffSet) * currentScaleFactor) * scale(mat4(1.0f), vec3(1.0f, 10.0f, 1.0f) * currentScaleFactor);
+        mat4 pillarWorldMatrix = charRotation * translate(mat4(1.0f), vec3(0.0f + xOffSet, 5.0f + yOffSet, 0.0f + zOffSet) * currentScaleFactor) * scale(mat4(1.0f), vec3(1.0f, 10.0f, 1.0f) * currentScaleFactor);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
         glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
         switch (modelMode) {
@@ -258,7 +277,7 @@ int main()
             break;
         }
 
-        pillarWorldMatrix = translate(mat4(1.0f), vec3(5.0f + xOffSet, 5.0f + yOffSet, 0.0f + zOffSet) * currentScaleFactor) * scale(mat4(1.0f), vec3(1.0f, 10.0f, 1.0f) * currentScaleFactor);
+        pillarWorldMatrix = charRotation * translate(mat4(1.0f), vec3(5.0f + xOffSet, 5.0f + yOffSet, 0.0f + zOffSet) * currentScaleFactor) * scale(mat4(1.0f), vec3(1.0f, 10.0f, 1.0f) * currentScaleFactor);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
         glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
         switch (modelMode) {
@@ -272,7 +291,7 @@ int main()
             break;
         }
         //6
-        pillarWorldMatrix = translate(mat4(1.0f), vec3(0.0f + textOffset + xOffSet, 5.0f + yOffSet, 0.0f + zOffSet) * currentScaleFactor) * scale(mat4(1.0f), vec3(1.0f, 10.0f, 1.0f) * currentScaleFactor);
+        pillarWorldMatrix = charRotation * translate(mat4(1.0f), vec3(0.0f + textOffset + xOffSet, 5.0f + yOffSet, 0.0f + zOffSet) * currentScaleFactor) * scale(mat4(1.0f), vec3(1.0f, 10.0f, 1.0f) * currentScaleFactor);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
         glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
         switch (modelMode) {
@@ -285,7 +304,7 @@ int main()
         default: glDrawArrays(GL_TRIANGLES, 0, 36);
             break;
         }
-        pillarWorldMatrix = translate(mat4(1.0f), vec3(5.0f + textOffset + xOffSet, 2.5f + yOffSet, 0.0f + zOffSet) * currentScaleFactor) * scale(mat4(1.0f), vec3(1.0f, 5.0f, 1.0f) * currentScaleFactor);
+        pillarWorldMatrix = charRotation * translate(mat4(1.0f), vec3(5.0f + textOffset + xOffSet, 2.5f + yOffSet, 0.0f + zOffSet) * currentScaleFactor) * scale(mat4(1.0f), vec3(1.0f, 5.0f, 1.0f) * currentScaleFactor);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
         glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
         switch (modelMode) {
@@ -301,7 +320,7 @@ int main()
         //horizontal
 
         //U
-        pillarWorldMatrix = translate(mat4(1.0f), vec3(2.5f + xOffSet, 0.0f + yOffSet, 0.0f + zOffSet) * currentScaleFactor) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactor);
+        pillarWorldMatrix = charRotation * translate(mat4(1.0f), vec3(2.5f + xOffSet, 0.0f + yOffSet, 0.0f + zOffSet) * currentScaleFactor) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactor);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
         glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
         switch (modelMode) {
@@ -315,7 +334,7 @@ int main()
             break;
         }
         //6
-        pillarWorldMatrix = translate(mat4(1.0f), vec3(2.5f + textOffset + xOffSet, 0.0f + yOffSet, 0.0f + zOffSet) * currentScaleFactor) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactor);
+        pillarWorldMatrix = charRotation * translate(mat4(1.0f), vec3(2.5f + textOffset + xOffSet, 0.0f + yOffSet, 0.0f + zOffSet) * currentScaleFactor) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactor);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
         glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
         switch (modelMode) {
@@ -328,7 +347,7 @@ int main()
         default: glDrawArrays(GL_TRIANGLES, 0, 36);
             break;
         }
-        pillarWorldMatrix = translate(mat4(1.0f), vec3(2.5f + textOffset + xOffSet, 5.0f + yOffSet, 0.0f + zOffSet) * currentScaleFactor) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactor);
+        pillarWorldMatrix = charRotation * translate(mat4(1.0f), vec3(2.5f + textOffset + xOffSet, 5.0f + yOffSet, 0.0f + zOffSet) * currentScaleFactor) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactor);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
         glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
         switch (modelMode) {
@@ -341,7 +360,7 @@ int main()
         default: glDrawArrays(GL_TRIANGLES, 0, 36);
             break;
         }
-        pillarWorldMatrix = translate(mat4(1.0f), vec3(2.5f + textOffset + xOffSet, 10.0f + yOffSet, 0.0f + zOffSet) * currentScaleFactor) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactor);
+        pillarWorldMatrix = charRotation * translate(mat4(1.0f), vec3(2.5f + textOffset + xOffSet, 10.0f + yOffSet, 0.0f + zOffSet) * currentScaleFactor) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactor);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
         glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
         switch (modelMode) {
@@ -354,7 +373,7 @@ int main()
         default: glDrawArrays(GL_TRIANGLES, 0, 36);
             break;
         }
-           
+
         glBindVertexArray(0);
 
         // End Frame
@@ -383,7 +402,8 @@ int main()
             else if (FOV < 69.2) {
                 FOV = 69.2;
             }
-        }else if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_MIDDLE) == GLFW_PRESS) {
+        }
+        else if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_MIDDLE) == GLFW_PRESS) {
             cameraTiltAngle += dx / 100;
             cout << cameraTiltAngle << endl;
         }
@@ -413,7 +433,15 @@ int main()
             glm::normalize(cameraSideVector);
         }
 
-        //using WADS to control movement adjusted 
+        if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS) // increase camera movement speed 
+        {
+            cameraSpeed = fastCameraSpeed;
+        }
+        else {
+            cameraSpeed = normalCameraSpeed;
+        }
+
+        //using WASD to control movement adjusted 
         if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) // move camera to the left
         {
             cameraPosition.z -= cameraSpeed * dt * cameraLookAt.x;
