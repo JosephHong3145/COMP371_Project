@@ -1,5 +1,4 @@
 Key Bind: 
-Joseph Hong (Ru Hong): 
 
 movement =========================
 WASD: Move 
@@ -13,5 +12,9 @@ mouse while holding: zooming in and out
 model manipulation =====================
 TFGH: Move model in world 
 T/L/P: change model to triangle / line / point 
+Q/E: change model orientation 
+X: reset model orientation 
+
+world manipulation =====================
 up/down/left/right: change world orientation
 Enter: reset world orientation to original 

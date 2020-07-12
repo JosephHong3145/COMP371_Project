@@ -1,16 +1,20 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(467,5): warning MSB8028: The intermediate directory (C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\Project\Framework\VS2017\/../Build/Debug/) contains files shared from another project (Project.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(467,5): warning MSB8028: The intermediate directory (C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\/../Build/Debug/) contains files shared from another project (Project.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   main.cpp
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\Project\Framework\VS2017\main.cpp(63,25): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\Project\Framework\VS2017\main.cpp(96,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\Project\Framework\VS2017\main.cpp(114,31): warning C4305: '=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\Project\Framework\VS2017\main.cpp(119,32): warning C4305: '=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\Project\Framework\VS2017\main.cpp(130,28): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\Project\Framework\VS2017\main.cpp(134,28): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\Project\Framework\VS2017\main.cpp(138,28): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\Project\Framework\VS2017\main.cpp(142,28): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\Project\Framework\VS2017\main.cpp(379,28): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\Project\Framework\VS2017\main.cpp(384,27): warning C4305: '=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\Project\Framework\VS2017\main.cpp(387,40): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\Project\Framework\VS2017\main.cpp(393,64): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\Project\Framework\VS2017\main.cpp(394,62): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-  Labs.vcxproj -> C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\Project\Framework\VS2017\/../Bin/Labs-Debug.exe
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(65,25): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(98,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(116,31): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(121,32): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(132,28): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(136,28): warning C4305: '-=': truncation from 'double' to 'float'
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(140,28): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(144,28): warning C4305: '-=': truncation from 'double' to 'float'
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(398,28): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(403,27): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(407,40): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(413,64): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(414,62): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+  LINK : C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\\..\Bin\Labs-Debug.exe not found or not built by the last incremental link; performing full link
+LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\Bin\vc120.pdb'; linking object as if no debug info
+  Labs.vcxproj -> C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\/../Bin/Labs-Debug.exe
