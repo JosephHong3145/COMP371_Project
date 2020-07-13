@@ -131,7 +131,7 @@ int main()
         glUniform1i(currentAxisLocation, 0);
 
         //changing projection view every second to accomodate for zoom
-        mat4 projectionMatrix = glm::perspective(FOV, 1024.0f / 768.0f, 0.01f, 100.0f);
+        mat4 projectionMatrix = glm::perspective(FOV, 1024.0f / 768.0f, 0.01f, 1000.0f);
         GLuint projectionMatrixLocation = glGetUniformLocation(shaderProgram, "projectionMatrix");
         glUniformMatrix4fv(projectionMatrixLocation, 1, GL_FALSE, &projectionMatrix[0][0]);
 
@@ -205,127 +205,127 @@ int main()
         //Translating the model to directions using R,D,F,G on the keyboard
         if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS) {
             switch (choose) {
-            case(1): zOffSetJoseph += 0.01;
-                zOffSetJacob += 0.01;
-                zOffSetBad += 0.01;
-                zOffSetAdam += 0.01;
-                zOffSetAvnish += 0.01;
+            case(1): zOffSetJoseph += 0.1;
+                zOffSetJacob += 0.1;
+                zOffSetBad += 0.1;
+                zOffSetAdam += 0.1;
+                zOffSetAvnish += 0.1;
                 break;
 
-            case(2): zOffSetJoseph += 0.01;
+            case(2): zOffSetJoseph += 0.1;
                 break;
 
-            case(3): zOffSetJacob += 0.01;
+            case(3): zOffSetJacob += 0.1;
                 break;
 
-            case(4): zOffSetBad += 0.01;
+            case(4): zOffSetBad += 0.1;
                 break;
-            case(5): zOffSetAdam += 0.01;
+            case(5): zOffSetAdam += 0.1;
                 break;
-            case(6): zOffSetAvnish += 0.01;
+            case(6): zOffSetAvnish += 0.1;
                 break;
-            default: zOffSetJoseph += 0.01;
-                zOffSetJacob += 0.01;
-                zOffSetBad += 0.01;
-                zOffSetAdam += 0.01;
-                zOffSetAvnish += 0.01;
+            default: zOffSetJoseph += 0.1;
+                zOffSetJacob += 0.1;
+                zOffSetBad += 0.1;
+                zOffSetAdam += 0.1;
+                zOffSetAvnish += 0.1;
                 break;
             }
         }
 
         if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS) {
             switch (choose) {
-            case(1): xOffSetJoseph -= 0.01;
-                xOffSetJacob -= 0.01;
-                xOffSetBad -= 0.01;
-                xOffSetAdam -= 0.01;
-                xOffSetAvnish -= 0.01;
+            case(1): xOffSetJoseph -= 0.1;
+                xOffSetJacob -= 0.1;
+                xOffSetBad -= 0.1;
+                xOffSetAdam -= 0.1;
+                xOffSetAvnish -= 0.1;
                 break;
 
-            case(2): xOffSetJoseph -= 0.01;
+            case(2): xOffSetJoseph -= 0.1;
                 break;
 
-            case(3): xOffSetJacob -= 0.01;
+            case(3): xOffSetJacob -= 0.1;
                 break;
 
-            case(4): xOffSetBad -= 0.01;
+            case(4): xOffSetBad -= 0.1;
                 break;
 
-            case(5): xOffSetAdam -= 0.01;
+            case(5): xOffSetAdam -= 0.1;
                 break;
-            case(6): xOffSetAvnish -= 0.01;
+            case(6): xOffSetAvnish -= 0.1;
                 break;
-            default: xOffSetJoseph -= 0.01;
-                xOffSetJacob -= 0.01;
-                xOffSetBad -= 0.01;
-                xOffSetAdam -= 0.01;
-                xOffSetAvnish -= 0.01;
+            default: xOffSetJoseph -= 0.1;
+                xOffSetJacob -= 0.1;
+                xOffSetBad -= 0.1;
+                xOffSetAdam -= 0.1;
+                xOffSetAvnish -= 0.1;
                 break;
             }
         }
 
         if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS) {
             switch (choose) {
-            case(1): xOffSetJoseph += 0.01;
-                xOffSetJacob += 0.01;
-                xOffSetBad += 0.01;
-                xOffSetAdam += 0.01;
-                xOffSetAvnish += 0.01;
+            case(1): xOffSetJoseph += 0.1;
+                xOffSetJacob += 0.1;
+                xOffSetBad += 0.1;
+                xOffSetAdam += 0.1;
+                xOffSetAvnish += 0.1;
                 break;
 
-            case(2): xOffSetJoseph += 0.01;
+            case(2): xOffSetJoseph += 0.1;
                 break;
 
-            case(3): xOffSetJacob += 0.01;
+            case(3): xOffSetJacob += 0.1;
                 break;
 
-            case(4): xOffSetBad += 0.01;
+            case(4): xOffSetBad += 0.1;
                 break;
 
-            case(5): xOffSetAdam += 0.01;
+            case(5): xOffSetAdam += 0.1;
                 break;
 
-            case(6): xOffSetAvnish += 0.01;
+            case(6): xOffSetAvnish += 0.1;
                 break;
 
-            default: xOffSetJoseph += 0.01;
-                xOffSetJacob += 0.01;
-                xOffSetBad += 0.01;
-                xOffSetAdam += 0.01;
-                xOffSetAvnish += 0.01;
+            default: xOffSetJoseph += 0.1;
+                xOffSetJacob += 0.1;
+                xOffSetBad += 0.1;
+                xOffSetAdam += 0.1;
+                xOffSetAvnish += 0.1;
                 break;
             }
         }
 
         if (glfwGetKey(window, GLFW_KEY_T) == GLFW_PRESS) {
             switch (choose) {
-            case(1): zOffSetJoseph -= 0.01;
-                zOffSetJacob -= 0.01;
-                zOffSetBad -= 0.01;
-                zOffSetAdam -= 0.01;
-                zOffSetAvnish -= 0.01;
+            case(1): zOffSetJoseph -= 0.1;
+                zOffSetJacob -= 0.1;
+                zOffSetBad -= 0.1;
+                zOffSetAdam -= 0.1;
+                zOffSetAvnish -= 0.1;
                 break;
 
-            case(2): zOffSetJoseph -= 0.01;
+            case(2): zOffSetJoseph -= 0.1;
                 break;
 
-            case(3): zOffSetJacob -= 0.01;
+            case(3): zOffSetJacob -= 0.1;
                 break;
 
-            case(4): zOffSetBad -= 0.01;
+            case(4): zOffSetBad -= 0.1;
                 break;
 
-            case(5): zOffSetAdam -= 0.01;
+            case(5): zOffSetAdam -= 0.1;
                 break;
 
-            case(6): zOffSetAvnish -= 0.01;
+            case(6): zOffSetAvnish -= 0.1;
                 break;
 
-            default: zOffSetJoseph -= 0.01;
-                zOffSetJacob -= 0.01;
-                zOffSetBad -= 0.01;
-                zOffSetAdam -= 0.01;
-                zOffSetAvnish -= 0.01;
+            default: zOffSetJoseph -= 0.1;
+                zOffSetJacob -= 0.1;
+                zOffSetBad -= 0.1;
+                zOffSetAdam -= 0.1;
+                zOffSetAvnish -= 0.1;
                 break;
             }
         }
