@@ -9,26 +9,32 @@
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 #include <glm/common.hpp>
-
+#include "shader_compile.h"
 
 using namespace glm;
 using namespace std;
 
-const char* getVertexShaderSource();
-const char* getFragmentShaderSource();
-int compileAndLinkShaders();
-int createVertexArrayObject();
+//const char* getVertexShaderSource();
+//const char* getFragmentShaderSource();
+//int createVertexArrayObject();
 bool initContext();
 
 GLFWwindow* window = NULL;
 
 //different settings you can change 
-
 float normalCameraSpeed = 10.0f;
 float fastCameraSpeed = 50.0f;
 float FOV = 70.0f;
 const float mouseSensitivity = 50.0f;
+
+// settings
+const unsigned int SCREEN_WIDTH = 1024;
+const unsigned int SCREEN_HEIGHT = 768;
+
+// lighting
+vec3 lightPos(1.2f, 40.0f, 2.0f);
 
 int main()
 {
@@ -38,9 +44,10 @@ int main()
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
     // Compile and link shaders here
-    int shaderProgram = compileAndLinkShaders();
-    glUseProgram(shaderProgram);
-    GLint currentAxisLocation = glGetUniformLocation(shaderProgram, "currentAxis");
+    //int shaderProgram = compileAndLinkShaders();
+    Shader lightingShader("2.2.basic_lighting.vert", "2.2.basic_lighting.frag");
+    Shader modelShader("model.vert", "model.frag");
+    //GLint currentAxisLocation = glGetUniformLocation(shaderProgram, "currentAxis");
 
     //Initiating camera
     vec3 cameraPosition(0.6f, 1.0f, 10.0f);
@@ -56,11 +63,106 @@ int main()
     // Set initial view matrix
     mat4 viewMatrix = lookAt(cameraPosition, cameraPosition + cameraLookAt, cameraUp);
 
-    GLuint viewMatrixLocation = glGetUniformLocation(shaderProgram, "viewMatrix");
-    glUniformMatrix4fv(viewMatrixLocation, 1, GL_FALSE, &viewMatrix[0][0]);
+    modelShader.setMat4("viewMatrix", viewMatrix);
+    //GLuint viewMatrixLocation = glGetUniformLocation(shaderProgram, "viewMatrix");
+    //glUniformMatrix4fv(viewMatrixLocation, 1, GL_FALSE, &viewMatrix[0][0]);
 
     // Upload to VAO 
-    int vao = createVertexArrayObject();
+    //int vao = createVertexArrayObject();
+
+    /////////////////////////////////////////////////////////
+    // Start
+       
+    // Cube model
+    vec3 vertexArray[] = {  // position, color, normal
+        vec3(-0.5f,-0.5f,-0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f,  0.0f, -1.0f),
+        vec3(-0.5f,-0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(0.0f,  0.0f, -1.0f),
+        vec3(-0.5f, 0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f,  0.0f, -1.0f),
+
+        vec3(-0.5f,-0.5f,-0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f,  0.0f, -1.0f),
+        vec3(-0.5f, 0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(0.0f,  0.0f, -1.0f),
+        vec3(-0.5f, 0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f,  0.0f, -1.0f),
+
+        vec3(0.5f, 0.5f,-0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f,  0.0f,  1.0f),
+        vec3(-0.5f,-0.5f,-0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(0.0f,  0.0f,  1.0f),
+        vec3(-0.5f, 0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f,  0.0f,  1.0f),
+
+        vec3(0.5f, 0.5f,-0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f,  0.0f,  1.0f),
+        vec3(0.5f,-0.5f,-0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(0.0f,  0.0f,  1.0f),
+        vec3(-0.5f,-0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f,  0.0f,  1.0f),
+
+        vec3(0.5f,-0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(-1.0f,  0.0f,  0.0f),
+        vec3(-0.5f,-0.5f,-0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(-1.0f,  0.0f,  0.0f),
+        vec3(0.5f,-0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(-1.0f,  0.0f,  0.0f),
+
+        vec3(0.5f,-0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(-1.0f,  0.0f,  0.0f),
+        vec3(-0.5f,-0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(-1.0f,  0.0f,  0.0f),
+        vec3(-0.5f,-0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(-1.0f,  0.0f,  0.0f),
+
+        vec3(-0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(1.0f,  0.0f,  0.0f),
+        vec3(-0.5f,-0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(1.0f,  0.0f,  0.0f),
+        vec3(0.5f,-0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(1.0f,  0.0f,  0.0f),
+
+        vec3(0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(1.0f,  0.0f,  0.0f),
+        vec3(-0.5f, 0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(1.0f,  0.0f,  0.0f),
+        vec3(0.5f,-0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(1.0f,  0.0f,  0.0f),
+
+        vec3(0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f, -1.0f,  0.0f),
+        vec3(0.5f,-0.5f,-0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(0.0f, -1.0f,  0.0f),
+        vec3(0.5f, 0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f, -1.0f,  0.0f),
+
+        vec3(0.5f,-0.5f,-0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f, -1.0f,  0.0f),
+        vec3(0.5f, 0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(0.0f, -1.0f,  0.0f),
+        vec3(0.5f,-0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f, -1.0f,  0.0f),
+
+        vec3(0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f,  1.0f,  0.0f),
+        vec3(0.5f, 0.5f,-0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(0.0f,  1.0f,  0.0f),
+        vec3(-0.5f, 0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f,  1.0f,  0.0f),
+
+        vec3(0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f,  1.0f,  0.0f),
+        vec3(-0.5f, 0.5f,-0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(0.0f,  1.0f,  0.0f),
+        vec3(-0.5f, 0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f,  1.0f,  0.0f),
+
+    };
+
+    // Create a vertex array
+    GLuint cubeVAO;
+    glGenVertexArrays(1, &cubeVAO);
+    glBindVertexArray(cubeVAO);
+
+    // Upload Vertex Buffer to the GPU, keep a reference to it (vertexBufferObject)
+    GLuint VBO;
+    glGenBuffers(1, &VBO);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertexArray), vertexArray, GL_STATIC_DRAW);
+
+    // Position attribute
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(vec3), (void*)0);
+    glEnableVertexAttribArray(0);
+
+    // Color attribute
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(vec3), (void*)sizeof(vec3));
+    glEnableVertexAttribArray(1);
+
+    // Normal attribute
+    glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(vec3), (void*)(2 * sizeof(vec3)));
+    glEnableVertexAttribArray(2);
+
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBindVertexArray(0);
+
+    // second, configure the light's VAO (VBO stays the same; the vertices are the same for the light object which is also a 3D cube)
+    GLuint lightCubeVAO;
+    glGenVertexArrays(1, &lightCubeVAO);
+    glBindVertexArray(lightCubeVAO);
+
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    // note that we update the lamp's position attribute's stride to reflect the updated buffer data
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(vec3), (void*)0);
+    glEnableVertexAttribArray(0);
+
+    //END
+    //////////////////////////////////////////////////
 
     // For frame time
     float lastFrameTime = glfwGetTime();
@@ -128,12 +230,14 @@ int main()
     // Entering Game Loop
     while (!glfwWindowShouldClose(window))
     {
-        glUniform1i(currentAxisLocation, 0);
+        lightingShader.use();
+        modelShader.use();
+
+        modelShader.setInt("currentAxis", 0);
 
         //changing projection view every second to accomodate for zoom
-        mat4 projectionMatrix = glm::perspective(FOV, 1024.0f / 768.0f, 0.01f, 1000.0f);
-        GLuint projectionMatrixLocation = glGetUniformLocation(shaderProgram, "projectionMatrix");
-        glUniformMatrix4fv(projectionMatrixLocation, 1, GL_FALSE, &projectionMatrix[0][0]);
+        mat4 projectionMatrix = perspective(FOV, 1024.0f / 768.0f, 0.01f, 1000.0f);
+        modelShader.setMat4("projectionMatrix", projectionMatrix);
 
         // Frame time calculation
         float dt = glfwGetTime() - lastFrameTime;
@@ -143,8 +247,35 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT);
         glClear(GL_DEPTH_BUFFER_BIT);
 
+        // be sure to activate shader when setting uniforms/drawing objects
+        lightingShader.use();
+        lightingShader.setVec3("objectColor", 1.0f, 0.5f, 0.31f);
+        lightingShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
+        lightingShader.setVec3("lightPos", lightPos);
+        lightingShader.setVec3("viewPos", cameraPosition);
+
+        // view/projection transformations
+        lightingShader.setMat4("projection", projectionMatrix);
+        lightingShader.setMat4("view", viewMatrix);
+
+        // world transformation
+        mat4 world = mat4(1.0f);
+        lightingShader.setMat4("model", world);
+
         // Draw geometry
-        glBindVertexArray(vao);
+        glBindVertexArray(cubeVAO);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+
+        // also draw the lamp object
+        modelShader.use();
+        modelShader.setMat4("projectionMatrix", projectionMatrix);
+        modelShader.setMat4("viewMatrix", viewMatrix);
+        world = translate(world, lightPos) * scale(world, vec3(0.2f)); // a smaller cube
+        world =  rotateMatrixY * rotateMatrixX * world;
+        modelShader.setMat4("model", world);
+
+        glBindVertexArray(cubeVAO);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
 
         GLuint worldMatrixLocation = NULL;
 
@@ -591,8 +722,7 @@ int main()
             //horizontal
             mat4 groundWorldMatrix = translate(mat4(1.0f), vec3(0.0f, -0.01f, -50.0f + i)) * scale(mat4(1.0f), vec3(100.0f, 0.02f, 0.02f));
             groundWorldMatrix = rotateMatrixY * rotateMatrixX * groundWorldMatrix;
-            worldMatrixLocation = glGetUniformLocation(shaderProgram, "worldMatrix");
-            glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &groundWorldMatrix[0][0]);
+            modelShader.setMat4("worldMatrix", groundWorldMatrix);
 
             glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
 
@@ -600,8 +730,8 @@ int main()
             //vertical
             groundWorldMatrix = translate(mat4(1.0f), vec3(-50.0f + i, -0.01f, 0.0f)) * scale(mat4(1.0f), vec3(0.02f, 0.02f, 100.0f));
             groundWorldMatrix = rotateMatrixY * rotateMatrixX * groundWorldMatrix;
-            worldMatrixLocation = glGetUniformLocation(shaderProgram, "worldMatrix");
-            glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &groundWorldMatrix[0][0]);
+            modelShader.setMat4("worldMatrix", groundWorldMatrix);
+
 
             glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
 
@@ -610,28 +740,25 @@ int main()
         //drawing the XYZ line: 
         mat4 cordMarker = translate(mat4(1.0f), vec3(2.5f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 0.02f, 0.02f));
         cordMarker = rotateMatrixY * rotateMatrixX * cordMarker;
-        worldMatrixLocation = glGetUniformLocation(shaderProgram, "worldMatrix");
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &cordMarker[0][0]);
-        glUniform1i(currentAxisLocation, 1);
+        modelShader.setMat4("worldMatrix", cordMarker);
+        modelShader.setInt("currentAxis", 1);
 
         glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
 
         cordMarker = translate(mat4(1.0f), vec3(0.0f, 3.5f, 0.0f)) * scale(mat4(1.0f), vec3(0.02f, 5.0f, 0.02f));
         cordMarker = rotateMatrixY * rotateMatrixX * cordMarker;
-        worldMatrixLocation = glGetUniformLocation(shaderProgram, "worldMatrix");
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &cordMarker[0][0]);
-        glUniform1i(currentAxisLocation, 2);
+        modelShader.setMat4("worldMatrix", cordMarker);
+        modelShader.setInt("currentAxis", 2);
 
         glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
 
         cordMarker = translate(mat4(1.0f), vec3(0.0f, 1.0f, 2.5f)) * scale(mat4(1.0f), vec3(0.02f, 0.02f, 5.0f));
         cordMarker = rotateMatrixY * rotateMatrixX * cordMarker;
-        worldMatrixLocation = glGetUniformLocation(shaderProgram, "worldMatrix");
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &cordMarker[0][0]);
-        glUniform1i(currentAxisLocation, 3);
+        modelShader.setMat4("worldMatrix", cordMarker);
+        modelShader.setInt("currentAxis", 3);
 
         glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
-        glUniform1i(currentAxisLocation, 0);
+        modelShader.setInt("currentAxis", 0);
 
         //drawing the letters
 
@@ -641,7 +768,7 @@ int main()
         //vertical
         mat4 pillarWorldMatrix = charRotationJacob * translate(mat4(1.0f), vec3(-49.5f + xOffSetJacob, 4.25f, -49.5f + zOffSetJacob) * currentScaleFactorJacob) * scale(mat4(1.0f), vec3(1.0f, 6.5f, 1.0f) * currentScaleFactorJacob);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeJacob)
         {
         case 0:
@@ -662,7 +789,7 @@ int main()
         //low bar
         pillarWorldMatrix = charRotationJacob * translate(mat4(1.0f), vec3(-47.5f + xOffSetJacob, 0.5f, -49.5f + zOffSetJacob) * currentScaleFactorJacob) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactorJacob);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeJacob)
         {
         case 0:
@@ -681,7 +808,7 @@ int main()
         //top bar
         pillarWorldMatrix = charRotationJacob * translate(mat4(1.0f), vec3(-47.5f + xOffSetJacob, 8.0f, -49.5f + zOffSetJacob) * currentScaleFactorJacob) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactorJacob);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeJacob)
         {
         case 0:
@@ -703,7 +830,7 @@ int main()
         //vertical
         pillarWorldMatrix = charRotationJacob * translate(mat4(1.0f), vec3(-45.5f + xOffSetJacob + textOffset, 3.75f, -49.5f + zOffSetJacob) * currentScaleFactorJacob) * scale(mat4(1.0f), vec3(1.0f, 7.5f, 1.0f) * currentScaleFactorJacob);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeJacob)
         {
         case 0:
@@ -722,7 +849,7 @@ int main()
 
         pillarWorldMatrix = charRotationJacob * translate(mat4(1.0f), vec3(-49.5f + xOffSetJacob + textOffset, 6.0f, -49.5f + zOffSetJacob) * currentScaleFactorJacob) * scale(mat4(1.0f), vec3(1.0f, 3.0f, 1.0f) * currentScaleFactorJacob);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeJacob)
         {
         case 0:
@@ -742,7 +869,7 @@ int main()
         //horizontal
         pillarWorldMatrix = charRotationJacob * translate(mat4(1.0f), vec3(-47.5f + xOffSetJacob + textOffset, 8.0f, -49.5f + zOffSetJacob) * currentScaleFactorJacob) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactorJacob);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeJacob)
         {
         case 0:
@@ -761,7 +888,7 @@ int main()
 
         pillarWorldMatrix = charRotationJacob * translate(mat4(1.0f), vec3(-48.0f + xOffSetJacob + textOffset, 4.0f, -49.5f + zOffSetJacob) * currentScaleFactorJacob) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(4.0f, 1.0f, 1.0f) * currentScaleFactorJacob);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeJacob) {
         case 0:
             glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
@@ -784,7 +911,7 @@ int main()
 
         pillarWorldMatrix = charRotation * translate(mat4(1.0f), vec3(-6.0f + xOffSetJoseph, 5.5f + yOffSetJoseph, 0.0f + zOffSetJoseph) * currentScaleFactorJoseph) * scale(mat4(1.0f), vec3(1.0f, 10.0f, 1.0f) * currentScaleFactorJoseph);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeJoseph) {
         case 0: glDrawArrays(GL_TRIANGLES, 0, 36);
             break;
@@ -799,7 +926,7 @@ int main()
 
         pillarWorldMatrix = charRotation * translate(mat4(1.0f), vec3(-2.0f + xOffSetJoseph, 5.5f + yOffSetJoseph, 0.0f + zOffSetJoseph) * currentScaleFactorJoseph) * scale(mat4(1.0f), vec3(1.0f, 10.0f, 1.0f) * currentScaleFactorJoseph);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeJoseph) {
         case 0: glDrawArrays(GL_TRIANGLES, 0, 36);
             break;
@@ -814,7 +941,7 @@ int main()
 
         pillarWorldMatrix = charRotation * translate(mat4(1.0f), vec3(-6.0f + textOffset + xOffSetJoseph, 5.0f + yOffSetJoseph, 0.0f + zOffSetJoseph) * currentScaleFactorJoseph) * scale(mat4(1.0f), vec3(1.0f, 9.0f, 1.0f) * currentScaleFactorJoseph);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeJoseph) {
         case 0: glDrawArrays(GL_TRIANGLES, 0, 36);
             break;
@@ -828,7 +955,7 @@ int main()
 
         pillarWorldMatrix = charRotation * translate(mat4(1.0f), vec3(-2.0f + textOffset + xOffSetJoseph, 2.5f + yOffSetJoseph, 0.0f + zOffSetJoseph) * currentScaleFactorJoseph) * scale(mat4(1.0f), vec3(1.0f, 4.0f, 1.0f) * currentScaleFactorJoseph);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeJoseph) {
         case 0: glDrawArrays(GL_TRIANGLES, 0, 36);
             break;
@@ -845,7 +972,7 @@ int main()
 
         pillarWorldMatrix = charRotation * translate(mat4(1.0f), vec3(-4.0f + xOffSetJoseph, 0.0f + yOffSetJoseph, 0.0f + zOffSetJoseph) * currentScaleFactorJoseph) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactorJoseph);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeJoseph) {
         case 0: glDrawArrays(GL_TRIANGLES, 0, 36);
             break;
@@ -860,7 +987,7 @@ int main()
 
         pillarWorldMatrix = charRotation * translate(mat4(1.0f), vec3(-4.0f + textOffset + xOffSetJoseph, 0.0f + yOffSetJoseph, 0.0f + zOffSetJoseph) * currentScaleFactorJoseph) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactorJoseph);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeJoseph) {
         case 0: glDrawArrays(GL_TRIANGLES, 0, 36);
             break;
@@ -874,7 +1001,7 @@ int main()
 
         pillarWorldMatrix = charRotation * translate(mat4(1.0f), vec3(-3.5f + textOffset + xOffSetJoseph, 5.0f + yOffSetJoseph, 0.0f + zOffSetJoseph) * currentScaleFactorJoseph) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(4.0f, 1.0f, 1.0f) * currentScaleFactorJoseph);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeJoseph) {
         case 0: glDrawArrays(GL_TRIANGLES, 0, 36);
             break;
@@ -888,7 +1015,7 @@ int main()
 
         pillarWorldMatrix = charRotation * translate(mat4(1.0f), vec3(-4.0f + textOffset + xOffSetJoseph, 10.0f + yOffSetJoseph, 0.0f + zOffSetJoseph) * currentScaleFactorJoseph) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactorJoseph);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeJoseph) {
         case 0: glDrawArrays(GL_TRIANGLES, 0, 36);
             break;
@@ -905,7 +1032,7 @@ int main()
         //vertical left
         pillarWorldMatrix = charRotationBad * translate(mat4(1.0f), vec3(-49.5f + xOffSetBad, 4.25f, 49.5f + zOffSetBad) * currentScaleFactorBad) * scale(mat4(1.0f), vec3(1.0f, 6.5f, 1.0f) * currentScaleFactorBad);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeBad)
         {
         case 0:
@@ -925,7 +1052,7 @@ int main()
         //vertical right
         pillarWorldMatrix = charRotationBad * translate(mat4(1.0f), vec3(-44.5f + xOffSetBad, 4.25f, 49.5f + zOffSetBad) * currentScaleFactorBad) * scale(mat4(1.0f), vec3(1.0f, 6.5f, 1.0f) * currentScaleFactorBad);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeBad)
         {
         case 0:
@@ -946,7 +1073,7 @@ int main()
         //low bar
         pillarWorldMatrix = charRotationBad * translate(mat4(1.0f), vec3(-47.5f + xOffSetBad, 0.5f, 49.5f + zOffSetBad) * currentScaleFactorBad) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactorBad);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeBad)
         {
         case 0:
@@ -965,7 +1092,7 @@ int main()
         //top bar
         pillarWorldMatrix = charRotationBad * translate(mat4(1.0f), vec3(-47.5f + xOffSetBad, 8.0f, 49.5f + zOffSetBad) * currentScaleFactorBad) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactorBad);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeBad)
         {
         case 0:
@@ -986,7 +1113,7 @@ int main()
        //vertical left
         pillarWorldMatrix = charRotationBad * translate(mat4(1.0f), vec3(-49.5f + xOffSetBad + textOffset, 2.25f, 49.5f + zOffSetBad) * currentScaleFactorBad) * scale(mat4(1.0f), vec3(1.0f, 3.5f, 1.0f) * currentScaleFactorBad);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeBad)
         {
         case 0:
@@ -1006,7 +1133,7 @@ int main()
         //vertical right
         pillarWorldMatrix = charRotationBad * translate(mat4(1.0f), vec3(-44.5f + xOffSetBad + textOffset, 6.25f, 49.5f + zOffSetBad) * currentScaleFactorBad) * scale(mat4(1.0f), vec3(1.0f, 2.5f, 1.0f) * currentScaleFactorBad);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeBad)
         {
         case 0:
@@ -1027,7 +1154,7 @@ int main()
         //low bar
         pillarWorldMatrix = charRotationBad * translate(mat4(1.0f), vec3(-47.0f + xOffSetBad + textOffset, 0.5f, 49.5f + zOffSetBad) * currentScaleFactorBad) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(6.0f, 1.0f, 1.0f) * currentScaleFactorBad);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeBad)
         {
         case 0:
@@ -1048,7 +1175,7 @@ int main()
         //middle bar
         pillarWorldMatrix = charRotationBad * translate(mat4(1.0f), vec3(-47.0f + xOffSetBad + textOffset, 4.5f, 49.5f + zOffSetBad) * currentScaleFactorBad) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(6.0f, 1.0f, 1.0f) * currentScaleFactorBad);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeBad)
         {
         case 0:
@@ -1068,7 +1195,7 @@ int main()
         //top bar
         pillarWorldMatrix = charRotationBad * translate(mat4(1.0f), vec3(-47.0f + xOffSetBad + textOffset, 8.0f, 49.5f + zOffSetBad) * currentScaleFactorBad) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(6.0f, 1.0f, 1.0f) * currentScaleFactorBad);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeBad)
         {
         case 0:
@@ -1090,7 +1217,7 @@ int main()
         //vertical bars
         pillarWorldMatrix = charRotationAdam * translate(mat4(1.0f), vec3(44.5 + xOffSetAdam - textOffset, 3.75f, -49.5f + zOffSetAdam) * currentScaleFactorAdam) * scale(mat4(1.0f), vec3(1.0f, 7.5f, 1.0f) * currentScaleFactorAdam);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeAdam)
         {
         case 0:
@@ -1109,7 +1236,7 @@ int main()
 
         pillarWorldMatrix = charRotationAdam * translate(mat4(1.0f), vec3(49.5f + xOffSetAdam - textOffset, 3.75f, -49.5f + zOffSetAdam) * currentScaleFactorAdam) * scale(mat4(1.0f), vec3(1.0f, 7.5f, 1.0f) * currentScaleFactorAdam);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeAdam)
         {
         case 0:
@@ -1130,7 +1257,7 @@ int main()
         //middle bar
         pillarWorldMatrix = charRotationAdam * translate(mat4(1.0f), vec3(46.5f + xOffSetAdam - textOffset, 5.0f, -49.5f + zOffSetAdam) * currentScaleFactorAdam) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactorAdam);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeAdam)
         {
         case 0:
@@ -1149,7 +1276,7 @@ int main()
         //top bar
         pillarWorldMatrix = charRotationAdam * translate(mat4(1.0f), vec3(47.0f + xOffSetAdam - textOffset, 8.0f, -49.5f + zOffSetAdam) * currentScaleFactorAdam) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(6.0f, 1.0f, 1.0f) * currentScaleFactorAdam);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeAdam)
         {
         case 0:
@@ -1170,7 +1297,7 @@ int main()
        //vertical left
         pillarWorldMatrix = charRotationAdam * translate(mat4(1.0f), vec3(44.5f + xOffSetAdam, 2.75f, -49.5f + zOffSetAdam) * currentScaleFactorAdam) * scale(mat4(1.0f), vec3(1.0f, 3.5f, 1.0f) * currentScaleFactorAdam);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeAdam)
         {
         case 0:
@@ -1190,7 +1317,7 @@ int main()
         //vertical right
         pillarWorldMatrix = charRotationAdam * translate(mat4(1.0f), vec3(49.5f + xOffSetAdam, 6.25f, -49.5f + zOffSetAdam) * currentScaleFactorAdam) * scale(mat4(1.0f), vec3(1.0f, 2.5f, 1.0f) * currentScaleFactorAdam);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeAdam)
         {
         case 0:
@@ -1211,7 +1338,7 @@ int main()
         //low bar
         pillarWorldMatrix = charRotationAdam * translate(mat4(1.0f), vec3(47.0f + xOffSetAdam, 0.5f, -49.5f + zOffSetAdam) * currentScaleFactorAdam) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(6.0f, 1.0f, 1.0f) * currentScaleFactorAdam);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeAdam)
         {
         case 0:
@@ -1232,7 +1359,7 @@ int main()
         //middle bar
         pillarWorldMatrix = charRotationAdam * translate(mat4(1.0f), vec3(47.0f + xOffSetAdam, 4.5f, -49.5f + zOffSetAdam) * currentScaleFactorAdam) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(6.0f, 1.0f, 1.0f) * currentScaleFactorAdam);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeAdam)
         {
         case 0:
@@ -1252,7 +1379,7 @@ int main()
         //top bar
         pillarWorldMatrix = charRotationAdam * translate(mat4(1.0f), vec3(47.0f + xOffSetAdam, 8.0f, -49.5f + zOffSetAdam) * currentScaleFactorAdam) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(6.0f, 1.0f, 1.0f) * currentScaleFactorAdam);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeAdam)
         {
         case 0:
@@ -1274,7 +1401,7 @@ int main()
         //vertical right
         pillarWorldMatrix = charRotationAvnish * translate(mat4(1.0f), vec3(49.5f + xOffSetAvnish - textOffset, 4.25f, 49.5f + zOffSetAvnish) * currentScaleFactorAvnish) * scale(mat4(1.0f), vec3(1.0f, 8.5f, 1.0f) * currentScaleFactorAvnish);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeAvnish)
         {
         case 0:
@@ -1294,7 +1421,7 @@ int main()
         //vertical left
         pillarWorldMatrix = charRotationAvnish * translate(mat4(1.0f), vec3(44.5f + xOffSetAvnish - textOffset, 4.25f, 49.5f + zOffSetAvnish) * currentScaleFactorAvnish) * scale(mat4(1.0f), vec3(1.0f, 8.5f, 1.0f) * currentScaleFactorAvnish);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeAvnish)
         {
         case 0:
@@ -1314,7 +1441,7 @@ int main()
         //diagonal top left
         pillarWorldMatrix = charRotationAvnish * translate(mat4(1.0f), vec3(45.5f + xOffSetAvnish - textOffset, 7.25f, 49.5f + zOffSetAvnish) * currentScaleFactorAvnish) * scale(mat4(1.0f), vec3(1.0f, 2.5f, 1.0f) * currentScaleFactorAvnish);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeAvnish)
         {
         case 0:
@@ -1334,7 +1461,7 @@ int main()
         //diagonal bottom right
         pillarWorldMatrix = charRotationAvnish * translate(mat4(1.0f), vec3(48.5f + xOffSetAvnish - textOffset, 1.25f, 49.5f + zOffSetAvnish) * currentScaleFactorAvnish) * scale(mat4(1.0f), vec3(1.0f, 2.5f, 1.0f) * currentScaleFactorAvnish);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeAvnish)
         {
         case 0:
@@ -1354,7 +1481,7 @@ int main()
         //middle left
         pillarWorldMatrix = charRotationAvnish * translate(mat4(1.0f), vec3(47.5f + xOffSetAvnish - textOffset, 3.25f, 49.5f + zOffSetAvnish) * currentScaleFactorAvnish) * scale(mat4(1.0f), vec3(1.0f, 2.25f, 1.0f) * currentScaleFactorAvnish);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeAvnish)
         {
         case 0:
@@ -1374,7 +1501,7 @@ int main()
         //middle right
         pillarWorldMatrix = charRotationAvnish * translate(mat4(1.0f), vec3(46.5f + xOffSetAvnish - textOffset, 5.25f, 49.5f + zOffSetAvnish) * currentScaleFactorAvnish) * scale(mat4(1.0f), vec3(1.0f, 2.25f, 1.0f) * currentScaleFactorAvnish);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeAvnish)
         {
         case 0:
@@ -1395,7 +1522,7 @@ int main()
         //vertical left
         pillarWorldMatrix = charRotationAvnish * translate(mat4(1.0f), vec3(44.5f + xOffSetAvnish, 2.75f, 49.5f + zOffSetAvnish) * currentScaleFactorAvnish) * scale(mat4(1.0f), vec3(1.0f, 3.5f, 1.0f) * currentScaleFactorAvnish);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeAvnish)
         {
         case 0:
@@ -1415,7 +1542,7 @@ int main()
         //vertical right
         pillarWorldMatrix = charRotationAvnish * translate(mat4(1.0f), vec3(49.5f + xOffSetAvnish, 6.25f, 49.5f + zOffSetAvnish) * currentScaleFactorAvnish) * scale(mat4(1.0f), vec3(1.0f, 2.5f, 1.0f) * currentScaleFactorAvnish);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeAvnish)
         {
         case 0:
@@ -1436,7 +1563,7 @@ int main()
         //low bar
         pillarWorldMatrix = charRotationAvnish * translate(mat4(1.0f), vec3(47.0f + xOffSetAvnish, 0.5f, 49.5f + zOffSetAvnish) * currentScaleFactorAvnish) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(6.0f, 1.0f, 1.0f) * currentScaleFactorAvnish);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeAvnish)
         {
         case 0:
@@ -1457,7 +1584,7 @@ int main()
         //middle bar
         pillarWorldMatrix = charRotationAvnish * translate(mat4(1.0f), vec3(47.0f + xOffSetAvnish, 4.5f, 49.5f + zOffSetAvnish) * currentScaleFactorAvnish) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(6.0f, 1.0f, 1.0f) * currentScaleFactorAvnish);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeAvnish)
         {
         case 0:
@@ -1477,7 +1604,7 @@ int main()
         //top bar
         pillarWorldMatrix = charRotationAvnish * translate(mat4(1.0f), vec3(47.0f + xOffSetAvnish, 8.0f, 49.5f + zOffSetAvnish) * currentScaleFactorAvnish) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(6.0f, 1.0f, 1.0f) * currentScaleFactorAvnish);
         pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        modelShader.setMat4("worldMatrix", pillarWorldMatrix);
         switch (modelModeAvnish)
         {
         case 0:
@@ -1598,9 +1725,7 @@ int main()
 
         mat4 viewMatrix = lookAt(cameraPosition, cameraPosition + cameraLookAt, cameraUp);
 
-        GLuint viewMatrixLocation = glGetUniformLocation(shaderProgram, "viewMatrix");
-        glUniformMatrix4fv(viewMatrixLocation, 1, GL_FALSE, &viewMatrix[0][0]);
-
+        modelShader.setMat4("viewMatrix", viewMatrix);
     }
 
     // Shutdown GLFW
@@ -1609,168 +1734,133 @@ int main()
     return 0;
 }
 
-const char* getVertexShaderSource()
-{
-    return
-        "#version 330 core\n"
-        "layout (location = 0) in vec3 aPos;"
-        "layout (location = 1) in vec3 aColor;"
-        "uniform mat4 worldMatrix;"
-        "uniform mat4 viewMatrix = mat4(1.0);"
-        "uniform mat4 projectionMatrix = mat4(1.0);"
-        "uniform int currentAxis = 0;"
-        "out vec3 vertexColor;"
-        "void main()"
-        "{"
-        "   if(currentAxis == 1) { vertexColor = vec3(1, 0, 0); }"
-        "   else if(currentAxis == 2) { vertexColor = vec3(0, 1, 0); }"
-        "   else if(currentAxis == 3) { vertexColor = vec3(0, 0, 1); }"
-        "   else { vertexColor = aColor; }"
-        "   mat4 modelViewProjection = projectionMatrix * viewMatrix * worldMatrix;"
-        "   gl_Position = modelViewProjection * vec4(aPos.x, aPos.y, aPos.z, 1.0);"
-        "}";
-}
+//const char* getVertexShaderSource()
+//{
+//    return
+//        "#version 330 core\n"
+//        "layout (location = 0) in vec3 aPos;"
+//        "layout (location = 1) in vec3 aColor;"
+//        "uniform mat4 worldMatrix;"
+//        "uniform mat4 viewMatrix = mat4(1.0);"
+//        "uniform mat4 projectionMatrix = mat4(1.0);"
+//        "uniform int currentAxis = 0;"
+//        "out vec3 vertexColor;"
+//        "void main()"
+//        "{"
+//        "   if(currentAxis == 1) { vertexColor = vec3(1, 0, 0); }"
+//        "   else if(currentAxis == 2) { vertexColor = vec3(0, 1, 0); }"
+//        "   else if(currentAxis == 3) { vertexColor = vec3(0, 0, 1); }"
+//        "   else { vertexColor = aColor; }"
+//        "   mat4 modelViewProjection = projectionMatrix * viewMatrix * worldMatrix;"
+//        "   gl_Position = modelViewProjection * vec4(aPos.x, aPos.y, aPos.z, 1.0);"
+//        "}";
+//}
+//
+//const char* getFragmentShaderSource()
+//{
+//    return
+//        "#version 330 core\n"
+//        "in vec3 vertexColor;"
+//        "out vec4 FragColor;"
+//        "void main()"
+//        "{"
+//        "   FragColor = vec4(vertexColor.r, vertexColor.g, vertexColor.b, 1.0f);"
+//        "}";
+//}
 
-const char* getFragmentShaderSource()
-{
-    return
-        "#version 330 core\n"
-        "in vec3 vertexColor;"
-        "out vec4 FragColor;"
-        "void main()"
-        "{"
-        "   FragColor = vec4(vertexColor.r, vertexColor.g, vertexColor.b, 1.0f);"
-        "}";
-}
-
-int compileAndLinkShaders()
-{
-    // vertex shader
-    int vertexShader = glCreateShader(GL_VERTEX_SHADER);
-    const char* vertexShaderSource = getVertexShaderSource();
-    glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-    glCompileShader(vertexShader);
-
-    // check for shader compile errors
-    int success;
-    char infoLog[512];
-    glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
-    if (!success)
-    {
-        glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-        std::cerr << "Error: Vertex shader compilation failed. " << infoLog << std::endl;
-    }
-
-    // fragment shader
-    int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-    const char* fragmentShaderSource = getFragmentShaderSource();
-    glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-    glCompileShader(fragmentShader);
-
-    // check for shader compile errors
-    glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
-    if (!success)
-    {
-        glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
-        std::cerr << "Error: Fragment shader compilation failed. " << infoLog << std::endl;
-    }
-
-    // link shaders
-    int shaderProgram = glCreateProgram();
-    glAttachShader(shaderProgram, vertexShader);
-    glAttachShader(shaderProgram, fragmentShader);
-    glLinkProgram(shaderProgram);
-
-    // check for linking errors
-    glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
-    if (!success) {
-        glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
-        std::cerr << "Error: Shader linking failed. " << infoLog << std::endl;
-    }
-
-    glDeleteShader(vertexShader);
-    glDeleteShader(fragmentShader);
-
-    return shaderProgram;
-}
-
-int createVertexArrayObject()
-{
-    // Cube model
-    vec3 vertexArray[] = {  // position, color
-        vec3(-0.5f,-0.5f,-0.5f), vec3(0.6f, 0.6f, 0.6f),
-        vec3(-0.5f,-0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f),
-        vec3(-0.5f, 0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f),
-
-        vec3(-0.5f,-0.5f,-0.5f), vec3(0.6f, 0.6f, 0.6f),
-        vec3(-0.5f, 0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f),
-        vec3(-0.5f, 0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f),
-
-        vec3(0.5f, 0.5f,-0.5f), vec3(0.6f, 0.6f, 0.6f),
-        vec3(-0.5f,-0.5f,-0.5f), vec3(1.0f, 1.0f, 1.0f),
-        vec3(-0.5f, 0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f),
-
-        vec3(0.5f, 0.5f,-0.5f), vec3(0.6f, 0.6f, 0.6f),
-        vec3(0.5f,-0.5f,-0.5f), vec3(1.0f, 1.0f, 1.0f),
-        vec3(-0.5f,-0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f),
-
-        vec3(0.5f,-0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f),
-        vec3(-0.5f,-0.5f,-0.5f), vec3(1.0f, 1.0f, 1.0f),
-        vec3(0.5f,-0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f),
-
-        vec3(0.5f,-0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f),
-        vec3(-0.5f,-0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f),
-        vec3(-0.5f,-0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f),
-
-        vec3(-0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f),
-        vec3(-0.5f,-0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f),
-        vec3(0.5f,-0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f),
-
-        vec3(0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f),
-        vec3(-0.5f, 0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f),
-        vec3(0.5f,-0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f),
-
-        vec3(0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f),
-        vec3(0.5f,-0.5f,-0.5f), vec3(1.0f, 1.0f, 1.0f),
-        vec3(0.5f, 0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f),
-
-        vec3(0.5f,-0.5f,-0.5f), vec3(0.6f, 0.6f, 0.6f),
-        vec3(0.5f, 0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f),
-        vec3(0.5f,-0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f),
-
-        vec3(0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f),
-        vec3(0.5f, 0.5f,-0.5f), vec3(1.0f, 1.0f, 1.0f),
-        vec3(-0.5f, 0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f),
-
-        vec3(0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f),
-        vec3(-0.5f, 0.5f,-0.5f), vec3(1.0f, 1.0f, 1.0f),
-        vec3(-0.5f, 0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f),
-
-    };
-
-    // Create a vertex array
-    GLuint vertexArrayObject;
-    glGenVertexArrays(1, &vertexArrayObject);
-    glBindVertexArray(vertexArrayObject);
-
-
-    // Upload Vertex Buffer to the GPU, keep a reference to it (vertexBufferObject)
-    GLuint vertexBufferObject;
-    glGenBuffers(1, &vertexBufferObject);
-    glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertexArray), vertexArray, GL_STATIC_DRAW);
-
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 2 * sizeof(vec3), (void*)0);
-    glEnableVertexAttribArray(0);
-
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 2 * sizeof(vec3), (void*)sizeof(vec3));
-    glEnableVertexAttribArray(1);
-
-    glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject);
-    glBindVertexArray(0);
-
-    return vertexArrayObject;
-}
+//
+//int createVertexArrayObject()
+//{
+//    // Cube model
+//    vec3 vertexArray[] = {  // position, color, normal
+//        vec3(-0.5f,-0.5f,-0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f,  0.0f, -1.0f),
+//        vec3(-0.5f,-0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(0.0f,  0.0f, -1.0f),
+//        vec3(-0.5f, 0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f,  0.0f, -1.0f),
+//
+//        vec3(-0.5f,-0.5f,-0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f,  0.0f, -1.0f),
+//        vec3(-0.5f, 0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(0.0f,  0.0f, -1.0f),
+//        vec3(-0.5f, 0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f,  0.0f, -1.0f),
+//
+//        vec3(0.5f, 0.5f,-0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f,  0.0f,  1.0f),
+//        vec3(-0.5f,-0.5f,-0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(0.0f,  0.0f,  1.0f),
+//        vec3(-0.5f, 0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f,  0.0f,  1.0f),
+//
+//        vec3(0.5f, 0.5f,-0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f,  0.0f,  1.0f),
+//        vec3(0.5f,-0.5f,-0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(0.0f,  0.0f,  1.0f),
+//        vec3(-0.5f,-0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f,  0.0f,  1.0f),
+//
+//        vec3(0.5f,-0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(-1.0f,  0.0f,  0.0f),
+//        vec3(-0.5f,-0.5f,-0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(-1.0f,  0.0f,  0.0f),
+//        vec3(0.5f,-0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(-1.0f,  0.0f,  0.0f),
+//
+//        vec3(0.5f,-0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(-1.0f,  0.0f,  0.0f),
+//        vec3(-0.5f,-0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(-1.0f,  0.0f,  0.0f),
+//        vec3(-0.5f,-0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(-1.0f,  0.0f,  0.0f),
+//
+//        vec3(-0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(1.0f,  0.0f,  0.0f),
+//        vec3(-0.5f,-0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(1.0f,  0.0f,  0.0f),
+//        vec3(0.5f,-0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(1.0f,  0.0f,  0.0f),
+//
+//        vec3(0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(1.0f,  0.0f,  0.0f),
+//        vec3(-0.5f, 0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(1.0f,  0.0f,  0.0f),
+//        vec3(0.5f,-0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(1.0f,  0.0f,  0.0f),
+//
+//        vec3(0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f, -1.0f,  0.0f),
+//        vec3(0.5f,-0.5f,-0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(0.0f, -1.0f,  0.0f),
+//        vec3(0.5f, 0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f, -1.0f,  0.0f),
+//
+//        vec3(0.5f,-0.5f,-0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f, -1.0f,  0.0f),
+//        vec3(0.5f, 0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(0.0f, -1.0f,  0.0f),
+//        vec3(0.5f,-0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f, -1.0f,  0.0f),
+//
+//        vec3(0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f,  1.0f,  0.0f),
+//        vec3(0.5f, 0.5f,-0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(0.0f,  1.0f,  0.0f),
+//        vec3(-0.5f, 0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f,  1.0f,  0.0f),
+//
+//        vec3(0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f,  1.0f,  0.0f),
+//        vec3(-0.5f, 0.5f,-0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(0.0f,  1.0f,  0.0f),
+//        vec3(-0.5f, 0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f,  1.0f,  0.0f),
+//
+//    };
+//
+//    // Create a vertex array
+//    GLuint cubeVAO;
+//    glGenVertexArrays(1, &cubeVAO);
+//    glBindVertexArray(cubeVAO);
+//
+//    // Upload Vertex Buffer to the GPU, keep a reference to it (vertexBufferObject)
+//    GLuint VBO;
+//    glGenBuffers(1, &VBO);
+//    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+//    glBufferData(GL_ARRAY_BUFFER, sizeof(vertexArray), vertexArray, GL_STATIC_DRAW);
+//
+//    // Position attribute
+//    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 2 * sizeof(vec3), (void*)0);
+//    glEnableVertexAttribArray(0);
+//
+//    // Color attribute
+//    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 2 * sizeof(vec3), (void*)sizeof(vec3));
+//    glEnableVertexAttribArray(1);
+//
+//    // Normal attribute
+//    glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 2 * sizeof(vec3), (void*)(2*sizeof(vec3)));
+//    glEnableVertexAttribArray(2);
+//
+//    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+//    glBindVertexArray(0);
+//
+//    // second, configure the light's VAO (VBO stays the same; the vertices are the same for the light object which is also a 3D cube)
+//    GLuint lightCubeVAO;
+//    glGenVertexArrays(1, &lightCubeVAO);
+//    glBindVertexArray(lightCubeVAO);
+//
+//    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+//    // note that we update the lamp's position attribute's stride to reflect the updated buffer data
+//    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+//    glEnableVertexAttribArray(0);
+//
+//    return cubeVAO;
+//}
 
 bool initContext() {     // Initialize GLFW and OpenGL version
     glfwInit();

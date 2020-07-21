@@ -53,6 +53,18 @@
     <None Include="..\Assets\Shaders\Texture.vertexshader">
       <Filter>Resource Files\Shaders</Filter>
     </None>
+    <None Include="model.vert">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="model.frag">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="2.2.basic_lighting.frag">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="2.2.basic_lighting.vert">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Assets\Textures\BillboardTest.bmp">
@@ -66,5 +78,10 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="shader_compile.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

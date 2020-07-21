@@ -110,6 +110,10 @@
     <None Include="..\Assets\Shaders\SolidColor.vertexshader" />
     <None Include="..\Assets\Shaders\Texture.fragmentshader" />
     <None Include="..\Assets\Shaders\Texture.vertexshader" />
+    <None Include="2.2.basic_lighting.frag" />
+    <None Include="2.2.basic_lighting.vert" />
+    <None Include="model.frag" />
+    <None Include="model.vert" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Assets\Textures\BillboardTest.bmp" />
@@ -117,6 +121,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="shader_compile.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
