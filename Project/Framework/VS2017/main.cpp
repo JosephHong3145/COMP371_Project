@@ -34,7 +34,7 @@ const unsigned int SCREEN_WIDTH = 1024;
 const unsigned int SCREEN_HEIGHT = 768;
 
 // lighting
-vec3 lightPos(1.2f, 40.0f, 2.0f);
+vec3 lightPos(2.0f, 2.0f, 2.0f);
 
 int main()
 {
@@ -76,52 +76,52 @@ int main()
     // Cube model
     vec3 vertexArray[] = {  // position, color, normal
         vec3(-0.5f,-0.5f,-0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f,  0.0f, -1.0f),
-        vec3(-0.5f,-0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(0.0f,  0.0f, -1.0f),
-        vec3(-0.5f, 0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f,  0.0f, -1.0f),
+        vec3(-0.5f,-0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f,  0.0f, -1.0f),
+        vec3(-0.5f, 0.5f, 0.5f), vec3(0.1f, 0.1f, 0.1f), vec3(0.0f,  0.0f, -1.0f),
 
         vec3(-0.5f,-0.5f,-0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f,  0.0f, -1.0f),
-        vec3(-0.5f, 0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(0.0f,  0.0f, -1.0f),
-        vec3(-0.5f, 0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f,  0.0f, -1.0f),
+        vec3(-0.5f, 0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f,  0.0f, -1.0f),
+        vec3(-0.5f, 0.5f,-0.5f), vec3(0.1f, 0.1f, 0.1f), vec3(0.0f,  0.0f, -1.0f),
 
         vec3(0.5f, 0.5f,-0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f,  0.0f,  1.0f),
-        vec3(-0.5f,-0.5f,-0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(0.0f,  0.0f,  1.0f),
-        vec3(-0.5f, 0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f,  0.0f,  1.0f),
-
-        vec3(0.5f, 0.5f,-0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f,  0.0f,  1.0f),
-        vec3(0.5f,-0.5f,-0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(0.0f,  0.0f,  1.0f),
         vec3(-0.5f,-0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f,  0.0f,  1.0f),
+        vec3(-0.5f, 0.5f,-0.5f), vec3(0.1f, 0.1f, 0.1f), vec3(0.0f,  0.0f,  1.0f),
+
+        vec3(0.5f, 0.5f,-0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f,  0.0f,  1.0f),
+        vec3(0.5f,-0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f,  0.0f,  1.0f),
+        vec3(-0.5f,-0.5f,-0.5f), vec3(0.1f, 0.1f, 0.1f), vec3(0.0f,  0.0f,  1.0f),
 
         vec3(0.5f,-0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(-1.0f,  0.0f,  0.0f),
-        vec3(-0.5f,-0.5f,-0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(-1.0f,  0.0f,  0.0f),
-        vec3(0.5f,-0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(-1.0f,  0.0f,  0.0f),
-
-        vec3(0.5f,-0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(-1.0f,  0.0f,  0.0f),
-        vec3(-0.5f,-0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(-1.0f,  0.0f,  0.0f),
         vec3(-0.5f,-0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(-1.0f,  0.0f,  0.0f),
+        vec3(0.5f,-0.5f,-0.5f), vec3(0.1f, 0.1f, 0.1f), vec3(-1.0f,  0.0f,  0.0f),
+
+        vec3(0.5f,-0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(-1.0f,  0.0f,  0.0f),
+        vec3(-0.5f,-0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(-1.0f,  0.0f,  0.0f),
+        vec3(-0.5f,-0.5f,-0.5f), vec3(0.1f, 0.1f, 0.1f), vec3(-1.0f,  0.0f,  0.0f),
 
         vec3(-0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(1.0f,  0.0f,  0.0f),
-        vec3(-0.5f,-0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(1.0f,  0.0f,  0.0f),
-        vec3(0.5f,-0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(1.0f,  0.0f,  0.0f),
+        vec3(-0.5f,-0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(1.0f,  0.0f,  0.0f),
+        vec3(0.5f,-0.5f, 0.5f), vec3(0.1f, 0.1f, 0.1f), vec3(1.0f,  0.0f,  0.0f),
 
         vec3(0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(1.0f,  0.0f,  0.0f),
-        vec3(-0.5f, 0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(1.0f,  0.0f,  0.0f),
-        vec3(0.5f,-0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(1.0f,  0.0f,  0.0f),
+        vec3(-0.5f, 0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(1.0f,  0.0f,  0.0f),
+        vec3(0.5f,-0.5f, 0.5f), vec3(0.1f, 0.1f, 0.1f), vec3(1.0f,  0.0f,  0.0f),
 
         vec3(0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f, -1.0f,  0.0f),
-        vec3(0.5f,-0.5f,-0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(0.0f, -1.0f,  0.0f),
-        vec3(0.5f, 0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f, -1.0f,  0.0f),
+        vec3(0.5f,-0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f, -1.0f,  0.0f),
+        vec3(0.5f, 0.5f,-0.5f), vec3(0.1f, 0.1f, 0.1f), vec3(0.0f, -1.0f,  0.0f),
 
         vec3(0.5f,-0.5f,-0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f, -1.0f,  0.0f),
-        vec3(0.5f, 0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(0.0f, -1.0f,  0.0f),
-        vec3(0.5f,-0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f, -1.0f,  0.0f),
+        vec3(0.5f, 0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f, -1.0f,  0.0f),
+        vec3(0.5f,-0.5f, 0.5f), vec3(0.1f, 0.1f, 0.1f), vec3(0.0f, -1.0f,  0.0f),
 
         vec3(0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f,  1.0f,  0.0f),
-        vec3(0.5f, 0.5f,-0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(0.0f,  1.0f,  0.0f),
+        vec3(0.5f, 0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f,  1.0f,  0.0f),
+        vec3(-0.5f, 0.5f,-0.5f), vec3(0.1f, 0.1f, 0.1f), vec3(0.0f,  1.0f,  0.0f),
+
+        vec3(0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f,  1.0f,  0.0f),
         vec3(-0.5f, 0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f,  1.0f,  0.0f),
-
-        vec3(0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f,  1.0f,  0.0f),
-        vec3(-0.5f, 0.5f,-0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(0.0f,  1.0f,  0.0f),
-        vec3(-0.5f, 0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f,  1.0f,  0.0f),
+        vec3(-0.5f, 0.5f, 0.5f), vec3(0.1f, 0.1f, 0.1f), vec3(0.0f,  1.0f,  0.0f),
 
     };
 
@@ -157,6 +157,7 @@ int main()
     glBindVertexArray(lightCubeVAO);
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBindVertexArray(0);
     // note that we update the lamp's position attribute's stride to reflect the updated buffer data
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(vec3), (void*)0);
     glEnableVertexAttribArray(0);
@@ -247,37 +248,24 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT);
         glClear(GL_DEPTH_BUFFER_BIT);
 
-        // be sure to activate shader when setting uniforms/drawing objects
-        lightingShader.use();
-        lightingShader.setVec3("objectColor", 1.0f, 0.5f, 0.31f);
-        lightingShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
-        lightingShader.setVec3("lightPos", lightPos);
-        lightingShader.setVec3("viewPos", cameraPosition);
+         //be sure to activate shader when setting uniforms/drawing objects
+        //lightingShader.setVec3("objectColor", 0.5f, 0.5f, 0.31f);
+        //lightingShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
+        //lightingShader.setVec3("lightPos", lightPos);
+        //lightingShader.setVec3("viewPos", cameraPosition);
 
-        // view/projection transformations
-        lightingShader.setMat4("projection", projectionMatrix);
-        lightingShader.setMat4("view", viewMatrix);
+        //// view/projection transformations
+        //lightingShader.setMat4("projection", projectionMatrix);
+        //lightingShader.setMat4("view", viewMatrix);
 
-        // world transformation
-        mat4 world = mat4(1.0f);
-        lightingShader.setMat4("model", world);
+        // //world transformation
+        //lightingShader.setMat4("model", mat4(1.0f));
 
-        // Draw geometry
-        glBindVertexArray(cubeVAO);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
-
-        // also draw the lamp object
-        modelShader.use();
-        modelShader.setMat4("projectionMatrix", projectionMatrix);
-        modelShader.setMat4("viewMatrix", viewMatrix);
-        world = translate(world, lightPos) * scale(world, vec3(0.2f)); // a smaller cube
-        world =  rotateMatrixY * rotateMatrixX * world;
-        modelShader.setMat4("model", world);
-
-        glBindVertexArray(cubeVAO);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
-
-        GLuint worldMatrixLocation = NULL;
+        // //Draw geometry
+        //glBindVertexArray(lightCubeVAO);
+        //glDrawArrays(GL_TRIANGLES, 0, 36);
+        //glBindVertexArray(0);
+        //glBindVertexArray(cubeVAO);
 
         //modules for controlling model and world behaviour =================================================================================================================
 
@@ -716,7 +704,7 @@ int main()
 
 
         //drawing everything ==================================================================================================
-
+        glBindVertexArray(cubeVAO);
         //drawing ground mesh 
         for (int i = 0; i <= 100; i++) {
             //horizontal
@@ -760,8 +748,18 @@ int main()
         glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
         modelShader.setInt("currentAxis", 0);
 
-        //drawing the letters
+        glBindVertexArray(0);
+        // also draw the lamp object
+        glBindVertexArray(cubeVAO);
+        mat4 world = translate(mat4(1.0f), vec3(lightPos)) * scale(mat4(1.0f), vec3(1.0f, 1.0f, 1.0f));
+        world = rotateMatrixY * rotateMatrixX * world;
+        modelShader.setMat4("worldMatrix", world);
 
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+        glBindVertexArray(0);
+
+        glBindVertexArray(cubeVAO);
+        //drawing the letters
 
         //Jacob's letter and digit
         //C
@@ -1733,134 +1731,6 @@ int main()
 
     return 0;
 }
-
-//const char* getVertexShaderSource()
-//{
-//    return
-//        "#version 330 core\n"
-//        "layout (location = 0) in vec3 aPos;"
-//        "layout (location = 1) in vec3 aColor;"
-//        "uniform mat4 worldMatrix;"
-//        "uniform mat4 viewMatrix = mat4(1.0);"
-//        "uniform mat4 projectionMatrix = mat4(1.0);"
-//        "uniform int currentAxis = 0;"
-//        "out vec3 vertexColor;"
-//        "void main()"
-//        "{"
-//        "   if(currentAxis == 1) { vertexColor = vec3(1, 0, 0); }"
-//        "   else if(currentAxis == 2) { vertexColor = vec3(0, 1, 0); }"
-//        "   else if(currentAxis == 3) { vertexColor = vec3(0, 0, 1); }"
-//        "   else { vertexColor = aColor; }"
-//        "   mat4 modelViewProjection = projectionMatrix * viewMatrix * worldMatrix;"
-//        "   gl_Position = modelViewProjection * vec4(aPos.x, aPos.y, aPos.z, 1.0);"
-//        "}";
-//}
-//
-//const char* getFragmentShaderSource()
-//{
-//    return
-//        "#version 330 core\n"
-//        "in vec3 vertexColor;"
-//        "out vec4 FragColor;"
-//        "void main()"
-//        "{"
-//        "   FragColor = vec4(vertexColor.r, vertexColor.g, vertexColor.b, 1.0f);"
-//        "}";
-//}
-
-//
-//int createVertexArrayObject()
-//{
-//    // Cube model
-//    vec3 vertexArray[] = {  // position, color, normal
-//        vec3(-0.5f,-0.5f,-0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f,  0.0f, -1.0f),
-//        vec3(-0.5f,-0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(0.0f,  0.0f, -1.0f),
-//        vec3(-0.5f, 0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f,  0.0f, -1.0f),
-//
-//        vec3(-0.5f,-0.5f,-0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f,  0.0f, -1.0f),
-//        vec3(-0.5f, 0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(0.0f,  0.0f, -1.0f),
-//        vec3(-0.5f, 0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f,  0.0f, -1.0f),
-//
-//        vec3(0.5f, 0.5f,-0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f,  0.0f,  1.0f),
-//        vec3(-0.5f,-0.5f,-0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(0.0f,  0.0f,  1.0f),
-//        vec3(-0.5f, 0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f,  0.0f,  1.0f),
-//
-//        vec3(0.5f, 0.5f,-0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f,  0.0f,  1.0f),
-//        vec3(0.5f,-0.5f,-0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(0.0f,  0.0f,  1.0f),
-//        vec3(-0.5f,-0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f,  0.0f,  1.0f),
-//
-//        vec3(0.5f,-0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(-1.0f,  0.0f,  0.0f),
-//        vec3(-0.5f,-0.5f,-0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(-1.0f,  0.0f,  0.0f),
-//        vec3(0.5f,-0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(-1.0f,  0.0f,  0.0f),
-//
-//        vec3(0.5f,-0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(-1.0f,  0.0f,  0.0f),
-//        vec3(-0.5f,-0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(-1.0f,  0.0f,  0.0f),
-//        vec3(-0.5f,-0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(-1.0f,  0.0f,  0.0f),
-//
-//        vec3(-0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(1.0f,  0.0f,  0.0f),
-//        vec3(-0.5f,-0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(1.0f,  0.0f,  0.0f),
-//        vec3(0.5f,-0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(1.0f,  0.0f,  0.0f),
-//
-//        vec3(0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(1.0f,  0.0f,  0.0f),
-//        vec3(-0.5f, 0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(1.0f,  0.0f,  0.0f),
-//        vec3(0.5f,-0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(1.0f,  0.0f,  0.0f),
-//
-//        vec3(0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f, -1.0f,  0.0f),
-//        vec3(0.5f,-0.5f,-0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(0.0f, -1.0f,  0.0f),
-//        vec3(0.5f, 0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f, -1.0f,  0.0f),
-//
-//        vec3(0.5f,-0.5f,-0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f, -1.0f,  0.0f),
-//        vec3(0.5f, 0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(0.0f, -1.0f,  0.0f),
-//        vec3(0.5f,-0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f, -1.0f,  0.0f),
-//
-//        vec3(0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f,  1.0f,  0.0f),
-//        vec3(0.5f, 0.5f,-0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(0.0f,  1.0f,  0.0f),
-//        vec3(-0.5f, 0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f,  1.0f,  0.0f),
-//
-//        vec3(0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f,  1.0f,  0.0f),
-//        vec3(-0.5f, 0.5f,-0.5f), vec3(1.0f, 1.0f, 1.0f), vec3(0.0f,  1.0f,  0.0f),
-//        vec3(-0.5f, 0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f,  1.0f,  0.0f),
-//
-//    };
-//
-//    // Create a vertex array
-//    GLuint cubeVAO;
-//    glGenVertexArrays(1, &cubeVAO);
-//    glBindVertexArray(cubeVAO);
-//
-//    // Upload Vertex Buffer to the GPU, keep a reference to it (vertexBufferObject)
-//    GLuint VBO;
-//    glGenBuffers(1, &VBO);
-//    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-//    glBufferData(GL_ARRAY_BUFFER, sizeof(vertexArray), vertexArray, GL_STATIC_DRAW);
-//
-//    // Position attribute
-//    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 2 * sizeof(vec3), (void*)0);
-//    glEnableVertexAttribArray(0);
-//
-//    // Color attribute
-//    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 2 * sizeof(vec3), (void*)sizeof(vec3));
-//    glEnableVertexAttribArray(1);
-//
-//    // Normal attribute
-//    glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 2 * sizeof(vec3), (void*)(2*sizeof(vec3)));
-//    glEnableVertexAttribArray(2);
-//
-//    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-//    glBindVertexArray(0);
-//
-//    // second, configure the light's VAO (VBO stays the same; the vertices are the same for the light object which is also a 3D cube)
-//    GLuint lightCubeVAO;
-//    glGenVertexArrays(1, &lightCubeVAO);
-//    glBindVertexArray(lightCubeVAO);
-//
-//    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-//    // note that we update the lamp's position attribute's stride to reflect the updated buffer data
-//    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
-//    glEnableVertexAttribArray(0);
-//
-//    return cubeVAO;
-//}
 
 bool initContext() {     // Initialize GLFW and OpenGL version
     glfwInit();
