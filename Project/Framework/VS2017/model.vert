@@ -5,6 +5,7 @@ uniform mat4 worldMatrix;
 uniform mat4 viewMatrix = mat4(1.0);
 uniform mat4 projectionMatrix = mat4(1.0);
 uniform int currentAxis = 0;
+uniform int lightSource = 0;
 out vec3 vertexColor;
 void main()
 {
@@ -12,6 +13,7 @@ void main()
    else if(currentAxis == 2) { vertexColor = vec3(0, 1, 0); }
    else if(currentAxis == 3) { vertexColor = vec3(0, 0, 1); }
    else { vertexColor = aColor; }
+   if(lightSource == 1) { vertexColor = vec3(1, 1, 1); }
    mat4 modelViewProjection = projectionMatrix * viewMatrix * worldMatrix;
    gl_Position = modelViewProjection * vec4(aPos.x, aPos.y, aPos.z, 1.0);
 }
