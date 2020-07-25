@@ -53,6 +53,18 @@
     <None Include="..\Assets\Shaders\Texture.vertexshader">
       <Filter>Resource Files\Shaders</Filter>
     </None>
+    <None Include="AffectedByLighting.frag">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="AffectedByLighting.vert">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="NotAffectedByLighting.frag">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="NotAffectedByLighting.vert">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Assets\Textures\BillboardTest.bmp">
@@ -66,5 +78,14 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Cube.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="shader_compile.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Cube.h" />
   </ItemGroup>
 </Project>
