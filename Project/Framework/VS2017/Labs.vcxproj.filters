@@ -78,10 +78,14 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Cube.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="shader_compile.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Cube.h" />
   </ItemGroup>
 </Project>

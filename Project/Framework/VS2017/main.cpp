@@ -12,6 +12,8 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/common.hpp>
 #include "shader_compile.h"
+#include "Cube.h"
+#include <array>
 
 using namespace glm;
 using namespace std;
@@ -32,6 +34,8 @@ const float mouseSensitivity = 50.0f;
 // settings
 const unsigned int SCREEN_WIDTH = 1024;
 const unsigned int SCREEN_HEIGHT = 768;
+
+vec3 defaultSize = vec3(1.0f, 6.5f, 1.0f);
 
 // lighting
 vec3 lightPos(1.2f, 1.0f, 2.0f);
@@ -222,17 +226,45 @@ int main()
     int modelModeAvnish = 0;
 
     int choose = 0; //choosing the model
-    float charRotateFactor = 0.0f;
-    float charRotateFactorJacob = 0.0f;
-    float charRotateFactorBad = 0.0f;
-    float charRotateFactorAdam = 0.0f;
-    float charRotateFactorAvnish = 0.0f;
+    float charRotateFactorx = 0.0f;
+    float charRotateFactorJacobx = 0.0f;
+    float charRotateFactorBadx = 0.0f;
+    float charRotateFactorAdamx = 0.0f;
+    float charRotateFactorAvnishx = 0.0f;
 
-    mat4 charRotation = mat4(1.0f);
-    mat4 charRotationJacob = mat4(1.0f);
-    mat4 charRotationBad = mat4(1.0f);
-    mat4 charRotationAdam = mat4(1.0f);
-    mat4 charRotationAvnish = mat4(1.0f);
+    float charRotateFactory = 0.0f;
+    float charRotateFactorJacoby = 0.0f;
+    float charRotateFactorBady = 0.0f;
+    float charRotateFactorAdamy = 0.0f;
+    float charRotateFactorAvnishy = 0.0f;
+
+    float charRotateFactorz = 0.0f;
+    float charRotateFactorJacobz = 0.0f;
+    float charRotateFactorBadz = 0.0f;
+    float charRotateFactorAdamz = 0.0f;
+    float charRotateFactorAvnishz = 0.0f;
+
+    mat4 charRotationz = mat4(1.0f);
+    mat4 charRotationJacobz = mat4(1.0f);
+    mat4 charRotationBadz = mat4(1.0f);
+    mat4 charRotationAdamz = mat4(1.0f);
+    mat4 charRotationAvnishz = mat4(1.0f);
+
+    
+    mat4 charRotationy = mat4(1.0f);
+    mat4 charRotationJacoby = mat4(1.0f);
+    mat4 charRotationBady = mat4(1.0f);
+    mat4 charRotationAdamy = mat4(1.0f);
+    mat4 charRotationAvnishy = mat4(1.0f);
+
+   
+    mat4 charRotationx = mat4(1.0f);
+    mat4 charRotationJacobx = mat4(1.0f);
+    mat4 charRotationBadx = mat4(1.0f);
+    mat4 charRotationAdamx = mat4(1.0f);
+    mat4 charRotationAvnishx = mat4(1.0f);
+
+   
 
     // Entering Game Loop
     while (!glfwWindowShouldClose(window))
@@ -444,71 +476,203 @@ int main()
 
         if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS) {
             switch (choose) {
-            case(1): charRotateFactor += 0.1f;
-                charRotateFactorJacob += 0.1f;
-                charRotateFactorBad += 0.1f;
-                charRotateFactorAdam += 0.1f;
-                charRotateFactorAvnish += 0.1f;
+            case(1): charRotateFactorz += 0.1f;
+                charRotateFactorJacobz += 0.1f;
+                charRotateFactorBadz += 0.1f;
+                charRotateFactorAdamz += 0.1f;
+                charRotateFactorAvnishz += 0.1f;
                 break;
-            case(2): charRotateFactor += 0.1f;
+            case(2): charRotateFactorz += 0.1f;
                 break;
-            case(3): charRotateFactorJacob += 0.1f;
+            case(3): charRotateFactorJacobz += 0.1f;
                 break;
-            case(4): charRotateFactorBad += 0.1f;
+            case(4): charRotateFactorBadz += 0.1f;
                 break;
-            case(5): charRotateFactorAdam += 0.1f;
+            case(5): charRotateFactorAdamz += 0.1f;
                 break;
-            case (6): charRotateFactorAvnish += 0.1f;
+            case (6): charRotateFactorAvnishz += 0.1f;
                 break;
-            default: charRotateFactor += 0.1f;
-                charRotateFactorJacob += 0.1f;
-                charRotateFactorBad += 0.1f;
-                charRotateFactorAdam += 0.1f;
-                charRotateFactorAvnish += 0.1f;
+            default: charRotateFactorz += 0.1f;
+                charRotateFactorJacobz += 0.1f;
+                charRotateFactorBadz += 0.1f;
+                charRotateFactorAdamz += 0.1f;
+                charRotateFactorAvnishz += 0.1f;
                 break;
             }
         }
 
         if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS) {
             switch (choose) {
-            case(1): charRotateFactor -= 0.1f;
-                charRotateFactorJacob -= 0.1f;
-                charRotateFactorBad -= 0.1f;
-                charRotateFactorAdam -= 0.1f;
-                charRotateFactorAvnish -= 0.1f;
+            case(1): charRotateFactorz -= 0.1f;
+                charRotateFactorJacobz -= 0.1f;
+                charRotateFactorBadz -= 0.1f;
+                charRotateFactorAdamz -= 0.1f;
+                charRotateFactorAvnishz -= 0.1f;
                 break;
-            case(2): charRotateFactor -= 0.1f;
+            case(2): charRotateFactorz -= 0.1f;
                 break;
-            case(3): charRotateFactorJacob -= 0.1f;
+            case(3): charRotateFactorJacobz -= 0.1f;
                 break;
-            case(4): charRotateFactorBad -= 0.1f;
+            case(4): charRotateFactorBadz -= 0.1f;
                 break;
-            case(5): charRotateFactorAdam -= 0.1f;
+            case(5): charRotateFactorAdamz -= 0.1f;
                 break;
-            case(6): charRotateFactorAvnish -= 0.1f;
+            case(6): charRotateFactorAvnishz -= 0.1f;
                 break;
-            default: charRotateFactor -= 0.1f;
-                charRotateFactorJacob -= 0.1f;
-                charRotateFactorBad -= 0.1f;
-                charRotateFactorAdam -= 0.1f;
-                charRotateFactorAvnish -= 0.1f;
+            default: charRotateFactorz -= 0.1f;
+                charRotateFactorJacobz -= 0.1f;
+                charRotateFactorBadz -= 0.1f;
+                charRotateFactorAdamz -= 0.1f;
+                charRotateFactorAvnishz -= 0.1f;
+                break;
+            }
+        }
+
+        if (glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS) {
+            switch (choose) {
+            case(1): charRotateFactory -= 0.1f;
+                charRotateFactorJacoby -= 0.1f;
+                charRotateFactorBady -= 0.1f;
+                charRotateFactorAdamy -= 0.1f;
+                charRotateFactorAvnishy -= 0.1f;
+                break;
+            case(2): charRotateFactory -= 0.1f;
+                break;
+            case(3): charRotateFactorJacoby -= 0.1f;
+                break;
+            case(4): charRotateFactorBady -= 0.1f;
+                break;
+            case(5): charRotateFactorAdamy -= 0.1f;
+                break;
+            case(6): charRotateFactorAvnishy -= 0.1f;
+                break;
+            default: charRotateFactory -= 0.1f;
+                charRotateFactorJacoby -= 0.1f;
+                charRotateFactorBady -= 0.1f;
+                charRotateFactorAdamy -= 0.1f;
+                charRotateFactorAvnishy -= 0.1f;
                 break;
             }
         }
 
         if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS) {
-            charRotateFactor = 0.0f;
-            charRotateFactorJacob = 0.0f;
-            charRotateFactorBad = 0.0f;
-            charRotateFactorAdam = 0.0f;
-            charRotateFactorAvnish = 0.0f;
+            switch (choose) {
+            case(1): charRotateFactory += 0.1f;
+                charRotateFactorJacoby += 0.1f;
+                charRotateFactorBady += 0.1f;
+                charRotateFactorAdamy += 0.1f;
+                charRotateFactorAvnishy += 0.1f;
+                break;
+            case(2): charRotateFactory += 0.1f;
+                break;
+            case(3): charRotateFactorJacoby += 0.1f;
+                break;
+            case(4): charRotateFactorBady += 0.1f;
+                break;
+            case(5): charRotateFactorAdamy += 0.1f;
+                break;
+            case (6): charRotateFactorAvnishy += 0.1f;
+                break;
+            default: charRotateFactory += 0.1f;
+                charRotateFactorJacoby += 0.1f;
+                charRotateFactorBady += 0.1f;
+                charRotateFactorAdamy += 0.1f;
+                charRotateFactorAvnishy += 0.1f;
+                break;
+            }
         }
 
-        charRotation = rotate(mat4(1.0f), radians(charRotateFactor), vec3(0.0f, 0.0f, 1.0f));
-        charRotationJacob = rotate(mat4(1.0f), radians(charRotateFactorJacob), vec3(0.0f, 0.0f, 1.0f));
-        charRotationBad = rotate(mat4(1.0f), radians(charRotateFactorBad), vec3(0.0f, 0.0f, 1.0f));
-        charRotationAdam = rotate(mat4(1.0f), radians(charRotateFactorAdam), vec3(0.0f, 0.0f, 1.0f));
-        charRotationAvnish = rotate(mat4(1.0f), radians(charRotateFactorAvnish), vec3(0.0f, 0.0f, 1.0f));
+        if (glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS) {
+            switch (choose) {
+            case(1): charRotateFactorx += 0.1f;
+                charRotateFactorJacobx += 0.1f;
+                charRotateFactorBadx += 0.1f;
+                charRotateFactorAdamx += 0.1f;
+                charRotateFactorAvnishx += 0.1f;
+                break;
+            case(2): charRotateFactorx += 0.1f;
+                break;
+            case(3): charRotateFactorJacobx += 0.1f;
+                break;
+            case(4): charRotateFactorBadx += 0.1f;
+                break;
+            case(5): charRotateFactorAdamx += 0.1f;
+                break;
+            case (6): charRotateFactorAvnishx += 0.1f;
+                break;
+            default: charRotateFactorx += 0.1f;
+                charRotateFactorJacobx += 0.1f;
+                charRotateFactorBadx += 0.1f;
+                charRotateFactorAdamx += 0.1f;
+                charRotateFactorAvnishx += 0.1f;
+                break;
+            }
+        }
+
+        if (glfwGetKey(window, GLFW_KEY_V) == GLFW_PRESS) {
+            switch (choose) {
+            case(1): charRotateFactorx -= 0.1f;
+                charRotateFactorJacobx -= 0.1f;
+                charRotateFactorBadx -= 0.1f;
+                charRotateFactorAdamx -= 0.1f;
+                charRotateFactorAvnishx -= 0.1f;
+                break;
+            case(2): charRotateFactorx -= 0.1f;
+                break;
+            case(3): charRotateFactorJacobx -= 0.1f;
+                break;
+            case(4): charRotateFactorBadx -= 0.1f;
+                break;
+            case(5): charRotateFactorAdamx -= 0.1f;
+                break;
+            case (6): charRotateFactorAvnishx -= 0.1f;
+                break;
+            default: charRotateFactorx -= 0.1f;
+                charRotateFactorJacobx -= 0.1f;
+                charRotateFactorBadx -= 0.1f;
+                charRotateFactorAdamx -= 0.1f;
+                charRotateFactorAvnishx -= 0.1f;
+                break;
+            }
+        }
+
+        if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS) {
+            charRotateFactorx = 0.0f;
+            charRotateFactorJacobx = 0.0f;
+            charRotateFactorBadx = 0.0f;
+            charRotateFactorAdamx = 0.0f;
+            charRotateFactorAvnishx = 0.0f;
+
+            charRotateFactory = 0.0f;
+            charRotateFactorJacoby = 0.0f;
+            charRotateFactorBady = 0.0f;
+            charRotateFactorAdamy = 0.0f;
+            charRotateFactorAvnishy = 0.0f;
+
+            charRotateFactorz = 0.0f;
+            charRotateFactorJacobz = 0.0f;
+            charRotateFactorBadz = 0.0f;
+            charRotateFactorAdamz = 0.0f;
+            charRotateFactorAvnishz = 0.0f;
+        }
+
+        charRotationz = rotate(mat4(1.0f), radians(charRotateFactorz), vec3(0.0f, 0.0f, 1.0f));
+        charRotationJacobz = rotate(mat4(1.0f), radians(charRotateFactorJacobz), vec3(0.0f, 0.0f, 1.0f));
+        charRotationBadz = rotate(mat4(1.0f), radians(charRotateFactorBadz), vec3(0.0f, 0.0f, 1.0f));
+        charRotationAdamz = rotate(mat4(1.0f), radians(charRotateFactorAdamz), vec3(0.0f, 0.0f, 1.0f));
+        charRotationAvnishz = rotate(mat4(1.0f), radians(charRotateFactorAvnishz), vec3(0.0f, 0.0f, 1.0f));
+
+        charRotationy = rotate(mat4(1.0f), radians(charRotateFactory), vec3(0.0f, 1.0f, 0.0f));
+        charRotationJacoby = rotate(mat4(1.0f), radians(charRotateFactorJacoby), vec3(0.0f, 1.0f, 0.0f));
+        charRotationBady = rotate(mat4(1.0f), radians(charRotateFactorBady), vec3(0.0f, 1.0f, 0.0f));
+        charRotationAdamy = rotate(mat4(1.0f), radians(charRotateFactorAdamy), vec3(0.0f, 1.0f, 0.0f));
+        charRotationAvnishy = rotate(mat4(1.0f), radians(charRotateFactorAvnishy), vec3(0.0f, 1.0f, 0.0f));
+
+        charRotationx = rotate(mat4(1.0f), radians(charRotateFactorx), vec3(1.0f, 0.0f, 0.0f));
+        charRotationJacobx = rotate(mat4(1.0f), radians(charRotateFactorJacobx), vec3(1.0f, 0.0f, 0.0f));
+        charRotationBadx = rotate(mat4(1.0f), radians(charRotateFactorBadx), vec3(1.0f, 0.0f, 0.0f));
+        charRotationAdamx = rotate(mat4(1.0f), radians(charRotateFactorAdamx), vec3(1.0f, 0.0f, 0.0f));
+        charRotationAvnishx = rotate(mat4(1.0f), radians(charRotateFactorAvnishx), vec3(1.0f, 0.0f, 0.0f));
 
 
         //changing the orientation of the world.
@@ -743,7 +907,7 @@ int main()
         glBindVertexArray(0);
 
 
-       // //be sure to activate shader when setting uniforms/drawing objects
+        // //be sure to activate shader when setting uniforms/drawing objects
 
         AffectedByLightingShader.use();
         AffectedByLightingShader.setVec3("objectColor", 0.5f, 0.5f, 0.31f);
@@ -781,908 +945,181 @@ int main()
         glBindVertexArray(cubeVAO);
 
         vec3 centering = vec3(-(textOffset + 5.0) / 2, -3.25, 0.0);
-        vec3 JacobLetterOffset = vec3(-49.5f + xOffSetJacob, 0.5f, -49.5f + zOffSetJacob);
-        vec3 JosephLetterOffset = vec3(0.0f + xOffSetJoseph, 5.0f, 0.0f + zOffSetJoseph);
-        vec3 BadLetterOffset = vec3(-49.5f + xOffSetBad, 0.5f, 49.5f + zOffSetBad);
-        vec3 AdamLetterOffset = vec3(49.5f + xOffSetAdam, 0.5f, -49.5f + zOffSetAdam);
-        vec3 AvnishLetterOffset = vec3(49.5f + xOffSetAvnish, 0.5f, 49.5f + zOffSetAvnish);
-        
+        vec3 JacobLetterOffset = vec3(-49.5f + xOffSetJacob, 6.5f, -49.5f + zOffSetJacob);
+        vec3 JosephLetterOffset = vec3(0.0f + xOffSetJoseph, 6.5f, 0.0f + zOffSetJoseph);
+        vec3 BadLetterOffset = vec3(-49.5f + xOffSetBad, 6.5f, 49.5f + zOffSetBad);
+        vec3 AdamLetterOffset = vec3(49.5f + xOffSetAdam, 6.5f, -49.5f + zOffSetAdam);
+        vec3 AvnishLetterOffset = vec3(49.5f + xOffSetAvnish, 6.5f, 49.5f + zOffSetAvnish);
+
 
         //jacob's letter and digit
-        //c
-        //vertical
-        mat4 pillarWorldMatrix = translate(mat4(1.0f), (vec3(0.0f, 3.25f, 0.0f) + centering) * currentScaleFactorJacob) * scale(mat4(1.0f), vec3(1.0f, 6.5f, 1.0f) * currentScaleFactorJacob);
-        pillarWorldMatrix = charRotationJacob * pillarWorldMatrix; //rotating the character 
-        pillarWorldMatrix = translate(mat4(1.0f), JacobLetterOffset) * pillarWorldMatrix;
 
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeJacob)
-        {
-        case 0:
-            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
-            break;
-        case 1:
-            glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2:
-            glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default:
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
+        array<Cube, 7> Jacob = {
+            //C vertical
+            Cube(vec3(0.0f, 3.25f, 0.0f), false, AffectedByLightingShader),
 
-        //horizontal
-        //low bar
-        pillarWorldMatrix = translate(mat4(1.0f), (vec3(2.5f, 0.0f, 0.0f) + centering) * currentScaleFactorJacob) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactorJacob);
-        pillarWorldMatrix = charRotationJacob * pillarWorldMatrix;
-        pillarWorldMatrix = translate(mat4(1.0f), JacobLetterOffset) * pillarWorldMatrix;
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        //pillarWorldMatrix = translate(mat4(1.0f), vec3(-47.5f + xOffSetJacob, 0.5f, -49.5f + zOffSetJacob) * currentScaleFactorJacob)
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeJacob)
-        {
-        case 0:
-            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
-            break;
-        case 1:
-            glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2:
-            glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default:
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
-        //top bar
-        pillarWorldMatrix = translate(mat4(1.0f), (vec3(2.5f, 6.5f, 0.0f) + centering) * currentScaleFactorJacob) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactorJacob);
-        pillarWorldMatrix = charRotationJacob * pillarWorldMatrix;
-        pillarWorldMatrix = translate(mat4(1.0f), JacobLetterOffset) * pillarWorldMatrix;
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        
+            //C horizontal
+            Cube(vec3(2.5f, 0.0f, 0.0f), true, AffectedByLightingShader),
+            Cube(vec3(2.5f, 6.5f, 0.0f), true, AffectedByLightingShader),
 
-        //pillarWorldMatrix = translate(mat4(1.0f), vec3(-47.5f + xOffSetJacob, 8.0f, -49.5f + zOffSetJacob)
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeJacob)
-        {
-        case 0:
-            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
-            break;
-        case 1:
-            glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2:
-            glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default:
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
+            //9 vertical
+            Cube(vec3(5.0f + textOffset, 3.25f, 0.0f), false, AffectedByLightingShader),
+            Cube(vec3(0.0f + textOffset, 3.25 * 1.5, 0.0f), false, AffectedByLightingShader),
 
+            //9 horizontal
+            Cube(vec3(2.5f + textOffset, 6.5f, 0.0f), true, AffectedByLightingShader),
+            Cube(vec3(2.5f + textOffset, 3.25, 0.0f), true, AffectedByLightingShader)
+        };
 
-        //9
-        //vertical
-        pillarWorldMatrix =  translate(mat4(1.0f), (vec3(5.0f + textOffset, 3.25f, 0.0f) + centering) * currentScaleFactorJacob) * scale(mat4(1.0f), vec3(1.0f, 6.5f, 1.0f) * currentScaleFactorJacob);
-        pillarWorldMatrix = charRotationJacob * pillarWorldMatrix;
-        pillarWorldMatrix = translate(mat4(1.0f), JacobLetterOffset) * pillarWorldMatrix;
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeJacob)
-        {
-        case 0:
-            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
-            break;
-        case 1:
-            glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2:
-            glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default:
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
+        //perform any changes necesary 
+        Jacob[4].setDefaultSize(vec3(1.0f, 6.5 / 2, 1.0f));
 
-        pillarWorldMatrix = translate(mat4(1.0f), (vec3(0.0f + textOffset, 3.25 * 1.5, 0.0f) + centering) * currentScaleFactorJacob) * scale(mat4(1.0f), vec3(1.0f, 3.0f, 1.0f) * currentScaleFactorJacob);
-        pillarWorldMatrix = charRotationJacob * pillarWorldMatrix;
-        pillarWorldMatrix = translate(mat4(1.0f), JacobLetterOffset) * pillarWorldMatrix;
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeJacob)
-        {
-        case 0:
-            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
-            break;
-        case 1:
-            glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2:
-            glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default:
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
-
-        //horizontal
-        pillarWorldMatrix = translate(mat4(1.0f), (vec3(2.5f + textOffset, 6.5f, 0.0f) + centering) * currentScaleFactorJacob) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactorJacob);
-        pillarWorldMatrix = charRotationJacob * pillarWorldMatrix;
-        pillarWorldMatrix = translate(mat4(1.0f), JacobLetterOffset) * pillarWorldMatrix;
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeJacob)
-        {
-        case 0:
-            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
-            break;
-        case 1:
-            glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2:
-            glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default:
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
-
-        pillarWorldMatrix = translate(mat4(1.0f), (vec3(2.5f + textOffset, 3.25, 0.0f) + centering) * currentScaleFactorJacob) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactorJacob);
-        pillarWorldMatrix = charRotationJacob * pillarWorldMatrix;
-        pillarWorldMatrix = translate(mat4(1.0f), JacobLetterOffset) * pillarWorldMatrix;
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeJacob) {
-        case 0:
-            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
-            break;
-        case 1:
-            glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2:
-            glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default:
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
+        for (int i = 0; i < Jacob.size(); i++) {
+            Jacob[i].setCustomScaling(currentScaleFactorJacob);
+            Jacob[i].setCustomRotation(charRotationJacobz * charRotationJacoby * charRotationJacobx);
+            Jacob[i].setCustomTranslation(JacobLetterOffset);
+            Jacob[i].rotateWithWorld(rotateMatrixX, rotateMatrixY);
+            Jacob[i].setMode(modelModeJacob);
+            Jacob[i].drawModel();
         }
 
         //Joseph's letter and digit
-        //U
-        //vertical
-        pillarWorldMatrix = translate(mat4(1.0f), (vec3(0.0f, 3.25f, 0.0f) + centering) * currentScaleFactorJoseph) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(1.0f, 6.5f, 1.0f) * currentScaleFactorJoseph);
-        pillarWorldMatrix = charRotation * pillarWorldMatrix;
-        pillarWorldMatrix = translate(mat4(1.0f), JosephLetterOffset) * pillarWorldMatrix;
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeJoseph) {
-        case 0: glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        case 1: glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2: glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default: glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
+        array<Cube, 8> Joseph = {
+            //U vertical
+            Cube(vec3(0.0f, 3.25f, 0.0f), false, AffectedByLightingShader),
+            Cube(vec3(5.0f, 3.25f, 0.0f), false, AffectedByLightingShader),
 
+            //6 vertical
+            Cube(vec3(0.0f + textOffset, 3.25f, 0.0f), false, AffectedByLightingShader),
+            Cube(vec3(5.0f + textOffset, 3.25 / 2, 0.0f), false, AffectedByLightingShader),
 
-        pillarWorldMatrix = charRotation * (translate(mat4(1.0f), vec3(5.0f, 3.25f, 0.0f) + centering) * currentScaleFactorJoseph) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(1.0f, 6.5f, 1.0f) * currentScaleFactorJoseph);
-        pillarWorldMatrix = charRotation * pillarWorldMatrix;
-        pillarWorldMatrix = translate(mat4(1.0f), JosephLetterOffset) * pillarWorldMatrix;
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeJoseph) {
-        case 0: glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        case 1: glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2: glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default: glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
-        //6
+            //U horizontal
+            Cube(vec3(2.5f, 0.0f, 0.0f), true, AffectedByLightingShader),
 
-        pillarWorldMatrix = charRotation * (translate(mat4(1.0f), vec3(0.0f + textOffset, 3.25f, 0.0f) + centering) * currentScaleFactorJoseph) * scale(mat4(1.0f), vec3(1.0f, 6.5f, 1.0f) * currentScaleFactorJoseph);
-        pillarWorldMatrix = charRotation * pillarWorldMatrix;
-        pillarWorldMatrix = translate(mat4(1.0f), JosephLetterOffset) * pillarWorldMatrix;
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeJoseph) {
-        case 0: glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        case 1: glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2: glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default: glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
+            //6 horizontal
+            Cube(vec3(2.5f + textOffset, 0.0f, 0.0f), true, AffectedByLightingShader),
+            Cube(vec3(2.5f + textOffset, 3.25f, 0.0f), true, AffectedByLightingShader),
+            Cube(vec3(2.5f + textOffset, 6.5f, 0.0f), true, AffectedByLightingShader),
+        };
 
-        pillarWorldMatrix = charRotation * translate(mat4(1.0f), (vec3(5.0f + textOffset, 3.25/2, 0.0f) + centering) * currentScaleFactorJoseph) * scale(mat4(1.0f), vec3(1.0f, 3.25f, 1.0f) * currentScaleFactorJoseph);
-        pillarWorldMatrix = charRotation * pillarWorldMatrix;
-        pillarWorldMatrix = translate(mat4(1.0f), JosephLetterOffset) * pillarWorldMatrix;
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeJoseph) {
-        case 0: glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        case 1: glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2: glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default: glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
-        //horizontal
+        //perform any size change necesary 
+        Joseph[3].setDefaultSize(vec3(1.0f, 3.25f, 1.0f));
 
-        //U
-
-        pillarWorldMatrix = charRotation * translate(mat4(1.0f), (vec3(2.5f, 0.0f, 0.0f) + centering) * currentScaleFactorJoseph) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactorJoseph);
-        pillarWorldMatrix = charRotation * pillarWorldMatrix;
-        pillarWorldMatrix = translate(mat4(1.0f), JosephLetterOffset) * pillarWorldMatrix;
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeJoseph) {
-        case 0: glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        case 1: glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2: glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default: glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
-        //6
-
-        pillarWorldMatrix = charRotation * translate(mat4(1.0f), (vec3(2.5f + textOffset, 0.0f, 0.0f) + centering) * currentScaleFactorJoseph) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactorJoseph);
-        pillarWorldMatrix = charRotation * pillarWorldMatrix;
-        pillarWorldMatrix = translate(mat4(1.0f), JosephLetterOffset) * pillarWorldMatrix;
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeJoseph) {
-        case 0: glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        case 1: glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2: glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default: glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
-
-        pillarWorldMatrix = charRotation * translate(mat4(1.0f), (vec3(2.5f + textOffset, 3.25f, 0.0f) + centering) * currentScaleFactorJoseph) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(4.0f, 1.0f, 1.0f) * currentScaleFactorJoseph);
-        pillarWorldMatrix = charRotation * pillarWorldMatrix;
-        pillarWorldMatrix = translate(mat4(1.0f), JosephLetterOffset) * pillarWorldMatrix;
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeJoseph) {
-        case 0: glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        case 1: glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2: glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default: glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
-
-        pillarWorldMatrix = charRotation * translate(mat4(1.0f), (vec3(2.5f + textOffset, 6.5f, 0.0f) + centering) * currentScaleFactorJoseph) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactorJoseph);
-        pillarWorldMatrix = charRotation * pillarWorldMatrix;
-        pillarWorldMatrix = translate(mat4(1.0f), JosephLetterOffset) * pillarWorldMatrix;
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeJoseph) {
-        case 0: glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        case 1: glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2: glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default: glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
+        for (int i = 0; i < Joseph.size(); i++) {
+            Joseph[i].setCustomScaling(currentScaleFactorJoseph);
+            Joseph[i].setCustomRotation(charRotationz * charRotationy * charRotationx);
+            Joseph[i].setCustomTranslation(JosephLetterOffset);
+            Joseph[i].rotateWithWorld(rotateMatrixX, rotateMatrixY);
+            Joseph[i].setMode(modelModeJoseph);
+            Joseph[i].drawModel();
         }
 
         // Badreddine letter and digit
-        //D
-        //vertical left
-        pillarWorldMatrix = translate(mat4(1.0f), (vec3(0.0f, 3.75f, 0.0f) + centering) * currentScaleFactorBad) * scale(mat4(1.0f), vec3(1.0f, 7.5f, 1.0f) * currentScaleFactorBad);
-        pillarWorldMatrix = charRotationBad * pillarWorldMatrix;
-        pillarWorldMatrix = translate(mat4(1.0f), BadLetterOffset) * pillarWorldMatrix;
 
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeBad)
-        {
-        case 0:
-            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
-            break;
-        case 1:
-            glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2:
-            glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default:
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
+        array<Cube, 9> Bad = {
+            //D vertical
+            Cube(vec3(0.0f, 3.25f, 0.0f), false, AffectedByLightingShader),
+            Cube(vec3(5.5f, 3.25f, 0.0f), false, AffectedByLightingShader),
 
-        //vertical right
-        pillarWorldMatrix = charRotationBad * translate(mat4(1.0f), vec3(5.0f, 3.25f, 0.0f) + centering) * currentScaleFactorBad * scale(mat4(1.0f), vec3(1.0f, 6.5f, 1.0f) * currentScaleFactorBad);
-        pillarWorldMatrix = charRotationBad * pillarWorldMatrix;
-        pillarWorldMatrix = translate(mat4(1.0f), BadLetterOffset) * pillarWorldMatrix;
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeBad)
-        {
-        case 0:
-            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
-            break;
-        case 1:
-            glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2:
-            glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default:
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
+            //D horizontal
+            Cube(vec3(2.5f, 0.0f, 0.0f), true, AffectedByLightingShader),
+            Cube(vec3(2.5f, 6.5f, 0.0f), true, AffectedByLightingShader),
 
-        //horizontal
-        //low bar
-        pillarWorldMatrix = charRotationBad * translate(mat4(1.0f), vec3(-47.5f + xOffSetBad, 0.5f, 49.5f + zOffSetBad) * currentScaleFactorBad) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactorBad);
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeBad)
-        {
-        case 0:
-            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
-            break;
-        case 1:
-            glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2:
-            glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default:
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
-        //top bar
-        pillarWorldMatrix = charRotationBad * translate(mat4(1.0f), vec3(-47.5f + xOffSetBad, 8.0f, 49.5f + zOffSetBad) * currentScaleFactorBad) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactorBad);
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeBad)
-        {
-        case 0:
-            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
-            break;
-        case 1:
-            glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2:
-            glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default:
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
+            //2 vertical
+            Cube(vec3(0.0f + textOffset, 3.25 * 0.5, 0.0f), false, AffectedByLightingShader),
+            Cube(vec3(5.0f + textOffset, 3.25 * 1.5, 0.0f), false, AffectedByLightingShader),
 
-        //2
-       //vertical left
-        pillarWorldMatrix = charRotationBad * translate(mat4(1.0f), vec3(-49.5f + xOffSetBad + textOffset, 2.25f, 49.5f + zOffSetBad) * currentScaleFactorBad) * scale(mat4(1.0f), vec3(1.0f, 3.5f, 1.0f) * currentScaleFactorBad);
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeBad)
-        {
-        case 0:
-            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
-            break;
-        case 1:
-            glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2:
-            glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default:
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
+            //2 horizontal
+            Cube(vec3(2.5f + textOffset, 0.0f, 0.0f), true, AffectedByLightingShader),
+            Cube(vec3(2.5f + textOffset, 3.25f, 0.0f), true, AffectedByLightingShader),
+            Cube(vec3(2.5f + textOffset, 6.5f, 0.0f), true, AffectedByLightingShader),
+        };
 
-        //vertical right
-        pillarWorldMatrix = charRotationBad * translate(mat4(1.0f), vec3(-44.5f + xOffSetBad + textOffset, 6.25f, 49.5f + zOffSetBad) * currentScaleFactorBad) * scale(mat4(1.0f), vec3(1.0f, 2.5f, 1.0f) * currentScaleFactorBad);
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeBad)
-        {
-        case 0:
-            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
-            break;
-        case 1:
-            glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2:
-            glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default:
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
+        Bad[0].setDefaultSize(vec3(1.0f, 7, 1.0f));
+        Bad[1].setDefaultSize(vec3(1.0f, 6, 1.0f));
+        Bad[3].setDefaultSize(vec3(1.0f, 6.0, 1.0f));
+        Bad[4].setDefaultSize(vec3(1.0f, 6.5 / 2, 1.0f));
+        Bad[5].setDefaultSize(vec3(1.0f, 6.5 / 2, 1.0f));
 
-        //horizontal
-        //low bar
-        pillarWorldMatrix = charRotationBad * translate(mat4(1.0f), vec3(-47.0f + xOffSetBad + textOffset, 0.5f, 49.5f + zOffSetBad) * currentScaleFactorBad) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(6.0f, 1.0f, 1.0f) * currentScaleFactorBad);
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeBad)
-        {
-        case 0:
-            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
-            break;
-        case 1:
-            glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2:
-            glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default:
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
 
-        //horizontal
-        //middle bar
-        pillarWorldMatrix = charRotationBad * translate(mat4(1.0f), vec3(-47.0f + xOffSetBad + textOffset, 4.5f, 49.5f + zOffSetBad) * currentScaleFactorBad) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(6.0f, 1.0f, 1.0f) * currentScaleFactorBad);
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeBad)
-        {
-        case 0:
-            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
-            break;
-        case 1:
-            glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2:
-            glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default:
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
-
-        //top bar
-        pillarWorldMatrix = charRotationBad * translate(mat4(1.0f), vec3(-47.0f + xOffSetBad + textOffset, 8.0f, 49.5f + zOffSetBad) * currentScaleFactorBad) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(6.0f, 1.0f, 1.0f) * currentScaleFactorBad);
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeBad)
-        {
-        case 0:
-            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
-            break;
-        case 1:
-            glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2:
-            glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default:
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
+        for (int i = 0; i < Bad.size(); i++) {
+            Bad[i].setCustomScaling(currentScaleFactorBad);
+            Bad[i].setCustomRotation(charRotationBadz * charRotationBady * charRotationBadx);
+            Bad[i].setCustomTranslation(BadLetterOffset);
+            Bad[i].rotateWithWorld(rotateMatrixX, rotateMatrixY);
+            Bad[i].setMode(modelModeBad);
+            Bad[i].drawModel();
+        };
 
         //Adam's Letter and digit
-        //A
-        //vertical bars
-        pillarWorldMatrix = charRotationAdam * translate(mat4(1.0f), vec3(44.5 + xOffSetAdam - textOffset, 3.75f, -49.5f + zOffSetAdam) * currentScaleFactorAdam) * scale(mat4(1.0f), vec3(1.0f, 7.5f, 1.0f) * currentScaleFactorAdam);
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeAdam)
-        {
-        case 0:
-            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
-            break;
-        case 1:
-            glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2:
-            glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default:
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
 
-        pillarWorldMatrix = charRotationAdam * translate(mat4(1.0f), vec3(49.5f + xOffSetAdam - textOffset, 3.75f, -49.5f + zOffSetAdam) * currentScaleFactorAdam) * scale(mat4(1.0f), vec3(1.0f, 7.5f, 1.0f) * currentScaleFactorAdam);
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeAdam)
-        {
-        case 0:
-            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
-            break;
-        case 1:
-            glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2:
-            glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default:
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
+        array<Cube, 9> adam = {
+            //A vertical
+            Cube(vec3(0.0f, 3.25f, 0.0f), false, AffectedByLightingShader),
+            Cube(vec3(5.0f, 3.25f, 0.0f), false, AffectedByLightingShader),
 
-        //horizontal
-        //middle bar
-        pillarWorldMatrix = charRotationAdam * translate(mat4(1.0f), vec3(46.5f + xOffSetAdam - textOffset, 5.0f, -49.5f + zOffSetAdam) * currentScaleFactorAdam) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 1.0f, 1.0f) * currentScaleFactorAdam);
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeAdam)
-        {
-        case 0:
-            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
-            break;
-        case 1:
-            glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2:
-            glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default:
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
-        //top bar
-        pillarWorldMatrix = charRotationAdam * translate(mat4(1.0f), vec3(47.0f + xOffSetAdam - textOffset, 8.0f, -49.5f + zOffSetAdam) * currentScaleFactorAdam) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(6.0f, 1.0f, 1.0f) * currentScaleFactorAdam);
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeAdam)
-        {
-        case 0:
-            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
-            break;
-        case 1:
-            glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2:
-            glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default:
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
+            //A horizontal
+            Cube(vec3(2.5f, 3.25f, 0.0f), true, AffectedByLightingShader),
+            Cube(vec3(2.5f, 6.5f, 0.0f), true, AffectedByLightingShader),
 
-        //2
-       //vertical left
-        pillarWorldMatrix = charRotationAdam * translate(mat4(1.0f), vec3(44.5f + xOffSetAdam, 2.75f, -49.5f + zOffSetAdam) * currentScaleFactorAdam) * scale(mat4(1.0f), vec3(1.0f, 3.5f, 1.0f) * currentScaleFactorAdam);
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeAdam)
-        {
-        case 0:
-            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
-            break;
-        case 1:
-            glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2:
-            glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default:
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
+            //2 vertical
+            Cube(vec3(0.0f + textOffset, 3.25 * 0.5, 0.0f), false, AffectedByLightingShader),
+            Cube(vec3(5.0f + textOffset, 3.25 * 1.5, 0.0f), false, AffectedByLightingShader),
 
-        //vertical right
-        pillarWorldMatrix = charRotationAdam * translate(mat4(1.0f), vec3(49.5f + xOffSetAdam, 6.25f, -49.5f + zOffSetAdam) * currentScaleFactorAdam) * scale(mat4(1.0f), vec3(1.0f, 2.5f, 1.0f) * currentScaleFactorAdam);
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeAdam)
-        {
-        case 0:
-            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
-            break;
-        case 1:
-            glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2:
-            glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default:
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
+            //2 horizontal
+            Cube(vec3(2.5f + textOffset, 0.0f, 0.0f), true, AffectedByLightingShader),
+            Cube(vec3(2.5f + textOffset, 3.25f, 0.0f), true, AffectedByLightingShader),
+            Cube(vec3(2.5f + textOffset, 6.5f, 0.0f), true, AffectedByLightingShader),
+        };
 
-        //horizontal
-        //low bar
-        pillarWorldMatrix = charRotationAdam * translate(mat4(1.0f), vec3(47.0f + xOffSetAdam, 0.5f, -49.5f + zOffSetAdam) * currentScaleFactorAdam) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(6.0f, 1.0f, 1.0f) * currentScaleFactorAdam);
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeAdam)
-        {
-        case 0:
-            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
-            break;
-        case 1:
-            glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2:
-            glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default:
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
+        adam[4].setDefaultSize(vec3(1.0f, 6.5 / 2, 1.0f));
+        adam[5].setDefaultSize(vec3(1.0f, 6.5 / 2, 1.0f));
 
-        //horizontal
-        //middle bar
-        pillarWorldMatrix = charRotationAdam * translate(mat4(1.0f), vec3(47.0f + xOffSetAdam, 4.5f, -49.5f + zOffSetAdam) * currentScaleFactorAdam) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(6.0f, 1.0f, 1.0f) * currentScaleFactorAdam);
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeAdam)
-        {
-        case 0:
-            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
-            break;
-        case 1:
-            glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2:
-            glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default:
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
-
-        //top bar
-        pillarWorldMatrix = charRotationAdam * translate(mat4(1.0f), vec3(47.0f + xOffSetAdam, 8.0f, -49.5f + zOffSetAdam) * currentScaleFactorAdam) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(6.0f, 1.0f, 1.0f) * currentScaleFactorAdam);
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeAdam)
-        {
-        case 0:
-            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
-            break;
-        case 1:
-            glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2:
-            glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default:
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
+        for (int i = 0; i < adam.size(); i++) {
+            adam[i].setCustomScaling(currentScaleFactorAdam);
+            adam[i].setCustomRotation(charRotationAdamz * charRotationAdamy * charRotationAdamx);
+            adam[i].setCustomTranslation(AdamLetterOffset);
+            adam[i].rotateWithWorld(rotateMatrixX, rotateMatrixY);
+            adam[i].setMode(modelModeAdam);
+            adam[i].drawModel();
+        };
 
         //Avnish's letter and digit
+
+
         //n
         //vertical right
-        pillarWorldMatrix = charRotationAvnish * translate(mat4(1.0f), vec3(49.5f + xOffSetAvnish - textOffset, 4.25f, 49.5f + zOffSetAvnish) * currentScaleFactorAvnish) * scale(mat4(1.0f), vec3(1.0f, 8.5f, 1.0f) * currentScaleFactorAvnish);
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeAvnish)
-        {
-        case 0:
-            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
-            break;
-        case 1:
-            glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2:
-            glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default:
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
 
-        //vertical left
-        pillarWorldMatrix = charRotationAvnish * translate(mat4(1.0f), vec3(44.5f + xOffSetAvnish - textOffset, 4.25f, 49.5f + zOffSetAvnish) * currentScaleFactorAvnish) * scale(mat4(1.0f), vec3(1.0f, 8.5f, 1.0f) * currentScaleFactorAvnish);
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeAvnish)
-        {
-        case 0:
-            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
-            break;
-        case 1:
-            glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2:
-            glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default:
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
+        array<Cube, 8> avnish = {
+            //N vertical
+            Cube(vec3(0.0f, 3.25f, 0.0f), false, AffectedByLightingShader),
+            Cube(vec3(5.0f, 3.25f, 0.0f), false, AffectedByLightingShader),
 
-        //diagonal top left
-        pillarWorldMatrix = charRotationAvnish * translate(mat4(1.0f), vec3(45.5f + xOffSetAvnish - textOffset, 7.25f, 49.5f + zOffSetAvnish) * currentScaleFactorAvnish) * scale(mat4(1.0f), vec3(1.0f, 2.5f, 1.0f) * currentScaleFactorAvnish);
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeAvnish)
-        {
-        case 0:
-            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
-            break;
-        case 1:
-            glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2:
-            glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default:
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
+            //N diagonal
+            Cube(vec3(2.5f, 3.25f, 0.0f), false, AffectedByLightingShader),
 
-        //diagonal bottom right
-        pillarWorldMatrix = charRotationAvnish * translate(mat4(1.0f), vec3(48.5f + xOffSetAvnish - textOffset, 1.25f, 49.5f + zOffSetAvnish) * currentScaleFactorAvnish) * scale(mat4(1.0f), vec3(1.0f, 2.5f, 1.0f) * currentScaleFactorAvnish);
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeAvnish)
-        {
-        case 0:
-            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
-            break;
-        case 1:
-            glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2:
-            glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default:
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
+            //2 vertical
+            Cube(vec3(0.0f + textOffset, 3.25 * 0.5, 0.0f), false, AffectedByLightingShader),
+            Cube(vec3(5.0f + textOffset, 3.25 * 1.5, 0.0f), false, AffectedByLightingShader),
 
-        //middle left
-        pillarWorldMatrix = charRotationAvnish * translate(mat4(1.0f), vec3(47.5f + xOffSetAvnish - textOffset, 3.25f, 49.5f + zOffSetAvnish) * currentScaleFactorAvnish) * scale(mat4(1.0f), vec3(1.0f, 2.25f, 1.0f) * currentScaleFactorAvnish);
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeAvnish)
-        {
-        case 0:
-            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
-            break;
-        case 1:
-            glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2:
-            glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default:
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
+            //2 horizontal
+            Cube(vec3(2.5f + textOffset, 0.0f, 0.0f), true, AffectedByLightingShader),
+            Cube(vec3(2.5f + textOffset, 3.25f, 0.0f), true, AffectedByLightingShader),
+            Cube(vec3(2.5f + textOffset, 6.5f, 0.0f), true, AffectedByLightingShader),
+        };
 
-        //middle right
-        pillarWorldMatrix = charRotationAvnish * translate(mat4(1.0f), vec3(46.5f + xOffSetAvnish - textOffset, 5.25f, 49.5f + zOffSetAvnish) * currentScaleFactorAvnish) * scale(mat4(1.0f), vec3(1.0f, 2.25f, 1.0f) * currentScaleFactorAvnish);
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeAvnish)
-        {
-        case 0:
-            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
-            break;
-        case 1:
-            glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2:
-            glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default:
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
+        avnish[2].setDefaultRotation(45);
+        avnish[3].setDefaultSize(vec3(1.0f, 6.5 / 2, 1.0f));
+        avnish[4].setDefaultSize(vec3(1.0f, 6.5 / 2, 1.0f));
 
-        //2
-        //vertical left
-        pillarWorldMatrix = charRotationAvnish * translate(mat4(1.0f), vec3(44.5f + xOffSetAvnish, 2.75f, 49.5f + zOffSetAvnish) * currentScaleFactorAvnish) * scale(mat4(1.0f), vec3(1.0f, 3.5f, 1.0f) * currentScaleFactorAvnish);
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeAvnish)
-        {
-        case 0:
-            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
-            break;
-        case 1:
-            glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2:
-            glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default:
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
-
-        //vertical right
-        pillarWorldMatrix = charRotationAvnish * translate(mat4(1.0f), vec3(49.5f + xOffSetAvnish, 6.25f, 49.5f + zOffSetAvnish) * currentScaleFactorAvnish) * scale(mat4(1.0f), vec3(1.0f, 2.5f, 1.0f) * currentScaleFactorAvnish);
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeAvnish)
-        {
-        case 0:
-            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
-            break;
-        case 1:
-            glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2:
-            glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default:
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
-
-        //horizontal
-        //low bar
-        pillarWorldMatrix = charRotationAvnish * translate(mat4(1.0f), vec3(47.0f + xOffSetAvnish, 0.5f, 49.5f + zOffSetAvnish) * currentScaleFactorAvnish) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(6.0f, 1.0f, 1.0f) * currentScaleFactorAvnish);
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeAvnish)
-        {
-        case 0:
-            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
-            break;
-        case 1:
-            glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2:
-            glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default:
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
-
-        //horizontal
-        //middle bar
-        pillarWorldMatrix = charRotationAvnish * translate(mat4(1.0f), vec3(47.0f + xOffSetAvnish, 4.5f, 49.5f + zOffSetAvnish) * currentScaleFactorAvnish) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(6.0f, 1.0f, 1.0f) * currentScaleFactorAvnish);
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeAvnish)
-        {
-        case 0:
-            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
-            break;
-        case 1:
-            glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2:
-            glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default:
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
-
-        //top bar
-        pillarWorldMatrix = charRotationAvnish * translate(mat4(1.0f), vec3(47.0f + xOffSetAvnish, 8.0f, 49.5f + zOffSetAvnish) * currentScaleFactorAvnish) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(6.0f, 1.0f, 1.0f) * currentScaleFactorAvnish);
-        pillarWorldMatrix = rotateMatrixY * rotateMatrixX * pillarWorldMatrix;
-        AffectedByLightingShader.setMat4("worldMatrix", pillarWorldMatrix);
-        switch (modelModeAvnish)
-        {
-        case 0:
-            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
-            break;
-        case 1:
-            glDrawArrays(GL_LINES, 0, 36);
-            break;
-        case 2:
-            glDrawArrays(GL_POINTS, 0, 36);
-            break;
-        default:
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-            break;
-        }
+        for (int i = 0; i < avnish.size(); i++) {
+            avnish[i].setCustomScaling(currentScaleFactorAvnish);
+            avnish[i].setCustomRotation(charRotationAvnishz * charRotationAvnishy * charRotationAvnishx);
+            avnish[i].setCustomTranslation(AvnishLetterOffset);
+            avnish[i].rotateWithWorld(rotateMatrixX, rotateMatrixY);
+            avnish[i].setMode(modelModeAvnish);
+            avnish[i].drawModel();
+        };
 
         glBindVertexArray(0);
 
@@ -1724,7 +1161,13 @@ int main()
             cameraVerticalAngle -= dy * mouseSensitivity * dt;
 
             //limit the vertical camera angel
-            cameraVerticalAngle = max(-85.0f, min(85.0f, cameraVerticalAngle));
+            if (cameraVerticalAngle > 85.0f) {
+                cameraVerticalAngle = 85.0f;
+            }
+            else if (cameraVerticalAngle < -85.0f) {
+                cameraVerticalAngle = -85.0f;
+            }
+
             if (cameraHorizontalAngle > 360)
             {
                 cameraHorizontalAngle -= 360;
@@ -1815,8 +1258,8 @@ bool initContext() {     // Initialize GLFW and OpenGL version
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
 #endif
 
-    // Create Window and rendering context using GLFW, resolution is 800x600
-    window = glfwCreateWindow(1024, 768, "COMP 371 - PROJECT 1A", NULL, NULL);
+    // Create Window and rendering context using GLFW, resolution is 1024x768
+    window = glfwCreateWindow(1024, 768, "COMP 371 - PROJECT 2A", NULL, NULL);
     if (window == NULL)
     {
         std::cerr << "Failed to create GLFW window" << std::endl;
