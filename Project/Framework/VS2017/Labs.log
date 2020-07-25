@@ -1,78 +1,319 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(467,5): warning MSB8028: The intermediate directory (C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\/../Build/Debug/) contains files shared from another project (Project.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   main.cpp
 C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\shader_compile.h(57,35): warning C4101: 'e': unreferenced local variable
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(179,25): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(286,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(299,31): warning C4305: '=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(304,32): warning C4305: '=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(350,42): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(351,36): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(352,34): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(353,35): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(354,37): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(357,42): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(360,41): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(363,39): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(365,40): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(367,42): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(369,42): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(370,36): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(371,34): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(372,35): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(373,37): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(380,42): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(381,36): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(382,34): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(383,35): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(384,37): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(387,42): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(390,41): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(393,39): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(396,40): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(398,42): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(400,42): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(401,36): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(402,34): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(403,35): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(404,37): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(411,42): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(412,36): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(413,34): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(414,35): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(415,37): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(418,42): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(421,41): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(424,39): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(427,40): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(430,42): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(433,42): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(434,36): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(435,34): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(436,35): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(437,37): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(444,42): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(445,36): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(446,34): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(447,35): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(448,37): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(451,42): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(454,41): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(457,39): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(460,40): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(463,42): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(466,42): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(467,36): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(468,34): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(469,35): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(470,37): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(977,27): warning C4018: '<': signed/unsigned mismatch
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1008,27): warning C4018: '<': signed/unsigned mismatch
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1045,27): warning C4018: '<': signed/unsigned mismatch
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1078,27): warning C4018: '<': signed/unsigned mismatch
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1115,27): warning C4018: '<': signed/unsigned mismatch
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1148,28): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1153,27): warning C4305: '=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1157,40): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1163,64): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1164,62): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(180,25): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(278,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(291,31): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(296,32): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(342,49): warning C4305: '+=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(343,43): warning C4305: '+=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(344,41): warning C4305: '+=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(345,42): warning C4305: '+=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(346,44): warning C4305: '+=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(349,49): warning C4305: '+=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(352,48): warning C4305: '+=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(355,46): warning C4305: '+=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(358,48): warning C4305: '+=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(361,50): warning C4305: '+=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(364,49): warning C4305: '+=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(365,43): warning C4305: '+=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(366,41): warning C4305: '+=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(367,42): warning C4305: '+=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(368,44): warning C4305: '+=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(375,49): warning C4305: '-=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(376,43): warning C4305: '-=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(377,41): warning C4305: '-=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(378,42): warning C4305: '-=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(379,44): warning C4305: '-=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(382,49): warning C4305: '-=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(385,48): warning C4305: '-=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(388,46): warning C4305: '-=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(391,47): warning C4305: '-=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(393,49): warning C4305: '-=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(395,49): warning C4305: '-=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(396,43): warning C4305: '-=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(397,41): warning C4305: '-=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(398,42): warning C4305: '-=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(399,44): warning C4305: '-=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(406,49): warning C4305: '+=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(407,43): warning C4305: '+=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(408,41): warning C4305: '+=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(409,42): warning C4305: '+=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(410,44): warning C4305: '+=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(413,49): warning C4305: '+=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(416,48): warning C4305: '+=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(419,46): warning C4305: '+=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(422,47): warning C4305: '+=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(425,49): warning C4305: '+=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(428,49): warning C4305: '+=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(429,43): warning C4305: '+=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(430,41): warning C4305: '+=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(431,42): warning C4305: '+=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(432,44): warning C4305: '+=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(439,49): warning C4305: '-=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(440,43): warning C4305: '-=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(441,41): warning C4305: '-=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(442,42): warning C4305: '-=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(443,44): warning C4305: '-=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(446,49): warning C4305: '-=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(449,48): warning C4305: '-=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(452,46): warning C4305: '-=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(455,47): warning C4305: '-=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(458,49): warning C4305: '-=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(461,49): warning C4305: '-=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(462,43): warning C4305: '-=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(463,41): warning C4305: '-=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(464,42): warning C4305: '-=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(465,44): warning C4305: '-=': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(961,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(998,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1038,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1075,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1112,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1142,28): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1147,27): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1151,40): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1157,64): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1158,62): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1281,26): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
   Labs.vcxproj -> C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\/../Bin/Labs-Debug.exe
