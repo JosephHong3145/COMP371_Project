@@ -23,6 +23,7 @@ using namespace std;
 //int createVertexArrayObject();
 bool initContext();
 float RNGpos();
+vec3 crossProduct(vec3, vec3, vec3);
 
 GLFWwindow* window = NULL;
 
@@ -87,53 +88,53 @@ int main()
        
     // Cube model
     vec3 vertexArray[] = {  // position, color, normal
-        vec3(-0.5f,-0.5f,-0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f,  0.0f, -1.0f),
-        vec3(-0.5f,-0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f,  0.0f, -1.0f),
-        vec3(-0.5f, 0.5f, 0.5f), vec3(0.1f, 0.1f, 0.1f), vec3(0.0f,  0.0f, -1.0f),
+        vec3(-0.5f,-0.5f,-0.5f), vec3(0.6f, 0.6f, 0.6f), crossProduct(vec3(-0.5f,-0.5f,-0.5f), vec3(-0.5f,-0.5f, 0.5f), vec3(-0.5f, 0.5f, 0.5f)),
+        vec3(-0.5f,-0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f), crossProduct(vec3(-0.5f,-0.5f,-0.5f), vec3(-0.5f,-0.5f, 0.5f), vec3(-0.5f, 0.5f, 0.5f)),
+        vec3(-0.5f, 0.5f, 0.5f), vec3(0.1f, 0.1f, 0.1f), crossProduct(vec3(-0.5f,-0.5f,-0.5f), vec3(-0.5f,-0.5f, 0.5f), vec3(-0.5f, 0.5f, 0.5f)),
 
-        vec3(-0.5f,-0.5f,-0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f,  0.0f, -1.0f),
-        vec3(-0.5f, 0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f,  0.0f, -1.0f),
-        vec3(-0.5f, 0.5f,-0.5f), vec3(0.1f, 0.1f, 0.1f), vec3(0.0f,  0.0f, -1.0f),
+        vec3(-0.5f,-0.5f,-0.5f), vec3(0.6f, 0.6f, 0.6f), crossProduct(vec3(-0.5f,-0.5f,-0.5f), vec3(-0.5f, 0.5f, 0.5f), vec3(-0.5f, 0.5f,-0.5f)),
+        vec3(-0.5f, 0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f), crossProduct(vec3(-0.5f,-0.5f,-0.5f), vec3(-0.5f, 0.5f, 0.5f), vec3(-0.5f, 0.5f,-0.5f)),
+        vec3(-0.5f, 0.5f,-0.5f), vec3(0.1f, 0.1f, 0.1f), crossProduct(vec3(-0.5f,-0.5f,-0.5f), vec3(-0.5f, 0.5f, 0.5f), vec3(-0.5f, 0.5f,-0.5f)),
 
-        vec3(0.5f, 0.5f,-0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f,  0.0f,  1.0f),
-        vec3(-0.5f,-0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f,  0.0f,  1.0f),
-        vec3(-0.5f, 0.5f,-0.5f), vec3(0.1f, 0.1f, 0.1f), vec3(0.0f,  0.0f,  1.0f),
+        vec3(0.5f, 0.5f,-0.5f), vec3(0.6f, 0.6f, 0.6f), crossProduct(vec3(0.5f, 0.5f,-0.5f), vec3(-0.5f,-0.5f,-0.5f), vec3(-0.5f, 0.5f,-0.5f)),
+        vec3(-0.5f,-0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), crossProduct(vec3(0.5f, 0.5f,-0.5f), vec3(-0.5f,-0.5f,-0.5f), vec3(-0.5f, 0.5f,-0.5f)),
+        vec3(-0.5f, 0.5f,-0.5f), vec3(0.1f, 0.1f, 0.1f), crossProduct(vec3(0.5f, 0.5f,-0.5f), vec3(-0.5f,-0.5f,-0.5f), vec3(-0.5f, 0.5f,-0.5f)),
 
-        vec3(0.5f, 0.5f,-0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f,  0.0f,  1.0f),
-        vec3(0.5f,-0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f,  0.0f,  1.0f),
-        vec3(-0.5f,-0.5f,-0.5f), vec3(0.1f, 0.1f, 0.1f), vec3(0.0f,  0.0f,  1.0f),
+        vec3(0.5f, 0.5f,-0.5f), vec3(0.6f, 0.6f, 0.6f), crossProduct(vec3(0.5f, 0.5f,-0.5f), vec3(0.5f,-0.5f,-0.5f), vec3(-0.5f,-0.5f,-0.5f)),
+        vec3(0.5f,-0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), crossProduct(vec3(0.5f, 0.5f,-0.5f), vec3(0.5f,-0.5f,-0.5f), vec3(-0.5f,-0.5f,-0.5f)),
+        vec3(-0.5f,-0.5f,-0.5f), vec3(0.1f, 0.1f, 0.1f), crossProduct(vec3(0.5f, 0.5f,-0.5f), vec3(0.5f,-0.5f,-0.5f), vec3(-0.5f,-0.5f,-0.5f)),
 
-        vec3(0.5f,-0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(-1.0f,  0.0f,  0.0f),
-        vec3(-0.5f,-0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(-1.0f,  0.0f,  0.0f),
-        vec3(0.5f,-0.5f,-0.5f), vec3(0.1f, 0.1f, 0.1f), vec3(-1.0f,  0.0f,  0.0f),
+        vec3(0.5f,-0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), crossProduct(vec3(0.5f,-0.5f, 0.5f), vec3(-0.5f,-0.5f,-0.5f), vec3(0.5f,-0.5f,-0.5f)),
+        vec3(-0.5f,-0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), crossProduct(vec3(0.5f,-0.5f, 0.5f), vec3(-0.5f,-0.5f,-0.5f), vec3(0.5f,-0.5f,-0.5f)),
+        vec3(0.5f,-0.5f,-0.5f), vec3(0.1f, 0.1f, 0.1f), crossProduct(vec3(0.5f,-0.5f, 0.5f), vec3(-0.5f,-0.5f,-0.5f), vec3(0.5f,-0.5f,-0.5f)),
 
-        vec3(0.5f,-0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(-1.0f,  0.0f,  0.0f),
-        vec3(-0.5f,-0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(-1.0f,  0.0f,  0.0f),
-        vec3(-0.5f,-0.5f,-0.5f), vec3(0.1f, 0.1f, 0.1f), vec3(-1.0f,  0.0f,  0.0f),
+        vec3(0.5f,-0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), crossProduct(vec3(0.5f,-0.5f, 0.5f), vec3(-0.5f,-0.5f, 0.5f), vec3(-0.5f,-0.5f,-0.5f)),
+        vec3(-0.5f,-0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f), crossProduct(vec3(0.5f,-0.5f, 0.5f), vec3(-0.5f,-0.5f, 0.5f), vec3(-0.5f,-0.5f,-0.5f)),
+        vec3(-0.5f,-0.5f,-0.5f), vec3(0.1f, 0.1f, 0.1f), crossProduct(vec3(0.5f,-0.5f, 0.5f), vec3(-0.5f,-0.5f, 0.5f), vec3(-0.5f,-0.5f,-0.5f)),
 
-        vec3(-0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(1.0f,  0.0f,  0.0f),
-        vec3(-0.5f,-0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(1.0f,  0.0f,  0.0f),
-        vec3(0.5f,-0.5f, 0.5f), vec3(0.1f, 0.1f, 0.1f), vec3(1.0f,  0.0f,  0.0f),
+        vec3(-0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), crossProduct(vec3(-0.5f, 0.5f, 0.5f), vec3(-0.5f,-0.5f, 0.5f), vec3(0.5f,-0.5f, 0.5f)),
+        vec3(-0.5f,-0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f), crossProduct(vec3(-0.5f, 0.5f, 0.5f), vec3(-0.5f,-0.5f, 0.5f), vec3(0.5f,-0.5f, 0.5f)),
+        vec3(0.5f,-0.5f, 0.5f), vec3(0.1f, 0.1f, 0.1f), crossProduct(vec3(-0.5f, 0.5f, 0.5f), vec3(-0.5f,-0.5f, 0.5f), vec3(0.5f,-0.5f, 0.5f)),
 
-        vec3(0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(1.0f,  0.0f,  0.0f),
-        vec3(-0.5f, 0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(1.0f,  0.0f,  0.0f),
-        vec3(0.5f,-0.5f, 0.5f), vec3(0.1f, 0.1f, 0.1f), vec3(1.0f,  0.0f,  0.0f),
+        vec3(0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), crossProduct(vec3(0.5f, 0.5f, 0.5f), vec3(-0.5f, 0.5f, 0.5f), vec3(0.5f,-0.5f, 0.5f)),
+        vec3(-0.5f, 0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f), crossProduct(vec3(0.5f, 0.5f, 0.5f), vec3(-0.5f, 0.5f, 0.5f), vec3(0.5f,-0.5f, 0.5f)),
+        vec3(0.5f,-0.5f, 0.5f), vec3(0.1f, 0.1f, 0.1f), crossProduct(vec3(0.5f, 0.5f, 0.5f), vec3(-0.5f, 0.5f, 0.5f), vec3(0.5f,-0.5f, 0.5f)),
 
-        vec3(0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f, -1.0f,  0.0f),
-        vec3(0.5f,-0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f, -1.0f,  0.0f),
-        vec3(0.5f, 0.5f,-0.5f), vec3(0.1f, 0.1f, 0.1f), vec3(0.0f, -1.0f,  0.0f),
+        vec3(0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), crossProduct(vec3(0.5f, 0.5f, 0.5f), vec3(0.5f,-0.5f,-0.5f), vec3(0.5f, 0.5f,-0.5f)),
+        vec3(0.5f,-0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), crossProduct(vec3(0.5f, 0.5f, 0.5f), vec3(0.5f,-0.5f,-0.5f), vec3(0.5f, 0.5f,-0.5f)),
+        vec3(0.5f, 0.5f,-0.5f), vec3(0.1f, 0.1f, 0.1f), crossProduct(vec3(0.5f, 0.5f, 0.5f), vec3(0.5f,-0.5f,-0.5f), vec3(0.5f, 0.5f,-0.5f)),
 
-        vec3(0.5f,-0.5f,-0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f, -1.0f,  0.0f),
-        vec3(0.5f, 0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f, -1.0f,  0.0f),
-        vec3(0.5f,-0.5f, 0.5f), vec3(0.1f, 0.1f, 0.1f), vec3(0.0f, -1.0f,  0.0f),
+        vec3(0.5f,-0.5f,-0.5f), vec3(0.6f, 0.6f, 0.6f), crossProduct(vec3(0.5f,-0.5f,-0.5f), vec3(0.5f, 0.5f, 0.5f), vec3(0.5f,-0.5f, 0.5f)),
+        vec3(0.5f, 0.5f, 0.5f), vec3(0.3f, 0.3f, 0.3f), crossProduct(vec3(0.5f,-0.5f,-0.5f), vec3(0.5f, 0.5f, 0.5f), vec3(0.5f,-0.5f, 0.5f)),
+        vec3(0.5f,-0.5f, 0.5f), vec3(0.1f, 0.1f, 0.1f), crossProduct(vec3(0.5f,-0.5f,-0.5f), vec3(0.5f, 0.5f, 0.5f), vec3(0.5f,-0.5f, 0.5f)),
 
-        vec3(0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f,  1.0f,  0.0f),
-        vec3(0.5f, 0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f,  1.0f,  0.0f),
-        vec3(-0.5f, 0.5f,-0.5f), vec3(0.1f, 0.1f, 0.1f), vec3(0.0f,  1.0f,  0.0f),
+        vec3(0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), crossProduct(vec3(0.5f, 0.5f, 0.5f), vec3(0.5f, 0.5f,-0.5f), vec3(-0.5f, 0.5f,-0.5f)),
+        vec3(0.5f, 0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), crossProduct(vec3(0.5f, 0.5f, 0.5f), vec3(0.5f, 0.5f,-0.5f), vec3(-0.5f, 0.5f,-0.5f)),
+        vec3(-0.5f, 0.5f,-0.5f), vec3(0.1f, 0.1f, 0.1f), crossProduct(vec3(0.5f, 0.5f, 0.5f), vec3(0.5f, 0.5f,-0.5f), vec3(-0.5f, 0.5f,-0.5f)),
 
-        vec3(0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f,  1.0f,  0.0f),
-        vec3(-0.5f, 0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), vec3(0.0f,  1.0f,  0.0f),
-        vec3(-0.5f, 0.5f, 0.5f), vec3(0.1f, 0.1f, 0.1f), vec3(0.0f,  1.0f,  0.0f),
+        vec3(0.5f, 0.5f, 0.5f), vec3(0.6f, 0.6f, 0.6f), crossProduct(vec3(0.5f, 0.5f, 0.5f), vec3(-0.5f, 0.5f,-0.5f), vec3(-0.5f, 0.5f, 0.5f)),
+        vec3(-0.5f, 0.5f,-0.5f), vec3(0.3f, 0.3f, 0.3f), crossProduct(vec3(0.5f, 0.5f, 0.5f), vec3(-0.5f, 0.5f,-0.5f), vec3(-0.5f, 0.5f, 0.5f)),
+        vec3(-0.5f, 0.5f, 0.5f), vec3(0.1f, 0.1f, 0.1f), crossProduct(vec3(0.5f, 0.5f, 0.5f), vec3(-0.5f, 0.5f,-0.5f), vec3(-0.5f, 0.5f, 0.5f)),
 
     };
 
@@ -1279,4 +1280,10 @@ bool initContext() {     // Initialize GLFW and OpenGL version
 
 float RNGpos() {
     return (rand() % 101 - 50);
+}
+
+vec3 crossProduct(vec3 point1, vec3 point2, vec3 point3) {
+    vec3 vector1 = point2 - point1;
+    vec3 vector2 = point3 - point1;
+    return cross(vector1, vector2);
 }
