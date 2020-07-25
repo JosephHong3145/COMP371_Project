@@ -18,8 +18,8 @@ model manipulation =====================
 
 TFGH: Move model in world 
 T/L/P: change model to triangle / line / point
-Q/E: change model orientation 
-X: reset model orientation 
+Q/E Z/X C/V: change model orientation 
+R: reset model orientation 
 U/J: Increase/decrease model scale 
 N: reset model scale to original 
 B: reset model position to original 
