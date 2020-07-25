@@ -22,6 +22,7 @@ using namespace std;
 //const char* getFragmentShaderSource();
 //int createVertexArrayObject();
 bool initContext();
+float RNGpos();
 
 GLFWwindow* window = NULL;
 
@@ -38,7 +39,7 @@ const unsigned int SCREEN_HEIGHT = 768;
 vec3 defaultSize = vec3(1.0f, 6.5f, 1.0f);
 
 // lighting
-vec3 lightPos(1.2f, 1.0f, 2.0f);
+vec3 lightPos = vec3(0.0f, 30.0f, 0.0f);
 
 int main()
 {
@@ -187,27 +188,7 @@ int main()
 
     float scaleFactor = 0.0f;
 
-    float xOffSetJoseph = 0.0f;
-    float yOffSetJoseph = 10.0f;
-    float zOffSetJoseph = 0.0f;
-
-    float xOffSetJacob = 0.0f;
-    float yOffSetJacob = 0.0f;
-    float zOffSetJacob = 0.0f;
-
-    float xOffSetBad = 0.0f;
-    float yOffSetBad = 0.0f;
-    float zOffSetBad = 0.0f;
-
-    float xOffSetAdam = 0.0f;
-    float yOffSetAdam = 0.0f;
-    float zOffSetAdam = 0.0f;
-
-    float xOffSetAvnish = 0.0f;
-    float yOffSetAvnish = 0.0f;
-    float zOffSetAvnish = 0.0f;
-
-    float textOffset = 8.0f;
+    const float textOffset = 8.0f;
 
     float currentScaleFactorJoseph = 1.0f;
     float currentScaleFactorJacob = 1.0f;
@@ -225,7 +206,7 @@ int main()
     int modelModeAdam = 0;
     int modelModeAvnish = 0;
 
-    int choose = 0; //choosing the model
+    int choose = 6; //choosing the model
     float charRotateFactorx = 0.0f;
     float charRotateFactorJacobx = 0.0f;
     float charRotateFactorBadx = 0.0f;
@@ -264,7 +245,18 @@ int main()
     mat4 charRotationAdamx = mat4(1.0f);
     mat4 charRotationAvnishx = mat4(1.0f);
 
+
+    vec3 RNGvecJacob = vec3(1.0f);
+    vec3 RNGvecJoseph = vec3(1.0f);
+    vec3 RNGvecBad = vec3(1.0f);
+    vec3 RNGvecAdam = vec3(1.0f);
+    vec3 RNGvecAvnish = vec3(1.0f);
    
+    vec3 JacobLetterOffset = vec3(-49.5f, 6.5f, -49.5f);
+    vec3 JosephLetterOffset = vec3(0.0f, 6.5f, 0.0f);
+    vec3 BadLetterOffset = vec3(-49.5f, 6.5f, 49.5f);
+    vec3 AdamLetterOffset = vec3(49.5f, 6.5f, -49.5f);
+    vec3 AvnishLetterOffset = vec3(49.5f, 6.5f, 49.5f);
 
     // Entering Game Loop
     while (!glfwWindowShouldClose(window))
@@ -347,127 +339,130 @@ int main()
         //Translating the model to directions using R,D,F,G on the keyboard
         if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS) {
             switch (choose) {
-            case(1): zOffSetJoseph += 0.1;
-                zOffSetJacob += 0.1;
-                zOffSetBad += 0.1;
-                zOffSetAdam += 0.1;
-                zOffSetAvnish += 0.1;
+            case(1): JosephLetterOffset.z += 0.1;
+                JacobLetterOffset.z += 0.1;
+                BadLetterOffset.z += 0.1;
+                AdamLetterOffset.z += 0.1;
+                AvnishLetterOffset.z += 0.1;
                 break;
 
-            case(2): zOffSetJoseph += 0.1;
+            case(2): JosephLetterOffset.z += 0.1;
                 break;
 
-            case(3): zOffSetJacob += 0.1;
+            case(3): JacobLetterOffset.z += 0.1;
                 break;
 
-            case(4): zOffSetBad += 0.1;
+            case(4): BadLetterOffset.z += 0.1;
                 break;
-            case(5): zOffSetAdam += 0.1;
+
+            case(5):  AdamLetterOffset.z += 0.1;
                 break;
-            case(6): zOffSetAvnish += 0.1;
+
+            case(6):  AvnishLetterOffset.z += 0.1;
                 break;
-            default: zOffSetJoseph += 0.1;
-                zOffSetJacob += 0.1;
-                zOffSetBad += 0.1;
-                zOffSetAdam += 0.1;
-                zOffSetAvnish += 0.1;
+
+            default: JosephLetterOffset.z += 0.1;
+                JacobLetterOffset.z += 0.1;
+                BadLetterOffset.z += 0.1;
+                AdamLetterOffset.z += 0.1;
+                AvnishLetterOffset.z += 0.1;
                 break;
             }
         }
 
         if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS) {
             switch (choose) {
-            case(1): xOffSetJoseph -= 0.1;
-                xOffSetJacob -= 0.1;
-                xOffSetBad -= 0.1;
-                xOffSetAdam -= 0.1;
-                xOffSetAvnish -= 0.1;
+            case(1): JosephLetterOffset.x -= 0.1;
+                JacobLetterOffset.x -= 0.1;
+                BadLetterOffset.x -= 0.1;
+                AdamLetterOffset.x -= 0.1;
+                AvnishLetterOffset.x -= 0.1;
                 break;
 
-            case(2): xOffSetJoseph -= 0.1;
+            case(2): JosephLetterOffset.x -= 0.1;
                 break;
 
-            case(3): xOffSetJacob -= 0.1;
+            case(3): JacobLetterOffset.x -= 0.1;
                 break;
 
-            case(4): xOffSetBad -= 0.1;
+            case(4): BadLetterOffset.x -= 0.1;
                 break;
 
-            case(5): xOffSetAdam -= 0.1;
+            case(5): AdamLetterOffset.x -= 0.1;
                 break;
-            case(6): xOffSetAvnish -= 0.1;
+            case(6): AvnishLetterOffset.x -= 0.1;
                 break;
-            default: xOffSetJoseph -= 0.1;
-                xOffSetJacob -= 0.1;
-                xOffSetBad -= 0.1;
-                xOffSetAdam -= 0.1;
-                xOffSetAvnish -= 0.1;
+            default: JosephLetterOffset.x -= 0.1;
+                JacobLetterOffset.x -= 0.1;
+                BadLetterOffset.x -= 0.1;
+                AdamLetterOffset.x -= 0.1;
+                AvnishLetterOffset.x -= 0.1;
                 break;
             }
         }
 
         if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS) {
             switch (choose) {
-            case(1): xOffSetJoseph += 0.1;
-                xOffSetJacob += 0.1;
-                xOffSetBad += 0.1;
-                xOffSetAdam += 0.1;
-                xOffSetAvnish += 0.1;
+            case(1): JosephLetterOffset.x += 0.1;
+                JacobLetterOffset.x += 0.1;
+                BadLetterOffset.x += 0.1;
+                AdamLetterOffset.x += 0.1;
+                AvnishLetterOffset.x += 0.1;
                 break;
 
-            case(2): xOffSetJoseph += 0.1;
+            case(2): JosephLetterOffset.x += 0.1;
                 break;
 
-            case(3): xOffSetJacob += 0.1;
+            case(3): JacobLetterOffset.x += 0.1;
                 break;
 
-            case(4): xOffSetBad += 0.1;
+            case(4): BadLetterOffset.x += 0.1;
                 break;
 
-            case(5): xOffSetAdam += 0.1;
+            case(5): AdamLetterOffset.x += 0.1;
                 break;
 
-            case(6): xOffSetAvnish += 0.1;
+            case(6): AvnishLetterOffset.x += 0.1;
                 break;
 
-            default: xOffSetJoseph += 0.1;
-                xOffSetJacob += 0.1;
-                xOffSetBad += 0.1;
-                xOffSetAdam += 0.1;
-                xOffSetAvnish += 0.1;
+            default: JosephLetterOffset.x += 0.1;
+                JacobLetterOffset.x += 0.1;
+                BadLetterOffset.x += 0.1;
+                AdamLetterOffset.x += 0.1;
+                AvnishLetterOffset.x += 0.1;
                 break;
             }
         }
 
         if (glfwGetKey(window, GLFW_KEY_T) == GLFW_PRESS) {
             switch (choose) {
-            case(1): zOffSetJoseph -= 0.1;
-                zOffSetJacob -= 0.1;
-                zOffSetBad -= 0.1;
-                zOffSetAdam -= 0.1;
-                zOffSetAvnish -= 0.1;
+            case(1): JosephLetterOffset.z -= 0.1;
+                JacobLetterOffset.z -= 0.1;
+                BadLetterOffset.z -= 0.1;
+                AdamLetterOffset.z -= 0.1;
+                AvnishLetterOffset.z -= 0.1;
                 break;
 
-            case(2): zOffSetJoseph -= 0.1;
+            case(2): JosephLetterOffset.z -= 0.1;
                 break;
 
-            case(3): zOffSetJacob -= 0.1;
+            case(3): JacobLetterOffset.z -= 0.1;
                 break;
 
-            case(4): zOffSetBad -= 0.1;
+            case(4): BadLetterOffset.z -= 0.1;
                 break;
 
-            case(5): zOffSetAdam -= 0.1;
+            case(5): AdamLetterOffset.z -= 0.1;
                 break;
 
-            case(6): zOffSetAvnish -= 0.1;
+            case(6): AvnishLetterOffset.z -= 0.1;
                 break;
 
-            default: zOffSetJoseph -= 0.1;
-                zOffSetJacob -= 0.1;
-                zOffSetBad -= 0.1;
-                zOffSetAdam -= 0.1;
-                zOffSetAvnish -= 0.1;
+            default: JosephLetterOffset.z -= 0.1;
+                JacobLetterOffset.z -= 0.1;
+                BadLetterOffset.z -= 0.1;
+                AdamLetterOffset.z -= 0.1;
+                AvnishLetterOffset.z -= 0.1;
                 break;
             }
         }
@@ -828,17 +823,11 @@ int main()
         //reset the models to original position
         if (glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS)
         {
-            xOffSetJoseph = 0.0;
-            xOffSetJacob = 0.0;
-            xOffSetBad = 0.0;
-            xOffSetAdam = 0.0;
-            xOffSetAvnish = 0.0;
-
-            zOffSetJoseph = 0.0;
-            zOffSetJacob = 0.0;
-            zOffSetBad = 0.0;
-            zOffSetAdam = 0.0;
-            zOffSetAvnish = 0.0;
+            JacobLetterOffset = vec3(-49.5f, 6.5f, -49.5f);
+            JosephLetterOffset = vec3(0.0f, 6.5f, 0.0f);
+            BadLetterOffset = vec3(-49.5f, 6.5f, 49.5f);
+            AdamLetterOffset = vec3(49.5f, 6.5f, -49.5f);
+            AvnishLetterOffset = vec3(49.5f, 6.5f, 49.5f);
         }
 
         //choosing between the moodels
@@ -908,7 +897,6 @@ int main()
 
 
         // //be sure to activate shader when setting uniforms/drawing objects
-
         AffectedByLightingShader.use();
         AffectedByLightingShader.setVec3("objectColor", 0.5f, 0.5f, 0.31f);
         AffectedByLightingShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
@@ -944,16 +932,7 @@ int main()
         AffectedByLightingShader.use();
         glBindVertexArray(cubeVAO);
 
-        vec3 centering = vec3(-(textOffset + 5.0) / 2, -3.25, 0.0);
-        vec3 JacobLetterOffset = vec3(-49.5f + xOffSetJacob, 6.5f, -49.5f + zOffSetJacob);
-        vec3 JosephLetterOffset = vec3(0.0f + xOffSetJoseph, 6.5f, 0.0f + zOffSetJoseph);
-        vec3 BadLetterOffset = vec3(-49.5f + xOffSetBad, 6.5f, 49.5f + zOffSetBad);
-        vec3 AdamLetterOffset = vec3(49.5f + xOffSetAdam, 6.5f, -49.5f + zOffSetAdam);
-        vec3 AvnishLetterOffset = vec3(49.5f + xOffSetAvnish, 6.5f, 49.5f + zOffSetAvnish);
-
-
         //jacob's letter and digit
-
         array<Cube, 7> Jacob = {
             //C vertical
             Cube(vec3(0.0f, 3.25f, 0.0f), false, AffectedByLightingShader),
@@ -974,7 +953,13 @@ int main()
         //perform any changes necesary 
         Jacob[4].setDefaultSize(vec3(1.0f, 6.5 / 2, 1.0f));
 
+        if ((glfwGetKey(window, GLFW_KEY_LEFT_ALT) == GLFW_PRESS) && (choose == 3 || choose == 1)) {
+            RNGvecJacob = vec3(vec3(RNGpos(), 6.5f, RNGpos()));
+            JacobLetterOffset = RNGvecJacob;
+        }
+
         for (int i = 0; i < Jacob.size(); i++) {
+
             Jacob[i].setCustomScaling(currentScaleFactorJacob);
             Jacob[i].setCustomRotation(charRotationJacobz * charRotationJacoby * charRotationJacobx);
             Jacob[i].setCustomTranslation(JacobLetterOffset);
@@ -1005,6 +990,11 @@ int main()
         //perform any size change necesary 
         Joseph[3].setDefaultSize(vec3(1.0f, 3.25f, 1.0f));
 
+        if ((glfwGetKey(window, GLFW_KEY_LEFT_ALT) == GLFW_PRESS) && (choose == 2 || choose == 1)) {
+            RNGvecJoseph = vec3(vec3(RNGpos(), 6.5f, RNGpos()));
+            JosephLetterOffset = RNGvecJoseph;
+        }
+
         for (int i = 0; i < Joseph.size(); i++) {
             Joseph[i].setCustomScaling(currentScaleFactorJoseph);
             Joseph[i].setCustomRotation(charRotationz * charRotationy * charRotationx);
@@ -1015,7 +1005,6 @@ int main()
         }
 
         // Badreddine letter and digit
-
         array<Cube, 9> Bad = {
             //D vertical
             Cube(vec3(0.0f, 3.25f, 0.0f), false, AffectedByLightingShader),
@@ -1041,6 +1030,10 @@ int main()
         Bad[4].setDefaultSize(vec3(1.0f, 6.5 / 2, 1.0f));
         Bad[5].setDefaultSize(vec3(1.0f, 6.5 / 2, 1.0f));
 
+         if ((glfwGetKey(window, GLFW_KEY_LEFT_ALT) == GLFW_PRESS) && (choose == 4 || choose == 1)) {
+            RNGvecBad = vec3(vec3(RNGpos(), 6.5f, RNGpos()));
+            BadLetterOffset = RNGvecBad;
+        }
 
         for (int i = 0; i < Bad.size(); i++) {
             Bad[i].setCustomScaling(currentScaleFactorBad);
@@ -1052,7 +1045,6 @@ int main()
         };
 
         //Adam's Letter and digit
-
         array<Cube, 9> adam = {
             //A vertical
             Cube(vec3(0.0f, 3.25f, 0.0f), false, AffectedByLightingShader),
@@ -1075,6 +1067,11 @@ int main()
         adam[4].setDefaultSize(vec3(1.0f, 6.5 / 2, 1.0f));
         adam[5].setDefaultSize(vec3(1.0f, 6.5 / 2, 1.0f));
 
+        if ((glfwGetKey(window, GLFW_KEY_LEFT_ALT) == GLFW_PRESS) && (choose == 5 || choose == 1)) {
+            RNGvecAdam = vec3(vec3(RNGpos(), 6.5f, RNGpos()));
+            AdamLetterOffset = RNGvecAdam;
+        }
+
         for (int i = 0; i < adam.size(); i++) {
             adam[i].setCustomScaling(currentScaleFactorAdam);
             adam[i].setCustomRotation(charRotationAdamz * charRotationAdamy * charRotationAdamx);
@@ -1085,11 +1082,6 @@ int main()
         };
 
         //Avnish's letter and digit
-
-
-        //n
-        //vertical right
-
         array<Cube, 8> avnish = {
             //N vertical
             Cube(vec3(0.0f, 3.25f, 0.0f), false, AffectedByLightingShader),
@@ -1111,6 +1103,11 @@ int main()
         avnish[2].setDefaultRotation(45);
         avnish[3].setDefaultSize(vec3(1.0f, 6.5 / 2, 1.0f));
         avnish[4].setDefaultSize(vec3(1.0f, 6.5 / 2, 1.0f));
+
+        if ((glfwGetKey(window, GLFW_KEY_LEFT_ALT) == GLFW_PRESS) && (choose == 6 || choose == 1)) {
+            RNGvecAvnish = vec3(vec3(RNGpos(), 6.5f, RNGpos()));
+            AvnishLetterOffset = RNGvecAvnish;
+        }
 
         for (int i = 0; i < avnish.size(); i++) {
             avnish[i].setCustomScaling(currentScaleFactorAvnish);
@@ -1278,4 +1275,8 @@ bool initContext() {     // Initialize GLFW and OpenGL version
         return false;
     }
     return true;
+}
+
+float RNGpos() {
+    return (rand() % 101 - 50);
 }
