@@ -247,8 +247,8 @@ int main()
     //END
     //////////////////////////////////////////////////
 
-    float lightAngleOuter = radians(30.0f);
-    float lightAngleInner = radians(20.0f);
+    float lightAngleOuter = radians(0.0f);
+    float lightAngleInner = radians(180.0f);
     // Set light cutoff angles on scene shader
     AffectedByLightingShader.use();
     AffectedByLightingShader.setFloat("light_cutoff_inner", cos(lightAngleInner));
@@ -928,10 +928,10 @@ int main()
         
 
         // light parameters
-        float phi = glfwGetTime() * 0.5f * 3.14f;
-        vec3(cosf(phi)* cosf(phi), sinf(phi), -cosf(phi) * sinf(phi)) * 5.0f;  // variable position
+        //float phi = glfwGetTime() * 0.5f * M_PI;
+        //vec3(cosf(phi)* cosf(phi), sinf(phi), -cosf(phi) * sinf(phi)) * 5.0f;  // variable position
 
-        vec3 lightFocus(0, -1, 0);  // the point in 3D space the light "looks" at
+        vec3 lightFocus(0, -1, 0); // the point in 3D space the light "looks" at
         vec3 lightDirection = normalize(lightFocus - lightPos);
 
         float lightNearPlane = 0.01f;
@@ -1034,7 +1034,7 @@ int main()
         NotAffectedByLightingShader.setMat4("worldMatrix", world);
         NotAffectedByLightingShader.setInt("lightSource", 1);
 
-        glBindVertexArray(lightSourceVAO);
+        //glBindVertexArray(lightSourceVAO);
         glDrawArrays(GL_TRIANGLES, 0, 36);
         NotAffectedByLightingShader.setInt("lightSource", 0);
         glBindVertexArray(0);
@@ -1253,7 +1253,7 @@ int main()
          // Bind screen as output framebuffer
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
         // Clear color and depth data on framebuffer
-        glClearColor(0.8f, 0.8f, 0.8f, 1.0f);
+        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
          // Bind depth map texture: not needed, by default it is active
          // glActiveTexture(GL_TEXTURE0);
@@ -1315,7 +1315,7 @@ int main()
 
         //world transformation
         AffectedByLightingShader.setMat4("worldMatrix", cube);
-        NotAffectedByLightingShader.setMat4("transform_in_light_space", lightProjMatrix * lightViewMatrix * cube);
+        ShadowShader.setMat4("transform_in_light_space", lightProjMatrix * lightViewMatrix * cube);
         
         
         //Draw geometry
@@ -1331,7 +1331,7 @@ int main()
         NotAffectedByLightingShader.setMat4("worldMatrix", world);
         NotAffectedByLightingShader.setInt("lightSource", 1);
 
-        glBindVertexArray(lightSourceVAO);
+        //glBindVertexArray(lightSourceVAO);
         glDrawArrays(GL_TRIANGLES, 0, 36);
         NotAffectedByLightingShader.setInt("lightSource", 0);
         glBindVertexArray(0);
@@ -1341,7 +1341,7 @@ int main()
         glBindVertexArray(sphereVAO);
         ball = translate(mat4(1.0f), vec3(0.0f, 0.0f, 0.0f)) * scale(mat4(1.0f), vec3(1.0f));
         AffectedByLightingShader.setMat4("worldMatrix", ball);
-        NotAffectedByLightingShader.setMat4("transform_in_light_space", lightProjMatrix * lightViewMatrix * ball);
+        ShadowShader.setMat4("transform_in_light_space", lightProjMatrix * lightViewMatrix * ball);
         glDrawArrays(GL_LINES, 0, sphereArray.size() / 3);
 
         glBindVertexArray(0);
