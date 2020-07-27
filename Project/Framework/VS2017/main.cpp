@@ -18,6 +18,7 @@
 #define _USE_MATH_DEFINES //so I can use math constants like PI
 #include <math.h>
 #include "Sphere.h"
+#include "shaderloader.h"
 using namespace glm;
 using namespace std;
 
@@ -28,6 +29,7 @@ bool initContext();
 float RNGpos();
 vec3 crossProduct(vec3, vec3, vec3);
 vector<vec3> generateSphere(float, int);
+int loadSHADER(string, string);
 
 GLFWwindow* window = NULL; 
 
@@ -46,6 +48,8 @@ vec3 defaultSize = vec3(1.0f, 6.5f, 1.0f);
 // lighting
 vec3 lightPos = vec3(0.0f, 30.0f, 0.0f);
 
+GLuint AffectedByLightingShader;
+GLuint NotAffectedByLightingShader;
 int main()
 {
     if (!initContext()) return -1;
@@ -54,10 +58,9 @@ int main()
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
     // Compile and link shaders here
-    //int shaderProgram = compileAndLinkShaders();
     Shader AffectedByLightingShader("AffectedByLighting.vert", "AffectedByLighting.frag");
     Shader NotAffectedByLightingShader("NotAffectedByLighting.vert", "NotAffectedByLighting.frag");
-    //GLint currentAxisLocation = glGetUniformLocation(shaderProgram, "currentAxis");
+    Shader ShadowShader("shadowVertex.glsl", "shadowFragment.glsl");
 
     //Initiating camera
     vec3 cameraPosition(0.6f, 1.0f, 10.0f);
@@ -78,6 +81,41 @@ int main()
 
     NotAffectedByLightingShader.use();
     NotAffectedByLightingShader.setMat4("viewMatrix", viewMatrix);
+
+
+    const unsigned int DEPTH_MAP_TEXTURE_SIZE = 1024;
+
+///////////////////////////////////////SHADOW MAPPING///////////////////////////////////////
+
+  // Variable storing index to framebuffer used for shadow mapping
+  GLuint depth_map_texture;
+  // Get the texture
+  glGenTextures(1, &depth_map_texture);
+  // Bind the texture so the next glTex calls affect it
+  glBindTexture(GL_TEXTURE_2D, depth_map_texture);
+  // Create the texture and specify it's attributes, including width and height, components (only depth is stored, no colour information)
+  glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, DEPTH_MAP_TEXTURE_SIZE, DEPTH_MAP_TEXTURE_SIZE, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
+  // Set texture sampler parameters
+  // The two calls below tell the texture sampler the shader how to upsample and downsample the texture. Here we choose the
+  //    nearest filtering option, which means we just use the value of the closest pixel to the chosen image coordinate
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+  //The two calls below tell the texture sampler inside the shader how it should deal with texture coordinates outside of the [0, 1]
+  //    range. Here we decide to just tile the image.
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+  ////////////////////////////////DEPTH MAP////////////////////////////////////////////
+
+  // Variable storing index to framebuffer used for shadow mapping
+  GLuint depth_map_fbo; //fbo: framebuffer object
+  // Get the flamebuffer
+  glGenFramebuffers(1, &depth_map_fbo);
+  // Bind the framebuffer so the next glFramebuffer calls affect it
+  glBindFramebuffer(GL_FRAMEBUFFER, depth_map_fbo);
+  //Attach the depth map texture to the depth map framebuffer
+  glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depth_map_fbo, 0);
+  glDrawBuffer(GL_NONE); // Disable rendering colors, only write depth values
 
     //GLuint "worldMatrix" = NULL;
 
@@ -209,6 +247,13 @@ int main()
     //END
     //////////////////////////////////////////////////
 
+    float lightAngleOuter = radians(30.0f);
+    float lightAngleInner = radians(20.0f);
+    // Set light cutoff angles on scene shader
+    AffectedByLightingShader.use();
+    AffectedByLightingShader.setFloat("light_cutoff_inner", cos(lightAngleInner));
+    AffectedByLightingShader.setFloat("light_cutoff_outer", cos(lightAngleOuter));
+
     // For frame time
     float lastFrameTime = glfwGetTime();
     int lastMouseLeftState = GLFW_RELEASE;
@@ -218,6 +263,8 @@ int main()
     //enable OpenGL components
     glEnable(GL_CULL_FACE);
     glEnable(GL_DEPTH_TEST);
+
+    int width, height;
 
     float scaleFactor = 0.0f;
 
@@ -878,8 +925,45 @@ int main()
             choose = 6;
 
         //drawing everything ==================================================================================================
-        glBindVertexArray(cubeVAO);
+        
+
+        // light parameters
+        float phi = glfwGetTime() * 0.5f * 3.14f;
+        vec3(cosf(phi)* cosf(phi), sinf(phi), -cosf(phi) * sinf(phi)) * 5.0f;  // variable position
+
+        vec3 lightFocus(0, -1, 0);  // the point in 3D space the light "looks" at
+        vec3 lightDirection = normalize(lightFocus - lightPos);
+
+        float lightNearPlane = 0.01f;
+        float lightFarPlane = 400.0f;
+        //frustum(-1.0f, 1.0f, -1.0f, 1.0f, lightNearPlane, lightFarPlane);
+        mat4 lightProjMatrix = perspective(50.0f, (float)DEPTH_MAP_TEXTURE_SIZE / (float)DEPTH_MAP_TEXTURE_SIZE, lightNearPlane, lightFarPlane);
+        mat4 lightViewMatrix = lookAt(lightPos, lightFocus, vec3(0, 1, 0));
+
+        // //be sure to activate shader when setting uniforms/drawing objects
+        AffectedByLightingShader.use();
+        AffectedByLightingShader.setMat4("light_proj_view_matrix", lightProjMatrix * lightFarPlane);
+        AffectedByLightingShader.setFloat("light_near_plane", lightNearPlane);
+        AffectedByLightingShader.setFloat("light_far_plane", lightFarPlane);
+        AffectedByLightingShader.setVec3("objectColor", 0.5f, 0.5f, 0.31f);
+        AffectedByLightingShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
+        AffectedByLightingShader.setVec3("lightPos", lightPos);
+        AffectedByLightingShader.setVec3("light_direction", lightDirection);
+        AffectedByLightingShader.setVec3("viewPos", cameraPosition);
+
+        //////////////////////////////////////////////
+        //FIRST PASS/////////////////////////////////
+        //////////////////////////////////////////////
+        ShadowShader.use();
+        // Use proper image output size
+        glViewport(0, 0, DEPTH_MAP_TEXTURE_SIZE, DEPTH_MAP_TEXTURE_SIZE);
+        // Bind depth map texture as output framebuffer
+        glBindFramebuffer(GL_FRAMEBUFFER, depth_map_fbo);
+        // Clear depth data on the framebuffer
+        glClear(GL_DEPTH_BUFFER_BIT);
+        // Bind geometry
         NotAffectedByLightingShader.use();
+        glBindVertexArray(cubeVAO);
         //drawing ground mesh 
         for (int i = 0; i <= 100; i++) {
             //horizontal
@@ -925,13 +1009,7 @@ int main()
         NotAffectedByLightingShader.setInt("currentAxis", 0);
         glBindVertexArray(0);
 
-
-        // //be sure to activate shader when setting uniforms/drawing objects
-        AffectedByLightingShader.use();
-        AffectedByLightingShader.setVec3("objectColor", 0.5f, 0.5f, 0.31f);
-        AffectedByLightingShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
-        AffectedByLightingShader.setVec3("lightPos", lightPos);
-        AffectedByLightingShader.setVec3("viewPos", cameraPosition);
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         mat4 cube = translate(mat4(1.0f), vec3(0.0f, 0.0f, 0.0f)) * scale(mat4(1.0f), vec3(1.0f));
         // view/projection transformations
@@ -940,12 +1018,16 @@ int main()
 
         //world transformation
         AffectedByLightingShader.setMat4("worldMatrix", cube);
-
+        ShadowShader.setMat4("transform_in_light_space", lightProjMatrix * lightViewMatrix * cube);
+        
+        
         //Draw geometry
         glBindVertexArray(cubeVAO);
         //glDrawArrays(GL_TRIANGLES, 0, 36);
         glBindVertexArray(0);
 
+        NotAffectedByLightingShader.use();
+        glBindVertexArray(cubeVAO);
         //Draw the lamp object
         mat4 world = translate(mat4(1.0f), vec3(lightPos)) * scale(mat4(1.0f), vec3(0.2f));
         NotAffectedByLightingShader.use();
@@ -956,13 +1038,13 @@ int main()
         glDrawArrays(GL_TRIANGLES, 0, 36);
         NotAffectedByLightingShader.setInt("lightSource", 0);
         glBindVertexArray(0);
-
-
+       
         //drawing sphere
         AffectedByLightingShader.use();
         glBindVertexArray(sphereVAO);
         mat4 ball = translate(mat4(1.0f), vec3(0.0f, 0.0f, 0.0f)) * scale(mat4(1.0f), vec3(1.0f));
         AffectedByLightingShader.setMat4("worldMatrix", ball);
+        ShadowShader.setMat4("transform_in_light_space", lightProjMatrix * lightViewMatrix * ball);
         glDrawArrays(GL_LINES, 0, sphereArray.size() / 3);
 
         glBindVertexArray(0);
@@ -1157,6 +1239,198 @@ int main()
 
         glBindVertexArray(0);
 
+        //////////////////////////////////
+        ///////////SECOND PASS////////////
+        //////////////////////////////////
+
+         AffectedByLightingShader.use();
+        // Use proper image output size
+        // Side note: we get the size from the framebuffer instead of using WIDTH
+        // and HEIGHT because of a bug with highDPI displays
+        int width, height;
+        glfwGetFramebufferSize(window, &width, &height);
+        glViewport(0, 0, width, height);
+         // Bind screen as output framebuffer
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+        // Clear color and depth data on framebuffer
+        glClearColor(0.8f, 0.8f, 0.8f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+         // Bind depth map texture: not needed, by default it is active
+         // glActiveTexture(GL_TEXTURE0);
+         // Activate any texture unit you use for your models
+         // Bind geometry
+        NotAffectedByLightingShader.use();
+        glBindVertexArray(cubeVAO);
+        //drawing ground mesh 
+        for (int i = 0; i <= 100; i++) {
+            //horizontal
+            mat4 groundWorldMatrix = translate(mat4(1.0f), vec3(0.0f, -0.01f, -50.0f + i)) * scale(mat4(1.0f), vec3(100.0f, 0.02f, 0.02f));
+            groundWorldMatrix = rotateMatrixY * rotateMatrixX * groundWorldMatrix;
+            NotAffectedByLightingShader.setMat4("worldMatrix", groundWorldMatrix);
+
+            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
+
+
+            //vertical
+            groundWorldMatrix = translate(mat4(1.0f), vec3(-50.0f + i, -0.01f, 0.0f)) * scale(mat4(1.0f), vec3(0.02f, 0.02f, 100.0f));
+            groundWorldMatrix = rotateMatrixY * rotateMatrixX * groundWorldMatrix;
+            NotAffectedByLightingShader.setMat4("worldMatrix", groundWorldMatrix);
+
+
+            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
+
+        }
+
+        //drawing the XYZ line: 
+        cordMarker = translate(mat4(1.0f), vec3(2.5f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 0.02f, 0.02f));
+        cordMarker = rotateMatrixY * rotateMatrixX * cordMarker;
+        NotAffectedByLightingShader.setMat4("worldMatrix", cordMarker);
+        NotAffectedByLightingShader.setInt("currentAxis", 1);
+
+        glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
+
+        cordMarker = translate(mat4(1.0f), vec3(0.0f, 3.5f, 0.0f)) * scale(mat4(1.0f), vec3(0.02f, 5.0f, 0.02f));
+        cordMarker = rotateMatrixY * rotateMatrixX * cordMarker;
+        NotAffectedByLightingShader.setMat4("worldMatrix", cordMarker);
+        NotAffectedByLightingShader.setInt("currentAxis", 2);
+
+        glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
+
+        cordMarker = translate(mat4(1.0f), vec3(0.0f, 1.0f, 2.5f)) * scale(mat4(1.0f), vec3(0.02f, 0.02f, 5.0f));
+        cordMarker = rotateMatrixY * rotateMatrixX * cordMarker;
+        NotAffectedByLightingShader.setMat4("worldMatrix", cordMarker);
+        NotAffectedByLightingShader.setInt("currentAxis", 3);
+
+        glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
+
+        NotAffectedByLightingShader.setInt("currentAxis", 0);
+        glBindVertexArray(0);
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        cube = translate(mat4(1.0f), vec3(0.0f, 0.0f, 0.0f)) * scale(mat4(1.0f), vec3(1.0f));
+        // view/projection transformations
+        //AffectedByLightingShader.setMat4("projectionMatrix", projectionMatrix);
+        //AffectedByLightingShader.setMat4("viewMatrix", viewMatrix);
+
+        //world transformation
+        AffectedByLightingShader.setMat4("worldMatrix", cube);
+        NotAffectedByLightingShader.setMat4("transform_in_light_space", lightProjMatrix * lightViewMatrix * cube);
+        
+        
+        //Draw geometry
+        glBindVertexArray(cubeVAO);
+        //glDrawArrays(GL_TRIANGLES, 0, 36);
+        glBindVertexArray(0);
+
+        NotAffectedByLightingShader.use();
+        glBindVertexArray(cubeVAO);
+        //Draw the lamp object
+        world = translate(mat4(1.0f), vec3(lightPos)) * scale(mat4(1.0f), vec3(0.2f));
+        NotAffectedByLightingShader.use();
+        NotAffectedByLightingShader.setMat4("worldMatrix", world);
+        NotAffectedByLightingShader.setInt("lightSource", 1);
+
+        glBindVertexArray(lightSourceVAO);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+        NotAffectedByLightingShader.setInt("lightSource", 0);
+        glBindVertexArray(0);
+       
+        //drawing sphere
+        AffectedByLightingShader.use();
+        glBindVertexArray(sphereVAO);
+        ball = translate(mat4(1.0f), vec3(0.0f, 0.0f, 0.0f)) * scale(mat4(1.0f), vec3(1.0f));
+        AffectedByLightingShader.setMat4("worldMatrix", ball);
+        NotAffectedByLightingShader.setMat4("transform_in_light_space", lightProjMatrix * lightViewMatrix * ball);
+        glDrawArrays(GL_LINES, 0, sphereArray.size() / 3);
+
+        glBindVertexArray(0);
+        glBindVertexArray(cubeVAO);
+
+        //drawing the letters
+        //jacob's letter and digit
+       
+        if ((glfwGetKey(window, GLFW_KEY_LEFT_ALT) == GLFW_PRESS) && (choose == 3 || choose == 1)) {
+            RNGvecJacob = vec3(vec3(RNGpos(), 6.5f, RNGpos()));
+            JacobLetterOffset = RNGvecJacob;
+        }
+
+        for (int i = 0; i < Jacob.size(); i++) {
+
+            Jacob[i].setCustomScaling(currentScaleFactorJacob);
+            Jacob[i].setCustomRotation(charRotationJacobz * charRotationJacoby * charRotationJacobx);
+            Jacob[i].setCustomTranslation(JacobLetterOffset);
+            Jacob[i].rotateWithWorld(rotateMatrixX, rotateMatrixY);
+            Jacob[i].setMode(modelModeJacob);
+            Jacob[i].drawModel();
+        }
+
+        //Joseph's letter and digit
+       
+        if ((glfwGetKey(window, GLFW_KEY_LEFT_ALT) == GLFW_PRESS) && (choose == 2 || choose == 1)) {
+            RNGvecJoseph = vec3(vec3(RNGpos(), 6.5f, RNGpos()));
+            JosephLetterOffset = RNGvecJoseph;
+        }
+
+        for (int i = 0; i < Joseph.size(); i++) {
+            Joseph[i].setCustomScaling(currentScaleFactorJoseph);
+            Joseph[i].setCustomRotation(charRotationz * charRotationy * charRotationx);
+            Joseph[i].setCustomTranslation(JosephLetterOffset);
+            Joseph[i].rotateWithWorld(rotateMatrixX, rotateMatrixY);
+            Joseph[i].setMode(modelModeJoseph);
+            Joseph[i].drawModel();
+        }
+
+        // Badreddine letter and digit
+      
+        if ((glfwGetKey(window, GLFW_KEY_LEFT_ALT) == GLFW_PRESS) && (choose == 4 || choose == 1)) {
+            RNGvecBad = vec3(vec3(RNGpos(), 6.5f, RNGpos()));
+            BadLetterOffset = RNGvecBad;
+        }
+
+        for (int i = 0; i < Bad.size(); i++) {
+            Bad[i].setCustomScaling(currentScaleFactorBad);
+            Bad[i].setCustomRotation(charRotationBadz * charRotationBady * charRotationBadx);
+            Bad[i].setCustomTranslation(BadLetterOffset);
+            Bad[i].rotateWithWorld(rotateMatrixX, rotateMatrixY);
+            Bad[i].setMode(modelModeBad);
+            Bad[i].drawModel();
+        };
+
+        //Adam's Letter and digit
+        
+        if ((glfwGetKey(window, GLFW_KEY_LEFT_ALT) == GLFW_PRESS) && (choose == 5 || choose == 1)) {
+            RNGvecAdam = vec3(vec3(RNGpos(), 6.5f, RNGpos()));
+            AdamLetterOffset = RNGvecAdam;
+        }
+
+        for (int i = 0; i < adam.size(); i++) {
+            adam[i].setCustomScaling(currentScaleFactorAdam);
+            adam[i].setCustomRotation(charRotationAdamz * charRotationAdamy * charRotationAdamx);
+            adam[i].setCustomTranslation(AdamLetterOffset);
+            adam[i].rotateWithWorld(rotateMatrixX, rotateMatrixY);
+            adam[i].setMode(modelModeAdam);
+            adam[i].drawModel();
+        };
+
+        //Avnish's letter and digit
+        
+        if ((glfwGetKey(window, GLFW_KEY_LEFT_ALT) == GLFW_PRESS) && (choose == 6 || choose == 1)) {
+            RNGvecAvnish = vec3(vec3(RNGpos(), 6.5f, RNGpos()));
+            AvnishLetterOffset = RNGvecAvnish;
+        }
+
+        for (int i = 0; i < avnish.size(); i++) {
+            avnish[i].setCustomScaling(currentScaleFactorAvnish);
+            avnish[i].setCustomRotation(charRotationAvnishz * charRotationAvnishy * charRotationAvnishx);
+            avnish[i].setCustomTranslation(AvnishLetterOffset);
+            avnish[i].rotateWithWorld(rotateMatrixX, rotateMatrixY);
+            avnish[i].setMode(modelModeAvnish);
+            avnish[i].drawModel();
+        };
+
+        glBindVertexArray(0);
+
         // End Frame
         glfwSwapBuffers(window);
         glfwPollEvents();
@@ -1313,8 +1587,6 @@ bool initContext() {     // Initialize GLFW and OpenGL version
     }
     return true;
 }
-
-
 
 //randomly generate character position 
 float RNGpos() {

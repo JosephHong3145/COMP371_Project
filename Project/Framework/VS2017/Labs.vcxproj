@@ -112,8 +112,11 @@
     <None Include="..\Assets\Shaders\Texture.vertexshader" />
     <None Include="AffectedByLighting.frag" />
     <None Include="AffectedByLighting.vert" />
+    <None Include="shadowFragment.glsl" />
+    <None Include="depthFragment.glsl" />
     <None Include="NotAffectedByLighting.frag" />
     <None Include="NotAffectedByLighting.vert" />
+    <None Include="shadowVertex.glsl" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Assets\Textures\BillboardTest.bmp" />
@@ -126,6 +129,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cube.h" />
+    <ClInclude Include="shaderloader.h" />
     <ClInclude Include="shader_compile.h" />
     <ClInclude Include="Sphere.h" />
   </ItemGroup>
