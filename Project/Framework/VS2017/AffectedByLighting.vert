@@ -2,6 +2,7 @@
 layout (location = 0) in vec3 aPos;
 layout (location = 2) in vec3 aNormal;
 
+
 out vec3 FragPos;
 out vec3 Normal;
 

@@ -65,12 +65,21 @@
     <None Include="NotAffectedByLighting.vert">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="texture.frag">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="texture.vert">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Assets\Textures\BillboardTest.bmp">
       <Filter>Resource Files\Textures</Filter>
     </Image>
     <Image Include="..\Assets\Textures\Particle.png">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="..\..\..\..\..\..\container.jpg">
       <Filter>Resource Files\Textures</Filter>
     </Image>
   </ItemGroup>
@@ -81,11 +90,17 @@
     <ClCompile Include="Cube.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="stb_image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="shader_compile.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Cube.h" />
+    <ClInclude Include="stb_image.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

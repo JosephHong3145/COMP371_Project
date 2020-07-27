@@ -12,6 +12,7 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/common.hpp>
 #include "shader_compile.h"
+#include "stb_image.h"
 #include "Cube.h"
 #include <array>
 
@@ -52,6 +53,8 @@ int main()
     //int shaderProgram = compileAndLinkShaders();
     Shader AffectedByLightingShader("AffectedByLighting.vert", "AffectedByLighting.frag");
     Shader NotAffectedByLightingShader("NotAffectedByLighting.vert", "NotAffectedByLighting.frag");
+    Shader textureShader("texture.vert", "texture.frag");
+
     //GLint currentAxisLocation = glGetUniformLocation(shaderProgram, "currentAxis");
 
     //Initiating camera
@@ -74,17 +77,9 @@ int main()
     NotAffectedByLightingShader.use();
     NotAffectedByLightingShader.setMat4("viewMatrix", viewMatrix);
 
-    //GLuint "worldMatrix" = NULL;
+    textureShader.use();
+    textureShader.setMat4("viewMatrix", viewMatrix);
 
-    //GLuint viewMatrixLocation = glGetUniformLocation(shaderProgram, "viewMatrix");
-    //AffectedByLightingShader.setMat4(viewMatrixLocation, 1, GL_FALSE, &viewMatrix[0][0]);
-
-    // Upload to VAO 
-    //int vao = createVertexArrayObject();
-
-    /////////////////////////////////////////////////////////
-    // Start
-       
     // Cube model
     vec3 vertexArray[] = {  // position, color, normal
         vec3(-0.5f,-0.5f,-0.5f), vec3(0.6f, 0.6f, 0.6f), vec3(0.0f,  0.0f, -1.0f),
@@ -137,12 +132,62 @@ int main()
 
     };
 
+    vec2 texCoords[] = {
+        vec2(0.0f, 0.0f), 
+        vec2(1.0f, 0.0f),
+        vec2(0.0f, 1.0f),
+
+        vec2(1.0f, 0.0f),
+        vec2(0.0f, 1.0f),
+        vec2(1.0f, 1.0),
+
+        vec2(0.0f, 0.0f),
+        vec2(1.0f, 0.0f),
+        vec2(0.0f, 1.0f),
+
+        vec2(1.0f, 0.0f),
+        vec2(0.0f, 1.0f),
+        vec2(1.0f, 1.0),
+
+        vec2(0.0f, 0.0f),
+        vec2(1.0f, 0.0f),
+        vec2(0.0f, 1.0f),
+
+        vec2(1.0f, 0.0f),
+        vec2(0.0f, 1.0f),
+        vec2(1.0f, 1.0),
+
+        vec2(0.0f, 0.0f),
+        vec2(1.0f, 0.0f),
+        vec2(0.0f, 1.0f),
+
+        vec2(1.0f, 0.0f),
+        vec2(0.0f, 1.0f),
+        vec2(1.0f, 1.0),
+
+        vec2(0.0f, 0.0f),
+        vec2(1.0f, 0.0f),
+        vec2(0.0f, 1.0f),
+
+        vec2(1.0f, 0.0f),
+        vec2(0.0f, 1.0f),
+        vec2(1.0f, 1.0),
+
+        vec2(0.0f, 0.0f),
+        vec2(1.0f, 0.0f),
+        vec2(0.0f, 1.0f),
+
+        vec2(1.0f, 0.0f),
+        vec2(0.0f, 1.0f),
+        vec2(1.0f, 1.0)
+    };
+
     // Create a vertex array
     GLuint cubeVAO;
     glGenVertexArrays(1, &cubeVAO);
     glBindVertexArray(cubeVAO);
 
-    // Upload Vertex Buffer to the GPU, keep a reference to it (vertexBufferObject)
+    // Cube VBO
     GLuint VBO;
     glGenBuffers(1, &VBO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
@@ -163,6 +208,16 @@ int main()
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBindVertexArray(0);
 
+    // Texture VBO
+    GLuint textureVBO;
+    glGenBuffers(1, &textureVBO);
+    glBindBuffer(GL_ARRAY_BUFFER, textureVBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(texCoords), texCoords, GL_STATIC_DRAW);
+
+    // Position attribute
+    glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, sizeof(vec2), (void*)0);
+    glEnableVertexAttribArray(0);
+
     // second, configure the light's VAO (VBO stays the same; the vertices are the same for the light object which is also a 3D cube)
     GLuint lightSourceVAO;
     glGenVertexArrays(1, &lightSourceVAO);
@@ -173,8 +228,33 @@ int main()
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(vec3), (void*)0);
     glEnableVertexAttribArray(0);
 
-    //END
-    //////////////////////////////////////////////////
+    // load and create a texture 
+    // -------------------------
+    unsigned int texture;
+    glGenTextures(1, &texture);
+    glBindTexture(GL_TEXTURE_2D, texture); // all upcoming GL_TEXTURE_2D operations now have effect on this texture object
+    // set the texture wrapping parameters
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	// set texture wrapping to GL_REPEAT (default wrapping method)
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    // set texture filtering parameters
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    // load image, create texture and generate mipmaps
+    int width, height, nrChannels;
+    string path = "C:/Users/Badreddine Loulidi/Desktop/Coding projects/Computer Graphics/COMP371_Project/Project/Framework/VS2017/container.jpg";
+    // The FileSystem::getPath(...) is part of the GitHub repository so we can find files on any IDE/platform; replace it with your own image path.
+    unsigned char* data = stbi_load(path.c_str(), &width, &height, &nrChannels, 0);
+    if (data)
+    {
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+        glGenerateMipmap(GL_TEXTURE_2D);
+    }
+    else
+    {
+        std::cout << "Failed to load texture" << std::endl;
+    }
+    stbi_image_free(data);
 
     // For frame time
     float lastFrameTime = glfwGetTime();
@@ -273,6 +353,8 @@ int main()
         NotAffectedByLightingShader.use();
         NotAffectedByLightingShader.setMat4("projectionMatrix", projectionMatrix);
 
+        textureShader.use();
+        textureShader.setMat4("projectionMatrix", projectionMatrix);
 
         // Frame time calculation
         float dt = glfwGetTime() - lastFrameTime;
@@ -714,9 +796,6 @@ int main()
             rotateMatrixY = mat4(1.0f);
         }
 
-        //GLuint rotationMatrixLocation = glGetUniformLocation(shaderProgram, "rotationMatrix");
-        //AffectedByLightingShader.setMat4(projectionMatrixLocation, 1, GL_FALSE, &projectionMatrix[0][0]);
-
         //switching view mode between Triangle, Line, Point (using T, L, P)
         if (glfwGetKey(window, GLFW_KEY_T) == GLFW_PRESS) {
             switch (choose) {
@@ -848,8 +927,9 @@ int main()
 
 
         //drawing everything ==================================================================================================
-        glBindVertexArray(cubeVAO);
         NotAffectedByLightingShader.use();
+        glBindTexture(GL_TEXTURE_2D, texture);
+        glBindVertexArray(cubeVAO);
         //drawing ground mesh 
         for (int i = 0; i <= 100; i++) {
             //horizontal
@@ -870,7 +950,8 @@ int main()
 
         }
 
-        //drawing the XYZ line: 
+        //drawing the XYZ line:
+        NotAffectedByLightingShader.use();
         mat4 cordMarker = translate(mat4(1.0f), vec3(2.5f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(5.0f, 0.02f, 0.02f));
         cordMarker = rotateMatrixY * rotateMatrixX * cordMarker;
         NotAffectedByLightingShader.setMat4("worldMatrix", cordMarker);
@@ -902,20 +983,6 @@ int main()
         AffectedByLightingShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
         AffectedByLightingShader.setVec3("lightPos", lightPos);
         AffectedByLightingShader.setVec3("viewPos", cameraPosition);
-
-        mat4 cube = translate(mat4(1.0f), vec3(0.0f, 0.0f, 0.0f)) * scale(mat4(1.0f), vec3(1.0f));
-        // view/projection transformations
-        //AffectedByLightingShader.setMat4("projectionMatrix", projectionMatrix);
-        //AffectedByLightingShader.setMat4("viewMatrix", viewMatrix);
-
-        //world transformation
-        AffectedByLightingShader.setMat4("worldMatrix", cube);
-
-        //Draw geometry
-        glBindVertexArray(cubeVAO);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
-        glBindVertexArray(0);
-
         //Draw the lamp object
         mat4 world = translate(mat4(1.0f), vec3(lightPos)) * scale(mat4(1.0f), vec3(0.2f));
         NotAffectedByLightingShader.use();
@@ -926,10 +993,10 @@ int main()
         glDrawArrays(GL_TRIANGLES, 0, 36);
         NotAffectedByLightingShader.setInt("lightSource", 0);
         glBindVertexArray(0);
-
+        
         //drawing the letters
-
-        AffectedByLightingShader.use();
+        glBindTexture(GL_TEXTURE_2D, texture);
+        NotAffectedByLightingShader.use();
         glBindVertexArray(cubeVAO);
 
         //jacob's letter and digit
@@ -1232,6 +1299,9 @@ int main()
        AffectedByLightingShader.setMat4("viewMatrix", viewMatrix);
        NotAffectedByLightingShader.use();
        NotAffectedByLightingShader.setMat4("viewMatrix", viewMatrix);
+       textureShader.use();
+       textureShader.setMat4("viewMatrix", viewMatrix);
+
 
     }
 
