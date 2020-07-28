@@ -2,41 +2,48 @@
   main.cpp
 C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\shader_compile.h(55,35): warning C4101: 'e': unreferenced local variable
 C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\shaderloader.h(26,10): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'std::string'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(258,25): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(358,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1079,27): warning C4018: '<': signed/unsigned mismatch
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1090,83): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1128,27): warning C4018: '<': signed/unsigned mismatch
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1140,84): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1184,27): warning C4018: '<': signed/unsigned mismatch
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1196,81): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1235,27): warning C4018: '<': signed/unsigned mismatch
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1247,82): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1286,27): warning C4018: '<': signed/unsigned mismatch
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1298,84): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1425,27): warning C4018: '<': signed/unsigned mismatch
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1455,27): warning C4018: '<': signed/unsigned mismatch
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1485,27): warning C4018: '<': signed/unsigned mismatch
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1515,27): warning C4018: '<': signed/unsigned mismatch
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1545,27): warning C4018: '<': signed/unsigned mismatch
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1586,28): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1591,27): warning C4305: '=': truncation from 'double' to 'float'
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1595,40): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1601,64): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1602,62): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(267,16): warning C4101: 'height': unreferenced local variable
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(267,9): warning C4101: 'width': unreferenced local variable
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1726,26): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1737,23): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1738,22): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1746,22): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1747,21): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1752,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1772,16): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1773,31): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1743,11): warning C4101: 'nx': unreferenced local variable
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1743,15): warning C4101: 'ny': unreferenced local variable
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1743,19): warning C4101: 'nz': unreferenced local variable
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1744,11): warning C4101: 's': unreferenced local variable
-C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1744,14): warning C4101: 't': unreferenced local variable
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(256,25): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(356,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1071,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1082,83): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1120,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1132,84): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1176,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1188,81): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1227,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1239,82): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1278,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1290,84): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1411,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1441,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1471,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1501,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1531,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1572,28): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1577,27): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1581,40): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1587,64): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1588,62): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(265,16): warning C4101: 'height': unreferenced local variable
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(265,9): warning C4101: 'width': unreferenced local variable
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1712,26): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1723,23): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1724,22): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1732,22): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1733,21): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1738,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1758,16): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1759,31): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1729,11): warning C4101: 'nx': unreferenced local variable
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1729,15): warning C4101: 'ny': unreferenced local variable
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1729,19): warning C4101: 'nz': unreferenced local variable
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1730,11): warning C4101: 's': unreferenced local variable
+C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\main.cpp(1730,14): warning C4101: 't': unreferenced local variable
+LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+LINK : warning LNK4286: symbol '___glewGetUniformLocation' defined in 'glew32s.lib(glew.obj)' is imported by 'Cube.obj'
+LINK : warning LNK4286: symbol '___glewGetUniformLocation' defined in 'glew32s.lib(glew.obj)' is imported by 'Sphere.obj'
+LINK : warning LNK4286: symbol '___glewUniformMatrix4fv' defined in 'glew32s.lib(glew.obj)' is imported by 'Cube.obj'
+LINK : warning LNK4286: symbol '___glewUniformMatrix4fv' defined in 'glew32s.lib(glew.obj)' is imported by 'Sphere.obj'
+glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\Bin\vc120.pdb'; linking object as if no debug info
   Labs.vcxproj -> C:\Users\dot72\Desktop\school stuff\COMP 371\Projects\Project_1.2\COMP371_Project\Project\Framework\VS2017\/../Bin/Labs-Debug.exe

@@ -48,8 +48,6 @@ vec3 defaultSize = vec3(1.0f, 6.5f, 1.0f);
 // lighting
 vec3 lightPos = vec3(0.0f, 30.0f, 0.0f);
 
-GLuint AffectedByLightingShader;
-GLuint NotAffectedByLightingShader;
 int main()
 {
     if (!initContext()) return -1;
@@ -936,7 +934,8 @@ int main()
         float lightNearPlane = 0.01f;
         float lightFarPlane = 400.0f;
         //frustum(-1.0f, 1.0f, -1.0f, 1.0f, lightNearPlane, lightFarPlane);
-        mat4 lightProjMatrix = perspective(50.0f, (float)DEPTH_MAP_TEXTURE_SIZE / (float)DEPTH_MAP_TEXTURE_SIZE, lightNearPlane, lightFarPlane);
+        //mat4 lightProjMatrix = perspective(50.0f, (float)DEPTH_MAP_TEXTURE_SIZE / (float)DEPTH_MAP_TEXTURE_SIZE, lightNearPlane, lightFarPlane);
+        mat4 lightProjMatrix = ortho(-50.0f, 50.0f, -50.0f, 50.0f, lightNearPlane, lightFarPlane);
         mat4 lightViewMatrix = lookAt(lightPos, lightFocus, vec3(0, 1, 0));
 
         // //be sure to activate shader when setting uniforms/drawing objects
@@ -1040,13 +1039,6 @@ int main()
        
         //drawing sphere
         AffectedByLightingShader.use();
-        glBindVertexArray(sphereVAO);
-        mat4 ball = translate(mat4(1.0f), vec3(0.0f, 0.0f, 0.0f)) * scale(mat4(1.0f), vec3(1.0f));
-        AffectedByLightingShader.setMat4("worldMatrix", ball);
-        ShadowShader.setMat4("transform_in_light_space", lightProjMatrix * lightViewMatrix * ball);
-        glDrawArrays(GL_LINES, 0, sphereArray.size() / 3);
-
-        glBindVertexArray(0);
         glBindVertexArray(cubeVAO);
 
         //drawing the letters
@@ -1405,13 +1397,7 @@ int main()
        
         //drawing sphere
         AffectedByLightingShader.use();
-        glBindVertexArray(sphereVAO);
-        ball = translate(mat4(1.0f), vec3(0.0f, 0.0f, 0.0f)) * scale(mat4(1.0f), vec3(1.0f));
-        AffectedByLightingShader.setMat4("worldMatrix", ball);
-        ShadowShader.setMat4("transform_in_light_space", lightProjMatrix * lightViewMatrix * ball);
-        glDrawArrays(GL_LINES, 0, sphereArray.size() / 3);
 
-        glBindVertexArray(0);
         glBindVertexArray(cubeVAO);
 
         //drawing the letters
