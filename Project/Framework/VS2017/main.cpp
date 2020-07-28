@@ -207,7 +207,7 @@ int main()
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBindVertexArray(0);
 
-    vector<vec3> sphereArray = generateSphere(20.0f, 48);
+    vector<vec3> sphereArray = generateSphere(1.0f, 48);
 
     //creating sphere VAO:
     GLuint sphereVAO;
@@ -368,15 +368,15 @@ int main()
 
         if (glfwGetKey(window, GLFW_KEY_U) == GLFW_PRESS) //scale up by 1%
         {
-            scaleFactor = 0.01;
+            scaleFactor = 0.01f;
 
         }
         else if (glfwGetKey(window, GLFW_KEY_J) == GLFW_PRESS) //scale down by 1%
         {
-            scaleFactor = -0.01;
+            scaleFactor = -0.01f;
         }
         else {
-            scaleFactor = 0;
+            scaleFactor = 0.0f;
         }
 
         switch (choose) {
@@ -419,130 +419,129 @@ int main()
         //Translating the model to directions using R,D,F,G on the keyboard
         if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS) {
             switch (choose) {
-            case(1): JosephLetterOffset.z += 0.1;
-                JacobLetterOffset.z += 0.1;
-                BadLetterOffset.z += 0.1;
-                AdamLetterOffset.z += 0.1;
-                AvnishLetterOffset.z += 0.1;
+            case(1): JosephLetterOffset.z += 0.1f;
+                JacobLetterOffset.z += 0.1f;
+                BadLetterOffset.z += 0.1f;
+                AdamLetterOffset.z += 0.1f;
+                AvnishLetterOffset.z += 0.1f;
                 break;
 
-            case(2): JosephLetterOffset.z += 0.1;
+            case(2): JosephLetterOffset.z += 0.1f;
                 break;
 
-            case(3): JacobLetterOffset.z += 0.1;
+            case(3): JacobLetterOffset.z += 0.1f;
                 break;
 
-            case(4): BadLetterOffset.z += 0.1;
+            case(4): BadLetterOffset.z += 0.1f;
                 break;
 
-            case(5):  AdamLetterOffset.z += 0.1;
+            case(5):  AdamLetterOffset.z += 0.1f;
                 break;
 
-            case(6):  AvnishLetterOffset.z += 0.1;
+            case(6):  AvnishLetterOffset.z += 0.1f;
                 break;
 
-            default: JosephLetterOffset.z += 0.1;
-                JacobLetterOffset.z += 0.1;
-                BadLetterOffset.z += 0.1;
-                AdamLetterOffset.z += 0.1;
-                AvnishLetterOffset.z += 0.1;
+            default: JosephLetterOffset.z += 0.1f;
+                JacobLetterOffset.z += 0.1f;
+                BadLetterOffset.z += 0.1f;
+                AdamLetterOffset.z += 0.1f;
+                AvnishLetterOffset.z += 0.1f;
                 break;
             }
         }
 
         if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS) {
             switch (choose) {
-            case(1): JosephLetterOffset.x -= 0.1;
-                JacobLetterOffset.x -= 0.1;
-                BadLetterOffset.x -= 0.1;
-                AdamLetterOffset.x -= 0.1;
-                AvnishLetterOffset.x -= 0.1;
+            case(1): JosephLetterOffset.x -= 0.1f;
+                JacobLetterOffset.x -= 0.1f;
+                BadLetterOffset.x -= 0.1f;
+                AdamLetterOffset.x -= 0.1f;
+                AvnishLetterOffset.x -= 0.1f;
                 break;
 
-            case(2): JosephLetterOffset.x -= 0.1;
+            case(2): JosephLetterOffset.x -= 0.1f;
                 break;
 
-            case(3): JacobLetterOffset.x -= 0.1;
+            case(3): JacobLetterOffset.x -= 0.1f;
                 break;
 
-            case(4): BadLetterOffset.x -= 0.1;
+            case(4): BadLetterOffset.x -= 0.1f;
                 break;
 
-            case(5): AdamLetterOffset.x -= 0.1;
+            case(5): AdamLetterOffset.x -= 0.1f;
                 break;
-            case(6): AvnishLetterOffset.x -= 0.1;
+            case(6): AvnishLetterOffset.x -= 0.1f;
                 break;
-            default: JosephLetterOffset.x -= 0.1;
-                JacobLetterOffset.x -= 0.1;
-                BadLetterOffset.x -= 0.1;
-                AdamLetterOffset.x -= 0.1;
-                AvnishLetterOffset.x -= 0.1;
+            default: JosephLetterOffset.x -= 0.1f;
+                JacobLetterOffset.x -= 0.1f;
+                BadLetterOffset.x -= 0.1f;
+                AdamLetterOffset.x -= 0.1f;
+                AvnishLetterOffset.x -= 0.1f;
                 break;
             }
         }
 
         if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS) {
             switch (choose) {
-            case(1): JosephLetterOffset.x += 0.1;
-                JacobLetterOffset.x += 0.1;
-                BadLetterOffset.x += 0.1;
-                AdamLetterOffset.x += 0.1;
-                AvnishLetterOffset.x += 0.1;
+            case(1): JosephLetterOffset.x += 0.1f;
+                JacobLetterOffset.x += 0.1f;
+                BadLetterOffset.x += 0.1f;
+                AdamLetterOffset.x += 0.1f;
+                AvnishLetterOffset.x += 0.1f;
                 break;
 
-            case(2): JosephLetterOffset.x += 0.1;
+            case(2): JosephLetterOffset.x += 0.1f;
                 break;
 
-            case(3): JacobLetterOffset.x += 0.1;
+            case(3): JacobLetterOffset.x += 0.1f;
                 break;
 
-            case(4): BadLetterOffset.x += 0.1;
+            case(4): BadLetterOffset.x += 0.1f;
                 break;
 
-            case(5): AdamLetterOffset.x += 0.1;
+            case(5): AdamLetterOffset.x += 0.1f;
                 break;
 
-            case(6): AvnishLetterOffset.x += 0.1;
+            case(6): AvnishLetterOffset.x += 0.1f;
                 break;
 
-            default: JosephLetterOffset.x += 0.1;
-                JacobLetterOffset.x += 0.1;
-                BadLetterOffset.x += 0.1;
-                AdamLetterOffset.x += 0.1;
-                AvnishLetterOffset.x += 0.1;
+            default: JosephLetterOffset.x += 0.1f;
+                JacobLetterOffset.x += 0.1f;
+                BadLetterOffset.x += 0.1f;
+                AdamLetterOffset.x += 0.1f;
+                AvnishLetterOffset.x += 0.1f;
                 break;
             }
         }
 
         if (glfwGetKey(window, GLFW_KEY_T) == GLFW_PRESS) {
             switch (choose) {
-            case(1): JosephLetterOffset.z -= 0.1;
-                JacobLetterOffset.z -= 0.1;
-                BadLetterOffset.z -= 0.1;
-                AdamLetterOffset.z -= 0.1;
-                AvnishLetterOffset.z -= 0.1;
+            case(1): JosephLetterOffset.z -= 0.1f;
+                JacobLetterOffset.z -= 0.1f;
+                BadLetterOffset.z -= 0.1f;
+                AdamLetterOffset.z -= 0.1f;
+                AvnishLetterOffset.z -= 0.1f;
                 break;
 
-            case(2): JosephLetterOffset.z -= 0.1;
+            case(2): JosephLetterOffset.z -= 0.1f;
                 break;
 
-            case(3): JacobLetterOffset.z -= 0.1;
+            case(3): JacobLetterOffset.z -= 0.1f;
                 break;
 
-            case(4): BadLetterOffset.z -= 0.1;
+            case(4): BadLetterOffset.z -= 0.1f;
+
+            case(5): AdamLetterOffset.z -= 0.1f;
                 break;
 
-            case(5): AdamLetterOffset.z -= 0.1;
+            case(6): AvnishLetterOffset.z -= 0.1f;
                 break;
 
-            case(6): AvnishLetterOffset.z -= 0.1;
-                break;
-
-            default: JosephLetterOffset.z -= 0.1;
-                JacobLetterOffset.z -= 0.1;
-                BadLetterOffset.z -= 0.1;
-                AdamLetterOffset.z -= 0.1;
-                AvnishLetterOffset.z -= 0.1;
+            default: JosephLetterOffset.z -= 0.1f;
+                JacobLetterOffset.z -= 0.1f;
+                BadLetterOffset.z -= 0.1f;
+                AdamLetterOffset.z -= 0.1f;
+                AvnishLetterOffset.z -= 0.1f;
                 break;
             }
         }
@@ -1054,19 +1053,19 @@ int main()
         //jacob's letter and digit
         array<Cube, 7> Jacob = {
             //C vertical
-            Cube(vec3(0.0f, 3.25f, 0.0f), false, AffectedByLightingShader),
+            Cube(vec3(0.0f, 3.25f, 0.0f), false, ShadowShader),
 
             //C horizontal
-            Cube(vec3(2.5f, 0.0f, 0.0f), true, AffectedByLightingShader),
-            Cube(vec3(2.5f, 6.5f, 0.0f), true, AffectedByLightingShader),
+            Cube(vec3(2.5f, 0.0f, 0.0f), true, ShadowShader),
+            Cube(vec3(2.5f, 6.5f, 0.0f), true, ShadowShader),
 
             //9 vertical
-            Cube(vec3(5.0f + textOffset, 3.25f, 0.0f), false, AffectedByLightingShader),
-            Cube(vec3(0.0f + textOffset, 3.25 * 1.5, 0.0f), false, AffectedByLightingShader),
+            Cube(vec3(5.0f + textOffset, 3.25f, 0.0f), false, ShadowShader),
+            Cube(vec3(0.0f + textOffset, 3.25 * 1.5, 0.0f), false, ShadowShader),
 
             //9 horizontal
-            Cube(vec3(2.5f + textOffset, 6.5f, 0.0f), true, AffectedByLightingShader),
-            Cube(vec3(2.5f + textOffset, 3.25, 0.0f), true, AffectedByLightingShader)
+            Cube(vec3(2.5f + textOffset, 6.5f, 0.0f), true, ShadowShader),
+            Cube(vec3(2.5f + textOffset, 3.25, 0.0f), true, ShadowShader)
         };
 
         //perform any changes necesary 
@@ -1078,7 +1077,6 @@ int main()
         }
 
         for (int i = 0; i < Jacob.size(); i++) {
-
             Jacob[i].setCustomScaling(currentScaleFactorJacob);
             Jacob[i].setCustomRotation(charRotationJacobz * charRotationJacoby * charRotationJacobx);
             Jacob[i].setCustomTranslation(JacobLetterOffset);
@@ -1086,24 +1084,37 @@ int main()
             Jacob[i].setMode(modelModeJacob);
             Jacob[i].drawModel();
         }
+        glBindVertexArray(0);
+        glBindVertexArray(sphereVAO);
+
+        Sphere sphereJacob = Sphere(vec3(7.5, 10.0, 0.0), 7.5, sphereArray.size() / 3, ShadowShader);
+        sphereJacob.setCurrentShader(ShadowShader);
+        sphereJacob.setCustomScaling(currentScaleFactorJacob);
+        sphereJacob.setCustomRotation(charRotationJacobz * charRotationJacoby * charRotationJacobx);
+        sphereJacob.setCustomTranslation(JacobLetterOffset);
+        sphereJacob.rotateWithWorld(rotateMatrixX, rotateMatrixY);
+        sphereJacob.drawModel();
+
+        glBindVertexArray(0);
+        glBindVertexArray(cubeVAO);
 
         //Joseph's letter and digit
         array<Cube, 8> Joseph = {
             //U vertical
-            Cube(vec3(0.0f, 3.25f, 0.0f), false, AffectedByLightingShader),
-            Cube(vec3(5.0f, 3.25f, 0.0f), false, AffectedByLightingShader),
+            Cube(vec3(0.0f, 3.25f, 0.0f), false, ShadowShader),
+            Cube(vec3(5.0f, 3.25f, 0.0f), false, ShadowShader),
 
             //6 vertical
-            Cube(vec3(0.0f + textOffset, 3.25f, 0.0f), false, AffectedByLightingShader),
-            Cube(vec3(5.0f + textOffset, 3.25 / 2, 0.0f), false, AffectedByLightingShader),
+            Cube(vec3(0.0f + textOffset, 3.25f, 0.0f), false, ShadowShader),
+            Cube(vec3(5.0f + textOffset, 3.25 / 2, 0.0f), false, ShadowShader),
 
             //U horizontal
-            Cube(vec3(2.5f, 0.0f, 0.0f), true, AffectedByLightingShader),
+            Cube(vec3(2.5f, 0.0f, 0.0f), true, ShadowShader),
 
             //6 horizontal
-            Cube(vec3(2.5f + textOffset, 0.0f, 0.0f), true, AffectedByLightingShader),
-            Cube(vec3(2.5f + textOffset, 3.25f, 0.0f), true, AffectedByLightingShader),
-            Cube(vec3(2.5f + textOffset, 6.5f, 0.0f), true, AffectedByLightingShader),
+            Cube(vec3(2.5f + textOffset, 0.0f, 0.0f), true, ShadowShader),
+            Cube(vec3(2.5f + textOffset, 3.25f, 0.0f), true, ShadowShader),
+            Cube(vec3(2.5f + textOffset, 6.5f, 0.0f), true, ShadowShader),
         };
 
         //perform any size change necesary 
@@ -1123,24 +1134,40 @@ int main()
             Joseph[i].drawModel();
         }
 
+        glBindVertexArray(0);
+        glBindVertexArray(sphereVAO);
+
+        Sphere sphereJoseph = Sphere(vec3(7.5, 10.0, 0.0), 7.5, sphereArray.size() / 3, ShadowShader);
+        sphereJoseph.setCurrentShader(ShadowShader);
+        sphereJoseph.setCustomScaling(currentScaleFactorJoseph);
+        sphereJoseph.setCustomRotation(charRotationz * charRotationy * charRotationx);
+        sphereJoseph.setCustomTranslation(JosephLetterOffset);
+        sphereJoseph.rotateWithWorld(rotateMatrixX, rotateMatrixY);
+        sphereJoseph.drawModel();
+
+        glBindVertexArray(0);
+        glBindVertexArray(cubeVAO);
+
+        //Sphere sphereJoseph = Sphere(vec3()
+
         // Badreddine letter and digit
         array<Cube, 9> Bad = {
             //D vertical
-            Cube(vec3(0.0f, 3.25f, 0.0f), false, AffectedByLightingShader),
-            Cube(vec3(5.5f, 3.25f, 0.0f), false, AffectedByLightingShader),
+            Cube(vec3(0.0f, 3.25f, 0.0f), false, ShadowShader),
+            Cube(vec3(5.5f, 3.25f, 0.0f), false, ShadowShader),
 
             //D horizontal
-            Cube(vec3(2.5f, 0.0f, 0.0f), true, AffectedByLightingShader),
-            Cube(vec3(2.5f, 6.5f, 0.0f), true, AffectedByLightingShader),
+            Cube(vec3(2.5f, 0.0f, 0.0f), true, ShadowShader),
+            Cube(vec3(2.5f, 6.5f, 0.0f), true, ShadowShader),
 
             //2 vertical
-            Cube(vec3(0.0f + textOffset, 3.25 * 0.5, 0.0f), false, AffectedByLightingShader),
-            Cube(vec3(5.0f + textOffset, 3.25 * 1.5, 0.0f), false, AffectedByLightingShader),
+            Cube(vec3(0.0f + textOffset, 3.25 * 0.5, 0.0f), false, ShadowShader),
+            Cube(vec3(5.0f + textOffset, 3.25 * 1.5, 0.0f), false, ShadowShader),
 
             //2 horizontal
-            Cube(vec3(2.5f + textOffset, 0.0f, 0.0f), true, AffectedByLightingShader),
-            Cube(vec3(2.5f + textOffset, 3.25f, 0.0f), true, AffectedByLightingShader),
-            Cube(vec3(2.5f + textOffset, 6.5f, 0.0f), true, AffectedByLightingShader),
+            Cube(vec3(2.5f + textOffset, 0.0f, 0.0f), true, ShadowShader),
+            Cube(vec3(2.5f + textOffset, 3.25f, 0.0f), true, ShadowShader),
+            Cube(vec3(2.5f + textOffset, 6.5f, 0.0f), true, ShadowShader),
         };
 
         Bad[0].setDefaultSize(vec3(1.0f, 7, 1.0f));
@@ -1163,24 +1190,38 @@ int main()
             Bad[i].drawModel();
         };
 
+        glBindVertexArray(0);
+        glBindVertexArray(sphereVAO);
+
+        Sphere sphereBad = Sphere(vec3(7.5, 10.0, 0.0), 7.5, sphereArray.size() / 3, ShadowShader);
+        sphereBad.setCurrentShader(ShadowShader);
+        sphereBad.setCustomScaling(currentScaleFactorBad);
+        sphereBad.setCustomRotation(charRotationBadz * charRotationBady * charRotationBadx);
+        sphereBad.setCustomTranslation(BadLetterOffset);
+        sphereBad.rotateWithWorld(rotateMatrixX, rotateMatrixY);
+        sphereBad.drawModel();
+
+        glBindVertexArray(0);
+        glBindVertexArray(cubeVAO);
+
         //Adam's Letter and digit
         array<Cube, 9> adam = {
             //A vertical
-            Cube(vec3(0.0f, 3.25f, 0.0f), false, AffectedByLightingShader),
-            Cube(vec3(5.0f, 3.25f, 0.0f), false, AffectedByLightingShader),
+            Cube(vec3(0.0f, 3.25f, 0.0f), false, ShadowShader),
+            Cube(vec3(5.0f, 3.25f, 0.0f), false, ShadowShader),
 
             //A horizontal
-            Cube(vec3(2.5f, 3.25f, 0.0f), true, AffectedByLightingShader),
-            Cube(vec3(2.5f, 6.5f, 0.0f), true, AffectedByLightingShader),
+            Cube(vec3(2.5f, 3.25f, 0.0f), true, ShadowShader),
+            Cube(vec3(2.5f, 6.5f, 0.0f), true, ShadowShader),
 
             //2 vertical
-            Cube(vec3(0.0f + textOffset, 3.25 * 0.5, 0.0f), false, AffectedByLightingShader),
-            Cube(vec3(5.0f + textOffset, 3.25 * 1.5, 0.0f), false, AffectedByLightingShader),
+            Cube(vec3(0.0f + textOffset, 3.25 * 0.5, 0.0f), false, ShadowShader),
+            Cube(vec3(5.0f + textOffset, 3.25 * 1.5, 0.0f), false, ShadowShader),
 
             //2 horizontal
-            Cube(vec3(2.5f + textOffset, 0.0f, 0.0f), true, AffectedByLightingShader),
-            Cube(vec3(2.5f + textOffset, 3.25f, 0.0f), true, AffectedByLightingShader),
-            Cube(vec3(2.5f + textOffset, 6.5f, 0.0f), true, AffectedByLightingShader),
+            Cube(vec3(2.5f + textOffset, 0.0f, 0.0f), true, ShadowShader),
+            Cube(vec3(2.5f + textOffset, 3.25f, 0.0f), true, ShadowShader),
+            Cube(vec3(2.5f + textOffset, 6.5f, 0.0f), true, ShadowShader),
         };
 
         adam[4].setDefaultSize(vec3(1.0f, 6.5 / 2, 1.0f));
@@ -1200,23 +1241,37 @@ int main()
             adam[i].drawModel();
         };
 
+        glBindVertexArray(0);
+        glBindVertexArray(sphereVAO);
+
+        Sphere sphereAdam = Sphere(vec3(7.5, 10.0, 0.0), 7.5, sphereArray.size() / 3, ShadowShader);
+        sphereAdam.setCurrentShader(ShadowShader);
+        sphereAdam.setCustomScaling(currentScaleFactorAdam);
+        sphereAdam.setCustomRotation(charRotationAdamz * charRotationAdamy * charRotationAdamx);
+        sphereAdam.setCustomTranslation(AdamLetterOffset);
+        sphereAdam.rotateWithWorld(rotateMatrixX, rotateMatrixY);
+        sphereAdam.drawModel();
+
+        glBindVertexArray(0);
+        glBindVertexArray(cubeVAO);
+
         //Avnish's letter and digit
         array<Cube, 8> avnish = {
             //N vertical
-            Cube(vec3(0.0f, 3.25f, 0.0f), false, AffectedByLightingShader),
-            Cube(vec3(5.0f, 3.25f, 0.0f), false, AffectedByLightingShader),
+            Cube(vec3(0.0f, 3.25f, 0.0f), false, ShadowShader),
+            Cube(vec3(5.0f, 3.25f, 0.0f), false, ShadowShader),
 
             //N diagonal
-            Cube(vec3(2.5f, 3.25f, 0.0f), false, AffectedByLightingShader),
+            Cube(vec3(2.5f, 3.25f, 0.0f), false, ShadowShader),
 
             //2 vertical
-            Cube(vec3(0.0f + textOffset, 3.25 * 0.5, 0.0f), false, AffectedByLightingShader),
-            Cube(vec3(5.0f + textOffset, 3.25 * 1.5, 0.0f), false, AffectedByLightingShader),
+            Cube(vec3(0.0f + textOffset, 3.25 * 0.5, 0.0f), false, ShadowShader),
+            Cube(vec3(5.0f + textOffset, 3.25 * 1.5, 0.0f), false, ShadowShader),
 
             //2 horizontal
-            Cube(vec3(2.5f + textOffset, 0.0f, 0.0f), true, AffectedByLightingShader),
-            Cube(vec3(2.5f + textOffset, 3.25f, 0.0f), true, AffectedByLightingShader),
-            Cube(vec3(2.5f + textOffset, 6.5f, 0.0f), true, AffectedByLightingShader),
+            Cube(vec3(2.5f + textOffset, 0.0f, 0.0f), true, ShadowShader),
+            Cube(vec3(2.5f + textOffset, 3.25f, 0.0f), true, ShadowShader),
+            Cube(vec3(2.5f + textOffset, 6.5f, 0.0f), true, ShadowShader),
         };
 
         avnish[2].setDefaultRotation(45);
@@ -1235,7 +1290,19 @@ int main()
             avnish[i].rotateWithWorld(rotateMatrixX, rotateMatrixY);
             avnish[i].setMode(modelModeAvnish);
             avnish[i].drawModel();
-        };
+        }; 
+        
+        glBindVertexArray(0);
+        glBindVertexArray(sphereVAO);
+
+        Sphere sphereAvnish = Sphere(vec3(7.5, 10.0, 0.0), 7.5, sphereArray.size() / 3, ShadowShader);
+        sphereAvnish.setCurrentShader(ShadowShader);
+        sphereAvnish.setCustomScaling(currentScaleFactorAvnish);
+        sphereAvnish.setCustomRotation(charRotationAvnishz * charRotationAvnishy * charRotationAvnishx);
+        sphereAvnish.setCustomTranslation(AvnishLetterOffset);
+        sphereAvnish.rotateWithWorld(rotateMatrixX, rotateMatrixY);
+        sphereAvnish.drawModel();
+
 
         glBindVertexArray(0);
 
@@ -1356,7 +1423,7 @@ int main()
         }
 
         for (int i = 0; i < Jacob.size(); i++) {
-
+            Jacob[i].setCurrentShader(AffectedByLightingShader);
             Jacob[i].setCustomScaling(currentScaleFactorJacob);
             Jacob[i].setCustomRotation(charRotationJacobz * charRotationJacoby * charRotationJacobx);
             Jacob[i].setCustomTranslation(JacobLetterOffset);
@@ -1364,6 +1431,19 @@ int main()
             Jacob[i].setMode(modelModeJacob);
             Jacob[i].drawModel();
         }
+
+        glBindVertexArray(0);
+        glBindVertexArray(sphereVAO);
+
+        sphereJacob.setCurrentShader(AffectedByLightingShader);
+        sphereJacob.setCustomScaling(currentScaleFactorJacob);
+        sphereJacob.setCustomRotation(charRotationJacobz* charRotationJacoby* charRotationJacobx);
+        sphereJacob.setCustomTranslation(JacobLetterOffset);
+        sphereJacob.rotateWithWorld(rotateMatrixX, rotateMatrixY);
+        sphereJacob.drawModel();
+
+        glBindVertexArray(0);
+        glBindVertexArray(cubeVAO);
 
         //Joseph's letter and digit
        
@@ -1373,6 +1453,7 @@ int main()
         }
 
         for (int i = 0; i < Joseph.size(); i++) {
+            Joseph[i].setCurrentShader(AffectedByLightingShader);
             Joseph[i].setCustomScaling(currentScaleFactorJoseph);
             Joseph[i].setCustomRotation(charRotationz * charRotationy * charRotationx);
             Joseph[i].setCustomTranslation(JosephLetterOffset);
@@ -1380,6 +1461,19 @@ int main()
             Joseph[i].setMode(modelModeJoseph);
             Joseph[i].drawModel();
         }
+
+        glBindVertexArray(0);
+        glBindVertexArray(sphereVAO);
+
+        sphereJoseph.setCurrentShader(AffectedByLightingShader);
+        sphereJoseph.setCustomScaling(currentScaleFactorJoseph);
+        sphereJoseph.setCustomRotation(charRotationz * charRotationy * charRotationx);
+        sphereJoseph.setCustomTranslation(JosephLetterOffset);
+        sphereJoseph.rotateWithWorld(rotateMatrixX, rotateMatrixY);
+        sphereJoseph.drawModel();
+
+        glBindVertexArray(0);
+        glBindVertexArray(cubeVAO);
 
         // Badreddine letter and digit
       
@@ -1389,6 +1483,7 @@ int main()
         }
 
         for (int i = 0; i < Bad.size(); i++) {
+            Bad[i].setCurrentShader(AffectedByLightingShader);
             Bad[i].setCustomScaling(currentScaleFactorBad);
             Bad[i].setCustomRotation(charRotationBadz * charRotationBady * charRotationBadx);
             Bad[i].setCustomTranslation(BadLetterOffset);
@@ -1396,6 +1491,19 @@ int main()
             Bad[i].setMode(modelModeBad);
             Bad[i].drawModel();
         };
+
+        glBindVertexArray(0);
+        glBindVertexArray(sphereVAO);
+
+        sphereBad.setCurrentShader(AffectedByLightingShader);
+        sphereBad.setCustomScaling(currentScaleFactorBad);
+        sphereBad.setCustomRotation(charRotationBadz* charRotationBady* charRotationBadx);
+        sphereBad.setCustomTranslation(BadLetterOffset);
+        sphereBad.rotateWithWorld(rotateMatrixX, rotateMatrixY);
+        sphereBad.drawModel();
+
+        glBindVertexArray(0);
+        glBindVertexArray(cubeVAO);
 
         //Adam's Letter and digit
         
@@ -1405,6 +1513,7 @@ int main()
         }
 
         for (int i = 0; i < adam.size(); i++) {
+            adam[i].setCurrentShader(AffectedByLightingShader);
             adam[i].setCustomScaling(currentScaleFactorAdam);
             adam[i].setCustomRotation(charRotationAdamz * charRotationAdamy * charRotationAdamx);
             adam[i].setCustomTranslation(AdamLetterOffset);
@@ -1412,6 +1521,19 @@ int main()
             adam[i].setMode(modelModeAdam);
             adam[i].drawModel();
         };
+
+        glBindVertexArray(0);
+        glBindVertexArray(sphereVAO);
+
+        sphereAdam.setCurrentShader(AffectedByLightingShader);
+        sphereAdam.setCustomScaling(currentScaleFactorAdam);
+        sphereAdam.setCustomRotation(charRotationAdamz * charRotationAdamy * charRotationAdamx);
+        sphereAdam.setCustomTranslation(AdamLetterOffset);
+        sphereAdam.rotateWithWorld(rotateMatrixX, rotateMatrixY);
+        sphereAdam.drawModel();
+
+        glBindVertexArray(0);
+        glBindVertexArray(cubeVAO);
 
         //Avnish's letter and digit
         
@@ -1421,6 +1543,7 @@ int main()
         }
 
         for (int i = 0; i < avnish.size(); i++) {
+            avnish[i].setCurrentShader(AffectedByLightingShader);
             avnish[i].setCustomScaling(currentScaleFactorAvnish);
             avnish[i].setCustomRotation(charRotationAvnishz * charRotationAvnishy * charRotationAvnishx);
             avnish[i].setCustomTranslation(AvnishLetterOffset);
@@ -1428,6 +1551,16 @@ int main()
             avnish[i].setMode(modelModeAvnish);
             avnish[i].drawModel();
         };
+
+        glBindVertexArray(0);
+        glBindVertexArray(sphereVAO);
+
+        sphereAvnish.setCurrentShader(AffectedByLightingShader);
+        sphereAvnish.setCustomScaling(currentScaleFactorAvnish);
+        sphereAvnish.setCustomRotation(charRotationAvnishz* charRotationAvnishy* charRotationAvnishx);
+        sphereAvnish.setCustomTranslation(AvnishLetterOffset);
+        sphereAvnish.rotateWithWorld(rotateMatrixX, rotateMatrixY);
+        sphereAvnish.drawModel();
 
         glBindVertexArray(0);
 
