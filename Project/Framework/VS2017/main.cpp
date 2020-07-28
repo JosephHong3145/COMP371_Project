@@ -22,6 +22,7 @@ using namespace std;
 
 bool initContext();
 float RNGpos();
+GLuint loadTexture(const char* filename);
 
 GLFWwindow* window = NULL;
 
@@ -178,33 +179,6 @@ int main()
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)0);
     glEnableVertexAttribArray(0);
 
-    // load and create a texture 
-    // -------------------------
-    unsigned int texture;
-    glGenTextures(1, &texture);
-    glBindTexture(GL_TEXTURE_2D, texture); // all upcoming GL_TEXTURE_2D operations now have effect on this texture object
-    // set the texture wrapping parameters
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	// set texture wrapping to GL_REPEAT (default wrapping method)
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    // set texture filtering parameters
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-    // load image, create texture and generate mipmaps
-    int width, height, nrChannels;
-    string path = "C:/Users/Badreddine Loulidi/Desktop/Coding projects/Computer Graphics/COMP371_Project/Project/Framework/VS2017/container.jpg";
-    // The FileSystem::getPath(...) is part of the GitHub repository so we can find files on any IDE/platform; replace it with your own image path.
-    unsigned char* data = stbi_load(path.c_str(), &width, &height, &nrChannels, 0);
-    if (data)
-    {
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-        glGenerateMipmap(GL_TEXTURE_2D);
-    }
-    else
-    {
-        std::cout << "Failed to load texture" << std::endl;
-    }
-    stbi_image_free(data);
 
     // For frame time
     float lastFrameTime = glfwGetTime();
@@ -875,10 +849,11 @@ int main()
 
         //=====================================================================================================================
 
+        GLuint woodTextureID = loadTexture("C:/Users/Badreddine Loulidi/Desktop/Coding projects/Computer Graphics/COMP371_Project/Project/Framework/VS2017/container.jpg");
+        GLuint metalTextureID = loadTexture("C:/Users/Badreddine Loulidi/Desktop/Coding projects/Computer Graphics/COMP371_Project/Project/Framework/VS2017/scratched-metal.jpg");
 
         //drawing everything ==================================================================================================
         NotAffectedByLightingShader.use();
-        glBindTexture(GL_TEXTURE_2D, texture);
         glBindVertexArray(cubeVAO);
         //drawing ground mesh 
         for (int i = 0; i <= 100; i++) {
@@ -945,8 +920,8 @@ int main()
         glBindVertexArray(0);
         
         //drawing the letters
-        glBindTexture(GL_TEXTURE_2D, texture);
         AffectedByLightingShader.use();
+        glBindTexture(GL_TEXTURE_2D, woodTextureID);
         glBindVertexArray(cubeVAO);
 
         //jacob's letter and digit
@@ -1294,6 +1269,46 @@ bool initContext() {     // Initialize GLFW and OpenGL version
         return false;
     }
     return true;
+}
+
+GLuint loadTexture(const char* filename)
+{
+    // Step1 Create and bind textures
+    GLuint textureId = 0;
+    glGenTextures(1, &textureId);
+    assert(textureId != 0);
+
+
+    glBindTexture(GL_TEXTURE_2D, textureId);
+
+    // Step2 Set filter parameters
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    // Step3 Load Textures with dimension data
+    int width, height, nrChannels;
+    unsigned char* data = stbi_load(filename, &width, &height, &nrChannels, 0);
+    if (!data)
+    {
+        std::cerr << "Error::Texture could not load texture file:" << filename << std::endl;
+        return 0;
+    }
+
+    // Step4 Upload the texture to the PU
+    GLenum format = 0;
+    if (nrChannels == 1)
+        format = GL_RED;
+    else if (nrChannels == 3)
+        format = GL_RGB;
+    else if (nrChannels == 4)
+        format = GL_RGBA;
+    glTexImage2D(GL_TEXTURE_2D, 0, format, width, height,
+        0, format, GL_UNSIGNED_BYTE, data);
+
+    // Step5 Free resources
+    stbi_image_free(data);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    return textureId;
 }
 
 float RNGpos() {
