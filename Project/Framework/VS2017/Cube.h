@@ -49,6 +49,8 @@ public:
 	void setCustomTranslation(vec3 offset);
 	void setCustomScaling(float scaleFactor);
 	void rotateWithWorld(mat4 rotateX, mat4 rotateY);
+
+	void setCurrentShader(Shader S);
 	void setMode(int mode);
 
 	void drawModel();

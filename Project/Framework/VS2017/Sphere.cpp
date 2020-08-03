@@ -3,10 +3,11 @@ Sphere::Sphere() {
 
 }
 
-Sphere::Sphere(vec3 basePos, float poly, Shader S){
+Sphere::Sphere(vec3 basePos, float rad, float poly, Shader S){
 	currentShader = S;
 	basePosition = basePos;
 	polyCount = poly;
+	radius = rad;
 	this->update();
 }
 
@@ -55,7 +56,12 @@ void Sphere::rotateWithWorld(mat4 rotateX, mat4 rotateY) {
 	modelMatrix = rotateY * rotateX * modelMatrix;
 }
 
+void Sphere::setCurrentShader(Shader S) {
+	currentShader = S;
+	this->update();
+}
+
 void Sphere::drawModel() {
 	currentShader.setMat4("worldMatrix", modelMatrix);
-	glDrawArrays(GL_TRIANGLES, 0, polyCount);
+	glDrawArrays(GL_LINES, 0, polyCount);
 }

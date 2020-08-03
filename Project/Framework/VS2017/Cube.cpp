@@ -79,6 +79,11 @@ void Cube::drawModel() {
 	}
 }
 
+void Cube::setCurrentShader(Shader S) {
+	currentShader = S;
+	this->update();
+}
+
 void Cube::rotateWithWorld(mat4 rotateX, mat4 rotateY) {
 	modelMatrix = rotateY * rotateX * modelMatrix;
 }
