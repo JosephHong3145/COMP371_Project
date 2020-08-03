@@ -3,10 +3,11 @@ Cube::Cube() {
 
 }
 
-Cube::Cube(vec3 basePos, bool H, Shader S) {
+Cube::Cube(vec3 basePos, bool H, Shader S, Shader T) {
 	//setting base scaling, translation and rotation
 	isHorizontal = H;
 	currentShader = S;
+	currentTexture = T;
 	basePosition = basePos;
 	this->update();
 }
@@ -63,6 +64,7 @@ void Cube::setMode(int mode) {
 
 void Cube::drawModel() {
 	currentShader.setMat4("worldMatrix", modelMatrix);
+	//currentTexture.setMat4("worldMatrix", modelMatrix);
 	switch (modelMode) {
 	case 0:
 		glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
