@@ -65,10 +65,20 @@
     <None Include="NotAffectedByLighting.vert">
       <Filter>Source Files</Filter>
     </None>
+<<<<<<< HEAD
     <None Include="texture.frag">
       <Filter>Source Files</Filter>
     </None>
     <None Include="texture.vert">
+=======
+    <None Include="shadowFragment.glsl">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="depthFragment.glsl">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="shadowVertex.glsl">
+>>>>>>> 0af92cb47df180bce4e4a9bb77147932474f9cc5
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
@@ -79,9 +89,12 @@
     <Image Include="..\Assets\Textures\Particle.png">
       <Filter>Resource Files\Textures</Filter>
     </Image>
+<<<<<<< HEAD
     <Image Include="..\..\..\..\..\..\container.jpg">
       <Filter>Resource Files\Textures</Filter>
     </Image>
+=======
+>>>>>>> 0af92cb47df180bce4e4a9bb77147932474f9cc5
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -90,7 +103,11 @@
     <ClCompile Include="Cube.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="stb_image.cpp">
+=======
+    <ClCompile Include="Sphere.cpp">
+>>>>>>> 0af92cb47df180bce4e4a9bb77147932474f9cc5
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -99,7 +116,12 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Cube.h" />
+<<<<<<< HEAD
     <ClInclude Include="stb_image.h">
+=======
+    <ClInclude Include="Sphere.h" />
+    <ClInclude Include="shaderloader.h">
+>>>>>>> 0af92cb47df180bce4e4a9bb77147932474f9cc5
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

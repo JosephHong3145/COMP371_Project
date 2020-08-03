@@ -27,3 +27,6 @@ B: reset model position to original
 world manipulation =====================
 up/down/left/right: change world orientation
 Enter: reset world orientation to original 
+
+Texture ===========================
+M: toggle texture on/off 
