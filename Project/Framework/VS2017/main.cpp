@@ -52,7 +52,6 @@ int main()
     //int shaderProgram = compileAndLinkShaders();
     Shader AffectedByLightingShader("AffectedByLighting.vert", "AffectedByLighting.frag");
     Shader NotAffectedByLightingShader("NotAffectedByLighting.vert", "NotAffectedByLighting.frag");
-    Shader TextureShader("texture.vert", "texture.frag");
 
     //GLint currentAxisLocation = glGetUniformLocation(shaderProgram, "currentAxis");
 
@@ -76,9 +75,7 @@ int main()
     NotAffectedByLightingShader.use();
     NotAffectedByLightingShader.setMat4("viewMatrix", viewMatrix);
 
-    TextureShader.use();
-    TextureShader.setMat4("viewMatrix", viewMatrix);
-
+ 
     struct Vertex
     {
         Vertex(vec3 _position, vec3 _color, vec3 _normal, vec2 _uv)
@@ -180,7 +177,16 @@ int main()
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)0);
     glEnableVertexAttribArray(0);
 
-
+    //loading texture pack
+     // Load Textures
+#if defined(PLATFORM_OSX)
+    GLuint woodTextureID = loadTexture("Textures/container.jpg");
+    GLuint cementTextureID = loadTexture("Textures/scratched-metal.jpg");
+#else
+    GLuint woodTextureID = loadTexture("../Assets/Textures/container.jpg");
+    GLuint cementTextureID = loadTexture("../Assets/Textures/scratched-metal.jpg");
+#endif
+   
     // For frame time
     float lastFrameTime = glfwGetTime();
     int lastMouseLeftState = GLFW_RELEASE;
@@ -277,9 +283,6 @@ int main()
 
         NotAffectedByLightingShader.use();
         NotAffectedByLightingShader.setMat4("projectionMatrix", projectionMatrix);
-
-        TextureShader.use();
-        TextureShader.setMat4("projectionMatrix", projectionMatrix);
 
         // Frame time calculation
         float dt = glfwGetTime() - lastFrameTime;
@@ -850,17 +853,6 @@ int main()
 
         //=====================================================================================================================
 
-            // Load Textures
-#if defined(PLATFORM_OSX)
-        GLuint woodTextureID = loadTexture("Textures/container.jpg");
-        GLuint cementTextureID = loadTexture("Textures/scratched-metal.jpg");
-#else
-        GLuint woodTextureID = loadTexture("../Assets/Textures/container.jpg");
-        GLuint cementTextureID = loadTexture("../Assets/Textures/scratched-metal.jpg");
-#endif
-        //GLuint woodTextureID = loadTexture("C:/Users/Badreddine Loulidi/Desktop/Coding projects/Computer Graphics/COMP371_Project/Project/Framework/VS2017/container.jpg");
-       // GLuint metalTextureID = loadTexture("C:/Users/Badreddine Loulidi/Desktop/Coding projects/Computer Graphics/COMP371_Project/Project/Framework/VS2017/scratched-metal.jpg");
-
         //drawing everything ==================================================================================================
         NotAffectedByLightingShader.use();
         glBindVertexArray(cubeVAO);
@@ -937,19 +929,19 @@ int main()
         //jacob's letter and digit
         array<Cube, 7> Jacob = {
             //C vertical
-            Cube(vec3(0.0f, 3.25f, 0.0f), false, AffectedByLightingShader, TextureShader),
+            Cube(vec3(0.0f, 3.25f, 0.0f), false, AffectedByLightingShader),
 
             //C horizontal
-            Cube(vec3(2.5f, 0.0f, 0.0f), true, AffectedByLightingShader, TextureShader),
-            Cube(vec3(2.5f, 6.5f, 0.0f), true, AffectedByLightingShader, TextureShader),
+            Cube(vec3(2.5f, 0.0f, 0.0f), true, AffectedByLightingShader),
+            Cube(vec3(2.5f, 6.5f, 0.0f), true, AffectedByLightingShader),
 
             //9 vertical
-            Cube(vec3(5.0f + textOffset, 3.25f, 0.0f), false, AffectedByLightingShader, TextureShader),
-            Cube(vec3(0.0f + textOffset, 3.25 * 1.5, 0.0f), false, AffectedByLightingShader, TextureShader),
+            Cube(vec3(5.0f + textOffset, 3.25f, 0.0f), false, AffectedByLightingShader),
+            Cube(vec3(0.0f + textOffset, 3.25 * 1.5, 0.0f), false, AffectedByLightingShader),
 
             //9 horizontal
-            Cube(vec3(2.5f + textOffset, 6.5f, 0.0f), true, AffectedByLightingShader, TextureShader),
-            Cube(vec3(2.5f + textOffset, 3.25, 0.0f), true, AffectedByLightingShader, TextureShader)
+            Cube(vec3(2.5f + textOffset, 6.5f, 0.0f), true, AffectedByLightingShader),
+            Cube(vec3(2.5f + textOffset, 3.25, 0.0f), true, AffectedByLightingShader)
         };
 
         //perform any changes necesary 
@@ -973,20 +965,20 @@ int main()
         //Joseph's letter and digit
         array<Cube, 8> Joseph = {
             //U vertical
-            Cube(vec3(0.0f, 3.25f, 0.0f), false, AffectedByLightingShader, TextureShader),
-            Cube(vec3(5.0f, 3.25f, 0.0f), false, AffectedByLightingShader, TextureShader),
+            Cube(vec3(0.0f, 3.25f, 0.0f), false, AffectedByLightingShader),
+            Cube(vec3(5.0f, 3.25f, 0.0f), false, AffectedByLightingShader),
 
             //6 vertical
-            Cube(vec3(0.0f + textOffset, 3.25f, 0.0f), false, AffectedByLightingShader, TextureShader),
-            Cube(vec3(5.0f + textOffset, 3.25 / 2, 0.0f), false, AffectedByLightingShader, TextureShader),
+            Cube(vec3(0.0f + textOffset, 3.25f, 0.0f), false, AffectedByLightingShader),
+            Cube(vec3(5.0f + textOffset, 3.25 / 2, 0.0f), false, AffectedByLightingShader),
 
             //U horizontal
-            Cube(vec3(2.5f, 0.0f, 0.0f), true, AffectedByLightingShader, TextureShader),
+            Cube(vec3(2.5f, 0.0f, 0.0f), true, AffectedByLightingShader),
 
             //6 horizontal
-            Cube(vec3(2.5f + textOffset, 0.0f, 0.0f), true, AffectedByLightingShader, TextureShader),
-            Cube(vec3(2.5f + textOffset, 3.25f, 0.0f), true, AffectedByLightingShader, TextureShader),
-            Cube(vec3(2.5f + textOffset, 6.5f, 0.0f), true, AffectedByLightingShader, TextureShader),
+            Cube(vec3(2.5f + textOffset, 0.0f, 0.0f), true, AffectedByLightingShader),
+            Cube(vec3(2.5f + textOffset, 3.25f, 0.0f), true, AffectedByLightingShader),
+            Cube(vec3(2.5f + textOffset, 6.5f, 0.0f), true, AffectedByLightingShader),
         };
 
         //perform any size change necesary 
@@ -1009,21 +1001,21 @@ int main()
         // Badreddine letter and digit
         array<Cube, 9> Bad = {
             //D vertical
-            Cube(vec3(0.0f, 3.25f, 0.0f), false, AffectedByLightingShader, TextureShader),
-            Cube(vec3(5.5f, 3.25f, 0.0f), false, AffectedByLightingShader, TextureShader),
+            Cube(vec3(0.0f, 3.25f, 0.0f), false, AffectedByLightingShader),
+            Cube(vec3(5.5f, 3.25f, 0.0f), false, AffectedByLightingShader),
 
             //D horizontal
-            Cube(vec3(2.5f, 0.0f, 0.0f), true, AffectedByLightingShader, TextureShader),
-            Cube(vec3(2.5f, 6.5f, 0.0f), true, AffectedByLightingShader, TextureShader),
+            Cube(vec3(2.5f, 0.0f, 0.0f), true, AffectedByLightingShader),
+            Cube(vec3(2.5f, 6.5f, 0.0f), true, AffectedByLightingShader),
 
             //2 vertical
-            Cube(vec3(0.0f + textOffset, 3.25 * 0.5, 0.0f), false, AffectedByLightingShader, TextureShader),
-            Cube(vec3(5.0f + textOffset, 3.25 * 1.5, 0.0f), false, AffectedByLightingShader, TextureShader),
+            Cube(vec3(0.0f + textOffset, 3.25 * 0.5, 0.0f), false, AffectedByLightingShader),
+            Cube(vec3(5.0f + textOffset, 3.25 * 1.5, 0.0f), false, AffectedByLightingShader),
 
             //2 horizontal
-            Cube(vec3(2.5f + textOffset, 0.0f, 0.0f), true, AffectedByLightingShader, TextureShader),
-            Cube(vec3(2.5f + textOffset, 3.25f, 0.0f), true, AffectedByLightingShader, TextureShader),
-            Cube(vec3(2.5f + textOffset, 6.5f, 0.0f), true, AffectedByLightingShader, TextureShader),
+            Cube(vec3(2.5f + textOffset, 0.0f, 0.0f), true, AffectedByLightingShader),
+            Cube(vec3(2.5f + textOffset, 3.25f, 0.0f), true, AffectedByLightingShader),
+            Cube(vec3(2.5f + textOffset, 6.5f, 0.0f), true, AffectedByLightingShader),
         };
 
         Bad[0].setDefaultSize(vec3(1.0f, 7, 1.0f));
@@ -1049,21 +1041,21 @@ int main()
         //Adam's Letter and digit
         array<Cube, 9> adam = {
             //A vertical
-            Cube(vec3(0.0f, 3.25f, 0.0f), false, AffectedByLightingShader, TextureShader),
-            Cube(vec3(5.0f, 3.25f, 0.0f), false, AffectedByLightingShader, TextureShader),
+            Cube(vec3(0.0f, 3.25f, 0.0f), false, AffectedByLightingShader),
+            Cube(vec3(5.0f, 3.25f, 0.0f), false, AffectedByLightingShader),
 
             //A horizontal
-            Cube(vec3(2.5f, 3.25f, 0.0f), true, AffectedByLightingShader, TextureShader),
-            Cube(vec3(2.5f, 6.5f, 0.0f), true, AffectedByLightingShader, TextureShader),
+            Cube(vec3(2.5f, 3.25f, 0.0f), true, AffectedByLightingShader),
+            Cube(vec3(2.5f, 6.5f, 0.0f), true, AffectedByLightingShader),
 
             //2 vertical
-            Cube(vec3(0.0f + textOffset, 3.25 * 0.5, 0.0f), false, AffectedByLightingShader, TextureShader),
-            Cube(vec3(5.0f + textOffset, 3.25 * 1.5, 0.0f), false, AffectedByLightingShader, TextureShader),
+            Cube(vec3(0.0f + textOffset, 3.25 * 0.5, 0.0f), false, AffectedByLightingShader),
+            Cube(vec3(5.0f + textOffset, 3.25 * 1.5, 0.0f), false, AffectedByLightingShader),
 
             //2 horizontal
-            Cube(vec3(2.5f + textOffset, 0.0f, 0.0f), true, AffectedByLightingShader, TextureShader),
-            Cube(vec3(2.5f + textOffset, 3.25f, 0.0f), true, AffectedByLightingShader, TextureShader),
-            Cube(vec3(2.5f + textOffset, 6.5f, 0.0f), true, AffectedByLightingShader, TextureShader),
+            Cube(vec3(2.5f + textOffset, 0.0f, 0.0f), true, AffectedByLightingShader),
+            Cube(vec3(2.5f + textOffset, 3.25f, 0.0f), true, AffectedByLightingShader),
+            Cube(vec3(2.5f + textOffset, 6.5f, 0.0f), true, AffectedByLightingShader),
         };
 
         adam[4].setDefaultSize(vec3(1.0f, 6.5 / 2, 1.0f));
@@ -1086,20 +1078,20 @@ int main()
         //Avnish's letter and digit
         array<Cube, 8> avnish = {
             //N vertical
-            Cube(vec3(0.0f, 3.25f, 0.0f), false, AffectedByLightingShader, TextureShader),
-            Cube(vec3(5.0f, 3.25f, 0.0f), false, AffectedByLightingShader, TextureShader),
+            Cube(vec3(0.0f, 3.25f, 0.0f), false, AffectedByLightingShader),
+            Cube(vec3(5.0f, 3.25f, 0.0f), false, AffectedByLightingShader),
 
             //N diagonal
-            Cube(vec3(2.5f, 3.25f, 0.0f), false, AffectedByLightingShader, TextureShader),
+            Cube(vec3(2.5f, 3.25f, 0.0f), false, AffectedByLightingShader),
 
             //2 vertical
-            Cube(vec3(0.0f + textOffset, 3.25 * 0.5, 0.0f), false, AffectedByLightingShader, TextureShader),
-            Cube(vec3(5.0f + textOffset, 3.25 * 1.5, 0.0f), false, AffectedByLightingShader, TextureShader),
+            Cube(vec3(0.0f + textOffset, 3.25 * 0.5, 0.0f), false, AffectedByLightingShader),
+            Cube(vec3(5.0f + textOffset, 3.25 * 1.5, 0.0f), false, AffectedByLightingShader),
 
             //2 horizontal
-            Cube(vec3(2.5f + textOffset, 0.0f, 0.0f), true, AffectedByLightingShader, TextureShader),
-            Cube(vec3(2.5f + textOffset, 3.25f, 0.0f), true, AffectedByLightingShader, TextureShader),
-            Cube(vec3(2.5f + textOffset, 6.5f, 0.0f), true, AffectedByLightingShader, TextureShader),
+            Cube(vec3(2.5f + textOffset, 0.0f, 0.0f), true, AffectedByLightingShader),
+            Cube(vec3(2.5f + textOffset, 3.25f, 0.0f), true, AffectedByLightingShader),
+            Cube(vec3(2.5f + textOffset, 6.5f, 0.0f), true, AffectedByLightingShader),
         };
 
         avnish[2].setDefaultRotation(45);
@@ -1235,8 +1227,6 @@ int main()
        AffectedByLightingShader.setMat4("viewMatrix", viewMatrix);
        NotAffectedByLightingShader.use();
        NotAffectedByLightingShader.setMat4("viewMatrix", viewMatrix);
-       TextureShader.use();
-       TextureShader.setMat4("viewMatrix", viewMatrix);
 
     }
 

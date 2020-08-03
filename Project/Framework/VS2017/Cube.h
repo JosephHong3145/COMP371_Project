@@ -33,13 +33,12 @@ private:
 	float currentScaleFactor;
 
 	Shader currentShader;
-	Shader currentTexture;
 
 	int modelMode;
 
 public: 
 	Cube();
-	Cube(vec3 basePos, bool H, Shader S, Shader T);
+	Cube(vec3 basePos, bool H, Shader S);
 
 	void setDefaultSize(vec3 s);
 	void setDefaultRotation(float angle);
